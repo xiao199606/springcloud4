@@ -1,0 +1,16 @@
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/
+server:
+  port: 8081
+spring:
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+  application:
+    name: service-feign
+  main:
+    allow-bean-definition-overriding: true
