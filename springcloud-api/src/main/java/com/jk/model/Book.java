@@ -3,6 +3,7 @@ package com.jk.model;
 import java.io.Serializable;
 
 public class Book implements Serializable {
+    private static final long serialVersionUID = 444487439244535129L;
     private String id;
     private String name;
     private String author;
