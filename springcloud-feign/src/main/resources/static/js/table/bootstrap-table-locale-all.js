@@ -723,7 +723,7 @@
 /**
  * Bootstrap Table French (France) translation
  * Author: Dennis Hernández (http://djhvscf.github.io/Blog/)
- * Modification: Tidalf (https://github.com/TidalfFR)
+ * Modification: Tidalf (#://github.com/TidalfFR)
  */
 (function ($) {
     'use strict';

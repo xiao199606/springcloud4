@@ -1,6 +1,6 @@
 /**
  * @author zhixin wen <wenzhixin2010@gmail.com>
- * extensions: https://github.com/vitalets/x-editable
+ * extensions: #://github.com/vitalets/x-editable
  */
 
 (function($) {

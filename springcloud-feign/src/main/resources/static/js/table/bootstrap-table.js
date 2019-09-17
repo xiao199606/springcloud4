@@ -1,7 +1,7 @@
 /**
  * @author zhixin wen <wenzhixin2010@gmail.com>
  * version: 1.11.1
- * https://github.com/wenzhixin/bootstrap-table/
+ * #://github.com/wenzhixin/bootstrap-table/
  */
 
 (function ($) {
@@ -222,7 +222,7 @@
     };
 
     var objectKeys = function () {
-        // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
+        // From #://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
         if (!Object.keys) {
             Object.keys = (function() {
                 var hasOwnProperty = Object.prototype.hasOwnProperty,

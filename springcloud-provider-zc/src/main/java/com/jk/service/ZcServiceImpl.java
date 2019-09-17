@@ -1,6 +1,5 @@
 package com.jk.service;
-
-import com.jk.dao.XxfDao;
+import com.jk.dao.ZcDao;
 import com.jk.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,13 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class XxfServiceImpl implements XxfServiceApi {
+public class ZcServiceImpl implements ZcServiceApi {
     @Autowired
-    private XxfDao xxfDao;
+    private ZcDao zcDao;
 
     @Override
     public Map test() {
-        List<Book> list=xxfDao.test();
+        List<Book> list=zcDao.test();
         HashMap<Object, Object> map = new HashMap<>();
         map.put("rows",list);
         return map;

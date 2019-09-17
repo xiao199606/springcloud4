@@ -10,4 +10,10 @@ public class ToController {
     public String toBookList(){
         return "bookList";
     }
+
+    //跳转到招聘官网首页
+    @RequestMapping("toBosShow")
+    public String toBosShow(){
+        return "BOSS";
+    }
 }

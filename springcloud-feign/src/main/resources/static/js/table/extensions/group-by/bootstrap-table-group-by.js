@@ -62,7 +62,7 @@
     };
 
     var setObjectKeys = function () {
-        // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
+        // From #://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
         Object.keys = function (o) {
             if (o !== Object(o)) {
                 throw new TypeError('Object.keys called on a non-object');

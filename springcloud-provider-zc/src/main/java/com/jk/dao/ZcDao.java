@@ -4,6 +4,6 @@ import com.jk.model.Book;
 
 import java.util.List;
 
-public interface XxfDao {
+public interface ZcDao {
     List<Book> test();
 }

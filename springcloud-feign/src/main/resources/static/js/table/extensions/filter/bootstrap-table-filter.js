@@ -1,6 +1,6 @@
 /**
  * @author zhixin wen <wenzhixin2010@gmail.com>
- * extensions: https://github.com/lukaskral/bootstrap-table-filter
+ * extensions: #://github.com/lukaskral/bootstrap-table-filter
  */
 
 !function($) {

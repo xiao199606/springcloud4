@@ -1,6 +1,7 @@
 package com.jk.controller;
 
 import com.jk.service.XxfServiceApi;
+import com.jk.service.ZcServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,13 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-public class XxfController {
+public class ZcController {
     @Autowired
-    private XxfServiceApi XxfService;
+    private ZcServiceApi zcService;
 
-    @RequestMapping("/test")
+    @RequestMapping("/zcTest")
     public Map test(){
-        Map map=XxfService.test();
+        Map map=zcService.test();
         return map;
     }
 }
