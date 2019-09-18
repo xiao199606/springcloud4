@@ -5,14 +5,31 @@
     select * from t_book
 </select>
 
-    <!--注册-->
+    <!--个人注册-->
     <insert id="zcRegister">
-        INSERT INTO gryh(username,pwd,tel,zhucsj)
+        INSERT INTO gryh(username,pwd,tel,zhucsj,state)
         VALUES(
            #{username},
            #{pwd},
            #{tel},
-           SYSDATE()
+           SYSDATE(),
+           1
         )
     </insert>
+
+    <!--企业版注册-->
+    <insert id="zcHrRegister">
+        INSERT INTO gryh(username,pwd,tel,zhucsj,state)
+        VALUES(
+           #{username},
+           #{pwd},
+           #{tel},
+           SYSDATE(),
+           2
+        )
+    </insert>
+
+    <select id="queryTel" resultType="com.jk.model.zcModel.UserModel">
+        select *  from  gryh WHERE tel = #{tel} and state = #{state}
+    </select>
 </mapper>

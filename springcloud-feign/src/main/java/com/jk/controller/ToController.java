@@ -53,4 +53,10 @@ public class ToController {
     public String tohbtree(){
         return "tree";
     }
+
+    //跳转到企业版登录注册
+    @RequestMapping("toHrRegister")
+    public String toHrRegister(){
+        return "hrRegister";
+    }
 }

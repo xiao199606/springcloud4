@@ -59,8 +59,7 @@
       <img src="./../register_files/logo.png">
       <div>
         <p>找工作</p>
-        <p>我要跟老板谈</p><br>
-        <p>个人版登录</p>
+        <p>我要跟老板谈</p>
       </div>
     </a>
   </div>
@@ -133,7 +132,8 @@
       <img src="./../register_files/logo.png">
       <div>
         <p>找工作</p>
-        <p>我要跟老板谈</p>
+        <p>我要跟老板谈</p><br>
+        <p>企业版登录</p>
       </div>
     </a>
   </div>
@@ -530,14 +530,14 @@
 
     }
 
-    //注册
+    //企业版注册
     function register() {
         var phone = $("#phone1").val();
         var obj = $("#obj").val();
         var phoneCode1 = $("#phoneCode1").val();
         if(obj==phoneCode1){
           $.ajax({
-            url:"../zcController/zcRegister",
+            url:"../zcController/zcHrRegister",
             type:"post",
             data:{phone:phone},
             dataType:"json",
@@ -555,11 +555,10 @@
 
     }
     
-    //个人登录
+    //企业登录
   function grDenLu() {
-      var state = 1;
+      var state = 2;
       var tel = $("#account2").val();
-       //alert(tel);
       var pwd = $("#password").val();
       $.ajax({
         url:"../zcController/grDenLu",
@@ -577,9 +576,11 @@
           if(data.code==1){
             alert("密码错误");
           }
+          //登录个人版
           if(data.code==2 && data.state==1){
             location.href="../jump/toBosShow";
           }
+          //登录企业版
           if(data.code==2 && data.state==2){
             location.href="../jump/toHr";
           }

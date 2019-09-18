@@ -57,7 +57,7 @@
                 <div class="btns">
                     <a href="#://www.zhipin.com/geek/attresume/parser.html" ka="nlp_resume_upload" class="link-sign-resume" title="上传简历，解析内容，完善注册">上传简历</a>
                     <a href="#://www.zhipin.com/geek/attresume/parser.html" ka="header-geek" class="link-sign-resume" title="上传简历，解析内容，完善注册">我要找工作<span class="new" style="display: inline;">hot</span></a>
-                    <a href="javascript:toRegister()" class="link-scan" ka="header-boss" title="我要招聘">我要招聘</a>
+                    <a href="javascript:toHrRegister()" class="link-scan" ka="header-boss" title="我要招聘">我要招聘</a>
                     <a href="javascript:toRegister()" ka="header-register" class="btn btn-outline">注册</a>
                     <a href="javascript:toRegister()" ka="header-login" class="btn btn-outline">登录</a>
                 </div>
@@ -4392,6 +4392,11 @@
     //跳转到登录页面
     function toRegister() {
         location.href="../jump/toRegister";
+    }
+    
+    //跳转到企业版登录注册
+    function toHrRegister() {
+        location.href="../jump/toHrRegister";
     }
 </script>
 </body>

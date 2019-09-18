@@ -90,4 +90,16 @@ public class ZcController {
 
         return zcService.grDenLu(user);
     }
+
+    //企业版注册
+    @RequestMapping("zcHrRegister")
+    @ResponseBody
+    public String zcHrRegister(String phone,UserModel userModel){
+        userModel.setTel(phone);
+        //随机生成密码
+        String random=(int)((Math.random()*9+1)*100000)+"";
+        userModel.setPwd(random);
+        zcService.zcHrRegister(userModel);
+        return random;
+    }
 }

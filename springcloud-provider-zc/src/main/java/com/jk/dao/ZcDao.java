@@ -9,10 +9,13 @@ import java.util.List;
 public interface ZcDao {
     List<Book> test();
 
-    //注册
+    //个人版注册
     void zcRegister(UserModel userModel);
 
     //查询用户
-    @Select("select *  from  gryh WHERE tel = #{value}")
-    UserModel queryTel(String tel);
+    //@Select("select *  from  gryh WHERE tel = #{value} and and state = #{tel}")
+    UserModel queryTel(UserModel userModel);
+
+    //企业版注册
+    void zcHrRegister(UserModel userModel);
 }

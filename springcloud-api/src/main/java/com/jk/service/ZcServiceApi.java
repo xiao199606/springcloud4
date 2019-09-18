@@ -17,4 +17,7 @@ public interface ZcServiceApi {
 
     @GetMapping(value="grDenLu")
     HashMap<String, Object> grDenLu(@RequestBody UserModel user);
+
+    @GetMapping(value="zcHrRegister")
+    void zcHrRegister(@RequestBody UserModel userModel);
 }

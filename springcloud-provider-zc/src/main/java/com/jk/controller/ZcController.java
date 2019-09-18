@@ -34,4 +34,12 @@ public class ZcController {
 
         return zcService.grDenLu(user);
     }
+
+    //zcHrRegister 企业版注册
+    @RequestMapping("zcHrRegister")
+    public Boolean zcHrRegister(@RequestBody UserModel userModel){
+
+        zcService.zcHrRegister(userModel);
+        return true;
+    }
 }
