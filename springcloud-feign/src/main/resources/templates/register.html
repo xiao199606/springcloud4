@@ -71,7 +71,7 @@
         <div class="tip-error tip-error-form"></div>
         <div class="form-row row-select">
           <span class="dropdown-select"><i class="icon-select-arrow"></i><em class="text-select">+86</em><input type="hidden" name="regionCode" value="+86"></span>
-          <span class="ipt-wrap"><i class="icon-sign-phone"></i><input type="tel" class="ipt ipt-phone required" placeholder="手机号" name="account"></span>
+          <span class="ipt-wrap"><i class="icon-sign-phone"></i><input type="tel" class="ipt ipt-phone required" placeholder="手机号2" name="account" id="account2"></span>
           <div class="dropdown-menu">
             
 <ul>
@@ -102,7 +102,7 @@
           <div class="tip-error"></div>
         </div>
         <div class="form-row">
-          <span class="ipt-wrap"><i class="icon-sign-pwd"></i><input type="password" class="ipt ipt-pwd required" ka="signin-password" placeholder="密码" name="password"></span>
+          <span class="ipt-wrap"><i class="icon-sign-pwd"></i><input type="password" class="ipt ipt-pwd required" ka="signin-password" placeholder="密码" name="password"  id="password"></span>
           <div class="tip-error"></div>
         </div>
 
@@ -556,11 +556,17 @@
     
     //个人登录
   function grDenLu() {
-      var phone = $("#phone1").val();
+
+      var tel = $("#account2").val();
+       alert(tel);
+      var pwd = $("#password").val();
       $.ajax({
         url:"../zcController/grDenLu",
         type:"post",
-        data:{phone:phone},
+        data:{
+          tel:tel,
+          pwd:pwd
+        },
         dataType:"json",
         success:function(data){
           alert(data);

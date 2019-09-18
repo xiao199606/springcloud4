@@ -17,12 +17,13 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @Controller
+@RequestMapping("zcController")
 public class ZcController {
     @Autowired
     private ZcService zcService;
 
     //测试
-    @RequestMapping("zcController")
+    @RequestMapping("zcTest")
     @ResponseBody
     public Map test(){
         return zcService.test();
@@ -80,5 +81,12 @@ public class ZcController {
         userModel.setPwd(random);
         zcService.zcRegister(userModel);
         return random;
+    }
+
+    //个人版登录
+    @RequestMapping("grDenLu")
+    @ResponseBody
+    public HashMap<String,Object> grDenLu(UserModel userModel){
+        return zcService.grDenLu(userModel);
     }
 }
