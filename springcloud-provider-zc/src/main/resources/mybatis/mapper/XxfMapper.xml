@@ -4,4 +4,15 @@
 <select id="test" resultType="book">
     select * from t_book
 </select>
+
+    <!--注册-->
+    <insert id="zcRegister">
+        INSERT INTO gryh(username,pwd,tel,zhucsj)
+        VALUES(
+           #{username},
+           #{pwd},
+           #{tel},
+           SYSDATE()
+        )
+    </insert>
 </mapper>

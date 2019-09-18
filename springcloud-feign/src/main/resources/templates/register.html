@@ -185,7 +185,7 @@
         <input type="hidden" name="cscene" value="nc_login">
         <input type="hidden" value="FFFF0N00000000006DC1" name="cappKey">
         <div class="form-row">
-                        <span class="ipt-wrap"><i class="icon-sign-sms"></i><input type="text" class="ipt ipt-sms required" ka="signup-sms" placeholder="短信验证码" name="phoneCode" maxlength="6"><input type="hidden" name="smsType" value="1"><button type="button" class="btn btn-sms" data-url="/wapi/zppassport/send/smsCode">发送验证码</button></span>
+                        <span class="ipt-wrap"><i class="icon-sign-sms"></i><input type="text" class="ipt ipt-sms required" ka="signup-sms" placeholder="短信验证码2" name="phoneCode"  maxlength="6"><input type="hidden" name="smsType" value="1"><button type="button" class="btn btn-sms" data-url="/wapi/zppassport/send/smsCode">发送验证码2</button></span>
           <div class="tip-error"></div>
         </div>
         <div class="form-btn">
@@ -306,15 +306,13 @@
         <input type="hidden" name="act" value="0">
         <input type="hidden" name="purpose" value="0">
         
-          <div class="purpose-row">
-            <span class="cur">我要找工作</span><span class="">我要招聘</span>
-          </div>
+
         
         <h4></h4>
         <div class="tip-error tip-error-form"></div>
         <div class="form-row row-select">
           <span class="dropdown-select"><i class="icon-select-arrow"></i><em class="text-select">+86</em><input type="hidden" name="regionCode" value="+86"></span>
-          <span class="ipt-wrap"><i class="icon-sign-phone"></i><input type="tel" class="ipt ipt-phone required" placeholder="手机号" name="phone" id="phone1"></span>
+          <span class="ipt-wrap"><i class="icon-sign-phone"></i><input type="tel" class="ipt ipt-phone required" placeholder="手机号1" name="phone" id="phone1"></span>
           <div class="dropdown-menu">
             
 <ul>
@@ -356,13 +354,13 @@
         <input type="hidden" name="cscene" value="nc_login">
         <input type="hidden" value="FFFF0N00000000006DC1" name="cappKey">
         <div class="form-row">
-                  <span class="ipt-wrap"><i class="icon-sign-sms"></i><input type="text" class="ipt ipt-sms required" ka="signup-sms" placeholder="短信验证码" name="phoneCode" maxlength="6"><input type="hidden" name="smsType" value="2">
-                    <a type="button" class="btn btn-sms" href="httpNote">发送验证码</a></span>
+                  <span class="ipt-wrap"><i class="icon-sign-sms"></i><input type="text" class="ipt ipt-sms required" ka="signup-sms" id="phoneCode1" placeholder="短信验证码1" name="phoneCode" maxlength="6"><input type="hidden" name="smsType" value="2">
+                    <a type="button" class="btn btn-sms" href="javascript:httpNote()">发送验证码1</a></span>
 
           <div class="tip-error"></div>
         </div>
         <div class="form-btn">
-          <button type="submit" class="btn">注册</button>
+          <a class="btn" href="javascript:register()">注册</a>
         </div>
         <div class="text-tip">
           <div class="tip-error"></div>
@@ -371,9 +369,7 @@
         </div>
       </form>
     </div>
-    <div class="btn-switch ewm-switch">
-      <div class="switch-tip">微信极速注册<i class="icon-triangle"></i></div>
-    </div>
+
   </div>
 </div>
 
@@ -512,9 +508,53 @@
 </script>
 
 <script>
+    //短信验证码
     function httpNote() {
-        alert(11);
+          var phone = $("#phone1").val();
+          //location.href="httpNote?phone="+phone;
+          $.ajax({
+              url:"httpNote",
+              type:"post",
+              data:{phone:phone},
+              dataType:"json",
+              success:function(data){
+                  alert(data);
+                  //接受的验证码
+                  $("#obj").val(data);
+              },
+              error:function(){
+                  alert("验证陈序失败");
+              }
+          })
+
+    }
+
+    //注册
+    function register() {
+        var phone = $("#phone1").val();
+        var obj = $("#obj").val();
+        var phoneCode1 = $("#phoneCode1").val();
+        if(obj==phoneCode1){
+          $.ajax({
+            url:"zcRegister",
+            type:"post",
+            data:{phone:phone},
+            dataType:"json",
+            success:function(data){
+              alert("您的密码为"+data+"请妥善保管");
+              location.href="toBosShow";
+            },
+            error:function(){
+              alert("注册失败");
+            }
+          })
+        }else {
+          alert("验证码不一致")
+        }
+
     }
 </script>
+<!--存放验证码-->
+<input type="hidden" value="8917" id="obj">
 </body>
 </html>

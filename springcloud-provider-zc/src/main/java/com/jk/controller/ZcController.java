@@ -1,10 +1,10 @@
 package com.jk.controller;
 
+import com.jk.model.zcModel.UserModel;
 import com.jk.service.XxfServiceApi;
 import com.jk.service.ZcServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -17,5 +17,13 @@ public class ZcController {
     public Map test(){
         Map map=zcService.test();
         return map;
+    }
+
+    //注册
+    @RequestMapping("zcRegister")
+    public Boolean zcRegister(@RequestBody UserModel userModel){
+
+        zcService.zcRegister(userModel);
+        return true;
     }
 }

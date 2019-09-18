@@ -1,6 +1,7 @@
 package com.jk.service;
 import com.jk.dao.ZcDao;
 import com.jk.model.Book;
+import com.jk.model.zcModel.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,5 +20,11 @@ public class ZcServiceImpl implements ZcServiceApi {
         HashMap<Object, Object> map = new HashMap<>();
         map.put("rows",list);
         return map;
+    }
+
+    //注册
+    @Override
+    public void zcRegister(UserModel userModel) {
+        zcDao.zcRegister(userModel);
     }
 }
