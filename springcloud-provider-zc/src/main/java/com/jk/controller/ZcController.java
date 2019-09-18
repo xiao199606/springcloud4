@@ -6,6 +6,7 @@ import com.jk.service.ZcServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -25,5 +26,12 @@ public class ZcController {
 
         zcService.zcRegister(userModel);
         return true;
+    }
+
+    //个人版登录
+    @RequestMapping("grDenLu")
+    public HashMap<String,Object> grDenLu(@RequestBody UserModel user){
+
+        return zcService.grDenLu(user);
     }
 }

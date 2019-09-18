@@ -86,7 +86,8 @@ public class ZcController {
     //个人版登录
     @RequestMapping("grDenLu")
     @ResponseBody
-    public HashMap<String,Object> grDenLu(UserModel userModel){
-        return zcService.grDenLu(userModel);
+    public HashMap<String,Object> grDenLu(UserModel user){
+
+        return zcService.grDenLu(user);
     }
 }
