@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("jump")
 public class ToController {
     //测试框架
     @RequestMapping("toBookList")
@@ -29,7 +30,7 @@ public class ToController {
         return  "boss3";
     }
 
-    //跳转到登录注册
+    //跳转到个人登录注册
     @RequestMapping("toRegister")
     public String toRegister(){
         return "register";
@@ -42,4 +43,14 @@ public class ToController {
         return "hrfile";
     }
 
+
+    @RequestMapping("tologin")
+    public String tologin(){
+        return "index";
+    }
+
+    @RequestMapping("tohbtree")
+    public String tohbtree(){
+        return "tree";
+    }
 }

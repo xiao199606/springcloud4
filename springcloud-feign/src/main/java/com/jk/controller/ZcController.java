@@ -22,7 +22,7 @@ public class ZcController {
     private ZcService zcService;
 
     //测试
-    @RequestMapping("zcTest")
+    @RequestMapping("zcController")
     @ResponseBody
     public Map test(){
         return zcService.test();

@@ -14,3 +14,6 @@ spring:
     name: service-feign
   main:
     allow-bean-definition-overriding: true
+ribbon:
+  eureka:
+    enabled: true

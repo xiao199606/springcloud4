@@ -11,14 +11,5 @@ import java.util.Map;
 
 @Service
 public class XxfServiceImpl implements XxfServiceApi {
-    @Autowired
-    private XxfDao xxfDao;
 
-    @Override
-    public Map test() {
-        List<Book> list=xxfDao.test();
-        HashMap<Object, Object> map = new HashMap<>();
-        map.put("rows",list);
-        return map;
-    }
 }

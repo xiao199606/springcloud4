@@ -14,9 +14,4 @@ public class XxfController {
     @Autowired
     private XxfServiceApi XxfService;
 
-    @RequestMapping("/test")
-    public Map test(){
-        Map map=XxfService.test();
-        return map;
-    }
 }
