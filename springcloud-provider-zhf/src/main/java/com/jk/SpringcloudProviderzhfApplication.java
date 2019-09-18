@@ -8,10 +8,10 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @SpringBootApplication
 @EnableEurekaClient //表明自己是一个eurekaclient.
 @MapperScan("com.jk.dao")
-public class SpringcloudProviderzhfApplication {
+public class SpringcloudProviderZhfApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringcloudProviderzhfApplication.class, args);
+        SpringApplication.run(SpringcloudProviderZhfApplication.class, args);
     }
 
 }
