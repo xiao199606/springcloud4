@@ -1,457 +1,144 @@
 <!DOCTYPE html>
-<!-- saved from url=(0051)https://www.zhipin.com/chat/im?random=1568721057841 -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!--[if (lte IE 9)]>
-    <meta http-equiv="Refresh" content="0; url=/activity/cc/ietips.html"/>
-    <![endif]-->
-    
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>BOSS直聘</title>
-    <link href="../hrfile_files/main.css" type="text/css" rel="stylesheet">
-    <script src="../hrfile_files/hm.js.下载"></script><script src="../hrfile_files/ka.js.下载"></script><script>
-    var staticPath = 'https://static.zhipin.com/zhipin/v211';
-    var _PAGE = {
-        runChat: true,
-        uid:38319348,
-        encryptUid: '4c82004aed3d21c61Hx52tS-FFo~',
-        name:"张晨",
-        face:"https://img.bosszhipin.com/beijin/mcs/useravatar/20190220/04e57193cb161f0361c366ac12dbbee316b234b3d40440df3d09e7f4fa62344f_s.png",
-        email:"",
-        token:"fP1TdhHQ2n2t21s",
-        clientIP:"222.91.181.12",
-        isHunter: '',
-        jobCompeteStatus: 0,
-    
-        
-        
-        
-        
-        
-        
-        
-        
-        ws:{
-            useSSL:true,
-            server:"ws.zhipin.com",
-            port:443
-        }
-        
-        
-        
-        
-    
-    };
-
-    /*目前已经支持IE11/IE EDGE。IE10还未完全支持，暂时放入但是给提示*/
-    if (window.navigator.userAgent.indexOf('MSIE 10.0') > -1) {
-        alert('系统检测到你使用的浏览器版本较低，使用BOSS直聘企业版可能会显示异常，建议使用谷歌浏览器');
-    }
-
-    </script>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
-<body class="dialog-open"><script src="../hrfile_files/bl.js.下载" crossorigin=""></script>
-    <script>
-    !(function(c,b,d,a){c[a]||(c[a]={});c[a].config={pid:"h9614n96f5@468fdc7650031e0",appType:"web",imgUrl:"https://arms-retcode.aliyuncs.com/r.png?",disableHook:true,enableSPA:true};
-    with(b)with(body)with(insertBefore(createElement("script"),firstChild))setAttribute("crossorigin","",src=d)
-    })(window,document,"https://retcode.alicdn.com/retcode/bl.js","__bl");
-    </script>
-    <div id="wrap">
-        <div id="header">
-            <div class="inner">
-                <h1 class="logo"><a href="javascript:;" title="直聘企业版"><img src="../hrfile_files/logo.png"><span>直聘企业版</span></a></h1>
-                <div class="top-inner">
-                    <div class="top-op top-chat" style="display:block;">
-                        <div class="top-menu"></div>
-                        
-                    </div>
-                    <div class="top-op top-recommend" data-jobcnt="0">
-                        <div class="top-menu"><span>推荐牛人</span></div>
-                        
-                    </div>
-                    <div class="top-op top-geeksearch">
-                        <div class="top-menu"><span>搜索牛人</span></div>
-                    </div>
-                    <!-- 741 通知中心 -begin -->
-                    <div class="top-op top-message">
-                        <div class="top-menu"><span>通知中心</span></div>
-                    </div>
-                    <!-- 741 通知中心 -end -->
-                    <div class="top-op top-interview">
-                        <div class="top-menu"><span>面试管理</span><span class="interview-count">今日面试<em></em>个</span></div>
-                    </div>
-                    <div class="top-op top-position">
-                        <div class="top-menu"><span>职位管理</span></div>
-                    </div>
-                    <div class="top-op top-hunter">
-                        <div class="top-menu"><span>直猎职位管理</span></div>
-                    </div>
-                    <div class="top-op top-prop">
-                        <div class="top-menu"><a href="javascript:;" data-url="/vue/index/#/dashboard/prop/store" class="cur">道具商城</a><a href="javascript:;" data-url="/vue/index/#/dashboard/prop/mine">我的道具</a><a href="javascript:;" data-url="/vue/index/#/dashboard/prop/notice">道具通知</a></div>
-                    </div>
-
-                    
-                        
-                        
-                            <div class="top-op top-colleague">
-                                <div class="top-menu"><a href="javascript:;" data-url="/vue/index/#/dashboard/business/colleague/identity" class="cur">我的同事</a></div>
-                            </div>
-                        
-                    
-                    <div class="top-op top-company">
-                        <div class="top-menu"><a href="javascript:;" data-url="/boss/user/info.html" class="cur">我的资料</a><a href="javascript:;" data-url="/vue/index/#/dashboard/company">公司主页</a></div>
-                    </div>
-                    <div class="top-op top-resume">
-                        <div class="top-menu"><a href="javascript:;" data-url="https://wordhr.zhipin.com/#/zhipin/resume?encryptUserId=4c82004aed3d21c61Hx52tS-FFo~" class="cur" data-message="/zhipin/resume" ka="wordhr_top_resume_4c82004aed3d21c61Hx52tS-FFo~">简历</a><a href="javascript:;" data-url="https://wordhr.zhipin.com/#/zhipin/interview/?encryptUserId=4c82004aed3d21c61Hx52tS-FFo~" data-message="/zhipin/interview" ka="wordhr_top_interview_4c82004aed3d21c61Hx52tS-FFo~">面试</a><a href="javascript:;" data-url="https://wordhr.zhipin.com/#/zhipin/setting/list?encryptUserId=4c82004aed3d21c61Hx52tS-FFo~" data-message="/zhipin/setting" ka="wordhr_top_set_4c82004aed3d21c61Hx52tS-FFo~">设置</a></div>
-                    </div>
-                    <div class="top-op top-account">
-                        <div class="top-menu"><a href="javascript:;" data-url="/boss/account/management" class="cur">账号设置</a></div>
-                    </div>
-					<div class="top-op top-set">
-                    	<div class="top-menu"><span>招聘设置</span></div>
-                    </div>
-                    <div class="top-op top-vip-detail">
-                        <div class="top-menu"><span>VIP账号</span></div>
-                    </div>
-                    <div class="top-user">
-                        
-                        <!-- 741消息通知 -->
-                        <div class="top-message-menu iboss-xiaoxitongzhi">
-                            <div class="message-red-point"></div>
-                        </div>
-                        <!--  -->
-                        <div class="dropdown-wrap dropdown-help-and-feedback">
-                            <span class="dropdown-select">帮助与反馈</span>
-                            <div class="dropdown-menu">
-                                <ul>
-                                    <li><a href="javascript:;" class="header-pop-feedback" ka="comment_feedback">意见反馈</a></li>
-                                    <li>
-                                        <div class="online-service" ka="support_feedback">在线客服</div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <a href="javascript:;" class="interview-detail" ka="header-link-interview-detail">面试</a>
-                        
-                            <a href="javascript:;" data-op="top-position" class="records-center" ka="">招聘数据中心<span class="num">1</span></a>
-                        
-						<div class="dropdown-wrap dropdown-vipaccount">
-							<span class="dropdown-select link-vipaccount" ka="header-link-vipaccount" data-url="/mpa/html/vip/privilege">账号权益</span>
-							<div class="dropdown-menu">
-								<div class="vip-frame">加载中</div>
-							</div>
-						</div>
-                        
-                        <div class="dropdown-wrap dropdown-logout">
-                            <span class="dropdown-select">
-                                <img src="../hrfile_files/04e57193cb161f0361c366ac12dbbee316b234b3d40440df3d09e7f4fa62344f_s.png" alt="">
-                            </span>
-                            <div class="dropdown-menu">
-                                <ul>
-                                    <li><a href="javascript:;" class="link-profile" ka="menu_dropdown_profile">个人资料<span>基本信息、联系方式、更换公司</span></a></li>
-                                    <li><a href="javascript:;" class="link-msgset" ka="menu_dropdown_message">消息设置<span>常用语、招呼语</span></a></li>
-                                    
-                                        <li><a href="javascript:;" class="link-company" ka="menu_dropdown_company">公司介绍</a></li>
-                                    
-                                    <li><a href="javascript:;" class="link-account" ka="menu_dropdown_account">账号密码</a></li>
-                                    <li><a href="javascript:;" class="link-apply" ka="menu_dropdown_apply">切换成求职者</a></li>
-                                    <li><a href="https://www.zhipin.com/logout/" class="link-signout" ka="menu_dropdown_signout">退出登录</a></li>
-                                </ul>
-                                <p class="recruit-tip"><img src="../hrfile_files/recruit-tip.gif" alt=""><span>在 APP 端“我的 - 设置”中切换为牛人身份后，刷新本页面即可进行求职</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        	</div>
+<!-- 引入jquery -->
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<!-- 引入bootstrap的css -->
+<link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+<!-- 引入bootstrap-treeview的css -->
+<link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+<!-- 引入bootstrap-addTabs的css -->
+<link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+<!-- 引入bootstrap-table的css -->
+<link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+<!-- 引入fileinput的css -->
+<link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+<!-- 引入my97 -->
+<script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
+<!-- 引入bootstrap的js-->
+<script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+<!-- 引入bootstrap的js-->
+<script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+<!-- 引入bootstrap的js-->
+<script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+<!-- 引入bootstrap-table的js-->
+<script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+<!-- 引入bootbox.js -->
+<script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+<!-- 引入fileinput的js -->
+<script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+<!--  引入fileinput的js -->
+<script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+<script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+<script src="../highcharts/code/highcharts.js"></script>
+<style type="text/css">
+    body {padding-top:55px;}
+</style>
+<body>
+<!--导航条  -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <!--定义在容器顶部  -->
+    <div class="container-fluid">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <!-- 头部信息 -->
+        <div class="navbar-header">
+            <!--<a class="navbar-brand glyphicon glyphicon-globe" href="javascript:dialogRedis()" id="menu-toggle">
+                <font>欢迎</font><span th:text="${session.user.username}"></span><font>登录</font>
+            </a>-->
         </div>
-        <div id="main">
-            <div class="side-wrap">
-                <div class="side-menu">
-                    <div class="figure">
-                        <a ka="menu-user-info" href="javascript:;" data-url="/boss/user/info.html" title="我的资料"><img src="../hrfile_files/04e57193cb161f0361c366ac12dbbee316b234b3d40440df3d09e7f4fa62344f_s.png" alt=""></a>
-                        <span>张晨</span>
-                    </div>
-                    <dl class="menu-position ">
-                        <dt><a ka="menu-manager-job" href="javascript:;" data-url="/bossweb/joblist.html"><i class="icon-menu-position"></i>职位管理</a></dt>
-                    </dl>
-                    <dl class="menu-recommend ">
-                        <dt><a ka="menu-geek-recommend" href="javascript:;" data-url="/vue/index/#/dashboard/candidate/recommend"><i class="icon-menu-recommend"></i>推荐牛人</a></dt>
-                        
-                    </dl>
-                    <dl class="menu-geeksearch ">
-                        
-                        <dt><a ka="menu-geek-search" href="javascript:;" data-url="/vue/index/#/dashboard/search-candidate"><i class="icon-menu-search"></i>搜索牛人</a></dt>
-                    </dl>
-                    
-                    
-
-                    <dl class="menu-chat cur">
-                        <dt><a ka="menu-im" href="javascript:;"><i class="icon-menu-chat"></i>沟通<span class="menu-chat-badge"><i class="dot-plenty"></i></span></a></dt>
-                    </dl>
-                    <dl class="menu-prop ">
-                        <dt><a ka="menu-prop" href="javascript:;" data-url="/vue/index/#/dashboard/prop/store"><i class="icon-menu-prop"></i>道具</a></dt>
-                    </dl>
-                    <dl class="menu-user ">
-                        <dt><a ka="menu-user" href="javascript:;" data-url="/boss/user/info.html"><i class="icon-menu-company"></i>我的资料</a></dt>
-                    </dl>
-                    <dl class="menu-msgset">
-                        <dt><a ka="menu-account" href="javascript:;" data-url="/boss/account/management?type=4"><i class="icon-menu-account"></i>消息设置</a></dt>
-                    </dl>
-                    <dl class="menu-account">
-                        <dt><a href="javascript:;" data-url="/boss/account/management"><i class="icon-menu-account"></i>账号密码</a></dt>
-                    </dl>
-                    
-
-                    
-
-                    <div class="side-bottom-logo"><img src="../hrfile_files/logo-blank.png" alt=""><span>www.zhipin.com</span></div>
-                </div>
-            </div>
-            <div id="container" class="scrollbar-page">
-                <!--消息 start-->
-                <div class="chat-container page-container" style="display: block;">
-                    <div class="sec-operate">
-                        <div class="op-category">
-                            <div class="group-btns"><a ka="chat-relationtype1" href="javascript:;" data-status="-1" class="cur">全部牛人</a>
-                            </div>
-                            <div class="group-btns group-btns-relation"><a ka="chat-relationtype3" href="javascript:;" data-status="5">新招呼<span class="num"></span></a><a ka="chat-relationtype4" href="javascript:;" data-status="6">沟通中<span class="num"></span></a><a ka="chat-relationtype5" href="javascript:;" data-status="9">已约面<span class="num"></span></a>
-                            </div>
-                            <div class="group-btns">
-                                <a ka="chat-relationtype6" href="javascript:;" data-status="8">不合适<span class="num"></span></a>
-                            </div>
-                        </div>
-                        <div class="op-filter">
-                            <div class="sel-filter">
-                                <div class="dropdown-wrap dropdown-filter">
-                                    <span class="dropdown-select"><i class="icon-category-filter"></i>筛选</span>
-                                    <div class="dropdown-menu">
-                                        <div class="condition-filter">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--<div class="sel-refresh"><i class="icon-category-refresh"></i>刷新</div>
-                            <div class="sel-batch"><i class="icon-category-batch"></i>批量</div>-->
-                        </div>
-                    </div>
-                    <div class="sec-content chat-group-full">
-                        <div class="data-tips"><div class="data-blank"><i class="tip-nodata"></i><b>没有相关数据</b><p><a href="https://www.zhipin.com/chat/im?mu=recommend" class="btn link-topage">前往推荐牛人</a></p></div></div>
-                        <div class="chat-search fold">
-                            <div class="chat-search-article">
-                                <p class="user-bar-batch">批量</p>
-                                <p class="chat-search-input" style="width: 42px;">
-                                    <i class="icon-chat-search"></i> <input class="ipt" type="text" name="" placeholder="搜索" autocomplete="off"> <i class="icon-chat-search-clear icon-close"></i>
-                                </p>
-                                <div class="user-bar-filter">
-                                    <label class="checkbox"><input type="checkbox"><span>未读消息</span></label>
-                                    <!--<p><span class="user-bar-checked">全部对话</span>
-                                    <i class="iboss-down"></i><i class="iboss-up"></i></p>
-                                    <ul>
-                                        <li>全部对话</li>
-                                        <li>未读消息</li>
-                                        <li>我发起</li>
-                                        <li>牛人发起</li>
-                                        <li>群聊</li>
-                                        <li>同事转发</li>
-                                    </ul>-->
-                                </div>
-                            </div>
-                            <div class="chat-search-list user-list">
-                                <p class="chat-search-empty">搜索联系人、群聊</p>
-                            </div>
-                          </div>
-                        <div class="user-list scrollbar-macosx" style="display:none;">
-                        	<ul class="top-list"></ul>
-                        	<ul class="main-list"></ul>
-                            <div class="loadmore" data-url="/chat/userList.json">滚动加载更多</div>
-                        </div>
-                        <div class="detail-box" style="display:none;">
-                            <div class="chat-weclcome">
-                                <div class="welcome-tips"><p><b>Tips：</b>和你聊过的牛人，将会自动归档在「<span>沟通中</span>」方便你继续沟通哦～</p></div>
-                            </div>
-                            <div class="chat-wrap" style="display:none;">
-                                <div class="detail-top">
-                                	<div class="op">
-                                        <div class="op-icon op-interview"><div class="op-btn"><i class="iboss-mianshianpai"></i><div class="tooltip"><p class="gray">面试安排</p></div></div></div>
-                                        <div class="op-icon op-record"><div class="op-btn"><i class="iboss-goutongjilu"></i></div><div class="tooltip"><p class="gray">
-                                                
-                                                    
-                                                    
-                                                        沟通记录
-                                                    
-                                                
-                                            </p></div>
-                                        </div>
-                                        <div class="op-icon op-settop"><div class="op-btn"><i class="iboss-zhiding"></i></div><div class="tooltip"><p class="gray"></p></div></div> 
-                                        <div class="op-icon op-forward"><div class="op-btn"><i class="iboss-zhuanfa"></i></div><div class="tooltip"><p class="gray">转发牛人</p></div></div>
-                                    </div>
-                                    <div class="toggle-type"><span class="cur" data-target="chat-box">聊天</span><span data-target="resume-container">在线简历</span><span data-target="attachment-container" class="gray chat-tab-attachment" data-url="/resume/prview4web/">附件简历</span><span class="unboss-geek-notice">牛人来源说明</span><div class="dropdown-wrap"><span class="dropdown-label">&nbsp;</span><div class="dropdown-menu"><p class="gray">暂无附件简历，在牛人回复后可以向他请求</p></div></div>
-                                    </div>
-                                </div>
-                                <div class="chat-tab-content chat-box show-box">
-                                    <div class="chat-list"><div class="pre-loading"><span class="loading-more"><i></i><i></i><i></i></span></div>
-                                        <div class="chat-info"></div>
-                                        <ul></ul>
-                                    </div>
-                                    <div class="chat-editor">
-                                        <div class="chat-controls">
-                                            <div class="links">
-                                                <a href="javascript:;" class="btn-interview"><i class="iboss-interview"></i>约面试<span data-text="约面试">约面试</span></a><a href="javascript:;" target-status="5" data-text="置为沟通中" class="link-communication">置为沟通中</a><a href="javascript:;" data-text="不合适" target-status="7" class="link-fail">不合适</a><a href="javascript:;" target-status="6" data-text="合适" class="link-pass">合适</a>
-                                            </div>
-                                            <a href="javascript:;" class="btn-emotion"><i class="iboss-editor-emoticon"></i><i class="iboss-biaoqing hover"></i><span data-text="表情">表情</span></a><a href="javascript:;" class="btn-dict"><i class="iboss-sentence"></i><i class="iboss-changyongyu hover"></i><span data-text="常用语">常用语</span></a><a href="javascript:;" class="btn-resume"><i class="iboss-editor-resume"></i><span data-text="求简历">求简历</span></a><a href="javascript:;" class="btn-contact"><i class="iboss-phone"></i><span data-text="求手机">求手机</span></a><a href="javascript:;" class="btn-weixin"><i class="iboss-wechat"></i><span data-text="求微信">求微信</span></a><em class="vline"></em><a href="javascript:;" class="btn-video"><i class="iboss-shipin"></i><span data-text="视频通话">视频通话</span></a><a href="javascript:;" class="btn-audio"><i class="iboss-yuyin"></i><span data-text="语音通话">语音通话</span></a><a href="javascript:;" class="btn-message"><i class="iboss-duanxin"></i><span data-text="短信通知">短信通知</span><p class="note-message-tip">可以向牛人发送短信了<i>知道了</i></p></a>
-                                        </div>
-                                        <div class="chat-message" contenteditable="true"></div>
-                                        <div class="chat-op"><span class="tip">按Enter键发送，按Ctrl+Enter键换行</span><button class="btn btn-send btn-disabled" type="submit">发送</button></div>
-                                    </div>
-                                </div>
-                                <div class="chat-tab-content resume-container">
-                                    <div class="resume-content-latest">
-                                    </div>
-                                    <div class="resume-content-load"></div>
-                                </div>
-                                <div class="chat-tab-content attachment-container">
-                                    <div class="attachment-detail">
-                                    </div>
-                                </div>
-                                <div class="detail-bottom">
-                                    <div class="btns"></div>
-                                    <div class="text"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chat-sider"><a href="javascript:;" class="btn-prev" title="上一个"></a><a href="javascript:;" class="btn-next" title="下一个"></a></div>
-                    </div>
-                </div>
-                <!--消息 end-->
-                <!--推荐页面内容插入容器-->
-                <div class="sync-container page-container" style="display: none;"></div>
-                <!--推荐页面内容插入容器 end-->
-                <!--看过我插入容器-->
-                <div class="viewed-container page-container" style="display: none;"></div>
-                <!--看过我插入容器 end-->
-                <!--搜索牛人插入容器-->
-                <div class="geeksearch-container page-container" style="display: none;"></div>
-                <!--搜索牛人插入容器 end-->
-                <!--其他页面内容插入容器-->
-                <div class="rsync-container page-container" style="display: none;"></div>
-                <!--其他页面内容插入容器 end-->
-                <!--vue页面内容插入容器-->
-                <div class="vue-container page-container" style="display: none;"></div>
-                <!--vue页面内容插入容器 end-->
-                <!--设置页面内容插入容器-->
-                <div class="set-container page-container" style="display: none;"></div>
-                <!--设置页面内容插入容器 end-->
+        <!-- 右边的    导航 按钮 -->
+        <ul class="nav navbar-nav navbar-right">
+            <li>    <a href="../jump/toHrRegister"> 注销</a></li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<!-- ============================导航结束==================================-->
+<!--=========栅格布局 ==============-->
+<div class="row">
+    <div class="col-md-3">
+        <a class="list-group-item" data-addtab="userMenu" data-target="#tabs" data-url="http://www.baidu.com">
+        </a>
+        <!-- tree 的插件 -->
+        <div id="treeDiv"></div>
+        <!-- tree 的插件 -->
+        <!--  <div id="treeDiv2"></div>   -->
+    </div>
+    <div class="col-md-9">
+        <!--   选项卡    -->
+        <!-- Nav tabs -->
+        <ul id="tabs" class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#home" aria-controls="home" role="tab" data-toggle="tab">首页</a></li>
+        </ul>
+        <!-- 选项卡  内容 -->
+        <!-- Tab panes -->
+        <div class="tab-content" >
+            <div role="tabpanel"  class="tab-pane active " id="home" >
+                <table id="container"></table>
             </div>
         </div>
     </div>
-
-    <div id="guide-wrap">
-        <div class="guide-layer"></div>
-        <div class="guide-box">
-            <div class="inner">
-                <div class="guide-set"><span class="icon-set"></span><p>未来如需修改，请点击右上角“<span class="text-orange">设置</span>”</p></div>
-            </div>
-        </div>
-    </div>
-    <!--未认证弹窗-->
-
-    <div id="unrecognized-tip" style="">
-        <h3>请打开 BOSS直聘 APP</h3>
-        <p class="gray">按照提示完成身份认证流程</p>
-        <span class="img-wrap" data-url="/wapi/zpweixin/qrcode/qrcodeWithIcon?content=https%3A%2F%2Fwww.zhipin.com%2Fd%2Fv2%2F%3Ftype%3Dqr%26pkn%3Dboss_sign_in&amp;w=200&amp;h=200"></span>
-        <p class="gray">扫码下载BOSS直聘APP <a href="https://www.zhipin.com/logout/">切换账号</a></p>
-    </div>
+</div>
+</body>
+<script type="text/javascript">
+    $(function(){
+        showTree();
+    })
 
 
-    <!-- 截图弹窗 -->
-    <div class="crop_wrap" id="cropWrap" style="display: none;">
-        <div class="crop_inner">
-            <h1><a href="javascript:;" class="cancle"></a>添加公司照片</h1>
-            <div class="crop_container">
-                <span class="crop_foil"></span>
-            </div>
-            <div class="crop_frm" data-url="/user/crop/company/picture/" data-method="post">
-                <input type="hidden" name="token" value="fP1TdhHQ2n2t21s">
-                <input type="hidden" id="x" name="x">
-                <input type="hidden" id="y" name="y">
-                <input type="hidden" id="w" name="w">
-                <input type="hidden" id="h" name="h">
-                <input type="submit" value="保存" id="saveCrop"><a href="javascript:;" class="cancle">取消</a>
-            </div>
-        </div>
-    </div>
-    <script src="../hrfile_files/jquery-1.12.2.min.js.下载" type="text/javascript" crossorigin="anonymous"></script>
-    <script src="../hrfile_files/main.js.下载" type="text/javascript" crossorigin="anonymous"></script>
-    <input type="hidden" id="page_key_name" value="bpc_chat">
-    
-
-<script>
-	function get_share_datas_from_html_inapp() {
-		var shid = "shdefault",
-			urlShid,
-			urlSid,
-			pk = "pkdefault",
-			pp = "ppdefault",
-			pkn = (typeof _PK != 'undefined' ? _PK : document.getElementById("page_key_name")),
-			getQueryString = function(name) {
-				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"),
-					r = window.location.search.substr(1).match(reg);
-				if (r != null) {
-					return unescape(r[2])
-				}
-				return null;
-			};
-		urlShid = getQueryString("shid");
-		urlSid = getQueryString("sid");
-		if (urlShid) {
-			shid = urlShid;
-		} else if (urlSid) {
-			shid = urlSid;
-		}
-		if (pkn) {
-			var pknVal = pkn.value;
-			if (pknVal) {
-				var pkArray = pknVal.split("|");
-				if (pkArray.length == 1) {
-					pk = pkArray[0];
-				} else if (pkArray.length >= 2) {
-					pk = pkArray[0];
-					pp = pkArray[1];
-				}
-			}
-		}
-		var ret = [];
-		ret["shid"] = shid;
-		ret["pk"] = pk;
-		ret["pp"] = pp;
-		return ret;
-	}
-    function getQueryString(name, url) {
-        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"),
-            r = window.location.search.substr(1).match(reg);
-        if (url) {
-            r = url.split('?')[1].match(reg);
-        }
-        if(r!=null)return  unescape(r[2]); return null;
+    function showTree(){
+        $.ajax({
+            url:'../getAllTree',
+            type : "get",
+            dataType:"json",
+            success:function(data){
+                $("#treeDiv").treeview({
+                    //data属性 树节点信息 json数组
+                    data: data,
+                    //tree默认展开的节点级别默认为2
+                    levels: 0,
+                    //含有子节点的图标
+                    collapseIcon:'glyphicon glyphicon-star-empty',
+                    //没有子节点的图标
+                    emptyIcon:'glyphicon glyphicon-usd',
+                    //背景颜色
+                    //backColor: 'green'
+                    //是否显示复选框
+                    showCheckbox:true,
+                    //是否允许选中多个节点
+                    //multiSelect:true,
+                    //启用节点的超链接功能默认为false,节点需指定href属性
+                    enableLinks:false,
+                    //事件当节点选中时
+                    onNodeSelected:function(event,node){
+                        $.addtabs({iframeHeight:800});
+                        console.log(node);
+                        //动态向 nav-tabs 导航标签添加tab选项卡
+                        //addTabs方法  add() 添加tab  close()关闭tab  closeAll() 关闭全部tab
+                        if(null !=  node.url){
+                            $.addtabs.add({
+                                id:node.id,
+                                title:node.text,
+                                url:"../"+node.url
+                            })
+                        }
+                    }
+                })
+            },error : function (){
+                alert("查询树失败");
+            }
+        })
     }
 </script>
-<script>
-	var _T = _T || [];
-	(function() {
-	  var script = document.createElement("script");
-	  script.src = "https://static.zhipin.com/library/js/analytics/ka.js?v=20190822";
-	  var s = document.getElementsByTagName("script")[0];
-	  s.parentNode.insertBefore(script, s);
-	})();
-	
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?194df3105ad7148dcf2b98a91b5e727a";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
-
-
-</body></html>
+</html>

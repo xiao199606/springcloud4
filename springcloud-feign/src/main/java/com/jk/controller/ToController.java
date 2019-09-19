@@ -59,4 +59,10 @@ public class ToController {
     public String toHrRegister(){
         return "hrRegister";
     }
+
+    //跳转公司职位管理
+    @RequestMapping("toZwjl")
+    public String toZwjl(){
+        return "gsZwjl";
+    }
 }
