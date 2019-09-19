@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- saved from url=(0050)#://www.zhipin.com/c101110100/?ka=open_joblist -->
-<html class="standard"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html class="standard" xmlns:th="http://www.thymeleaf.org"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <title>【BOSS直聘西安】-BOSS直聘</title>
     <meta name="keywords" content="西安招聘,西安人才网,西安招聘网">
@@ -58,7 +58,7 @@
         <div class="inner home-inner">
             <div class="search-box">
                 <div class="search-form ">
-                    <form action="#://www.zhipin.com/job_detail/" method="get">
+
                         <div class="search-form-con">
                             <div class="city-sel">
                                 <i class="line"></i>
@@ -72,12 +72,12 @@
                                 <i class="line"></i>
                                 <span class="label-text"><b>职位类型</b><i class="icon-arrow-down"></i></span>
                             </div>
-                            <p class="ipt-wrap"><input type="text" name="query" ka="search-keyword" value="" autocomplete="off" class="ipt-search" maxlength="50" placeholder="搜索职位、公司"></p>
+                            <p class="ipt-wrap"><input th:value="${wk}" id="wk" type="text"  name="query" ka="search-keyword" value="" autocomplete="off" class="ipt-search" maxlength="50" placeholder="搜索职位、公司"></p>
                         </div>
                         <input type="hidden" name="city" class="city-code" value="101110100">
                         <input type="hidden" name="industry" class="industry-code" value="">
                         <input type="hidden" name="position" class="position-code" value="">
-                        <button class="btn btn-search">搜索</button>
+                    <button class="btn btn-search" onclick="search2()">搜索</button>
                         <div class="suggest-result">
                             <ul></ul>
                         </div>
@@ -96,7 +96,7 @@
                                 <div class="select-tree" data-level="3"><ul class="tree-1"><li data-id="0" class="">不限</li><li data-id="310000">高级管理</li><li data-id="100000">技术</li><li data-id="110000">产品</li><li data-id="120000">设计</li><li data-id="130000">运营</li><li data-id="140000">市场</li><li data-id="150000">人事/财务/行政</li><li data-id="160000">销售</li><li data-id="170000">传媒</li><li data-id="180000">金融</li><li data-id="230000">汽车</li><li data-id="190000">教育培训</li><li data-id="210000">医疗健康</li><li data-id="250000">采购/贸易</li><li data-id="240000">供应链/物流</li><li data-id="220000">房地产/建筑</li><li data-id="260000">咨询/翻译/法律</li><li data-id="270000">管培生</li><li data-id="280000">旅游</li><li data-id="290000">服务业</li><li data-id="300000">生产制造</li><li data-id="200000">其他</li></ul><ul class="tree-2"><li class="blank">选择职类</li></ul><ul class="tree-3"></ul></div>
                             </div>
                         </div>
-                    </form>
+
                 </div>
                 <!-- 广告 -->
                 <!--
@@ -406,21 +406,28 @@
                 <div class="dropdown-wrap">
                     
                     <span class="dropdown-select">
-                            <input type="text" ka="sel-salary" value="薪资要求" class="ipt" readonly="">
-                        <i class="icon-select-arrow"></i>
-                        <div class="dropdown-menu">
-                            <ul>
-                                        <li><a href="#://www.zhipin.com/c101110100/" ka="sel-salary-0">不限</a></li>
-                                        <li><a href="#://www.zhipin.com/c101110100/y_1/" ka="sel-salary-1">3K以下</a></li>
-                                        <li><a href="#://www.zhipin.com/c101110100/y_2/" ka="sel-salary-2">3-5K</a></li>
-                                        <li><a href="#://www.zhipin.com/c101110100/y_3/" ka="sel-salary-3">5-10K</a></li>
-                                        <li><a href="#://www.zhipin.com/c101110100/y_4/" ka="sel-salary-4">10-15K</a></li>
-                                        <li><a href="#://www.zhipin.com/c101110100/y_5/" ka="sel-salary-5">15-20K</a></li>
-                                        <li><a href="#://www.zhipin.com/c101110100/y_6/" ka="sel-salary-6">20-30K</a></li>
-                                        <li><a href="#://www.zhipin.com/c101110100/y_7/" ka="sel-salary-7">30-50K</a></li>
-                                        <li><a href="#://www.zhipin.com/c101110100/y_8/" ka="sel-salary-8">50K以上</a></li>
-                            </ul>
-                        </div>
+                        <input type="text" ka="sel-salary" value="薪资要求" class="ipt">
+                         <select   name="teamid" id="team">
+                            <option  value="0">无需求</option>
+                             <option th:selected="${xz==1}" value="1">10-15K</option>
+                             <option th:selected="${xz==2}" value="2">15-20K</option>
+                             <option th:selected="${xz==3}" value="3">20-30K</option>
+                         </select>
+                        <!--   <input type="text" ka="sel-salary" value="薪资要求" class="ipt" readonly="">
+                       <i class="icon-select-arrow"></i>
+                       <div class="dropdown-menu">
+                           <ul >
+                                       <li><a href="#://www.zhipin.com/c101110100/" ka="sel-salary-0">不限</a></li>
+                                       <li><a >3k以下</a></li>
+                                       <li><a href="#://www.zhipin.com/c101110100/y_2/" ka="sel-salary-2">3-5K</a></li>
+                                       <li><a href="#://www.zhipin.com/c101110100/y_3/" ka="sel-salary-3">5-10K</a></li>
+                                       <li><a href="#://www.zhipin.com/c101110100/y_4/" ka="sel-salary-4">10-15K</a></li>
+                                       <li><a href="#://www.zhipin.com/c101110100/y_5/" ka="sel-salary-5">15-20K</a></li>
+                                       <li><a href="#://www.zhipin.com/c101110100/y_6/" ka="sel-salary-6">20-30K</a></li>
+                                       <li><a href="#://www.zhipin.com/c101110100/y_7/" ka="sel-salary-7">30-50K</a></li>
+                                       <li><a href="#://www.zhipin.com/c101110100/y_8/" ka="sel-salary-8">50K以上</a></li>
+                           </ul>
+                       </div>-->
                     </span>
                 </div>
                 <div class="dropdown-wrap">
@@ -580,818 +587,36 @@
 
                     <div class="company-list">
                     </div>
-                    <ul>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/6ffbb81f838ce39603d439W1F1E~.html" data-jid="6ffbb81f838ce39603d439W1F1E~" data-itemid="1" data-lid="23J28HG8VIz.search.1" data-jobid="43248873" data-index="0" ka="search_list_1" target="_blank">
-                                                <div class="job-title">GIS搜索引擎技术专家</div>
-                                                <span class="red">40-50K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>5-10年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_1_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/d8de70b698930c46c5cb4586cf35c70bef20aabe7ed6add8aa465e2908f5c077_s.jpg">姜女士<em class="vline"></em>HR</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=6ffbb81f838ce39603d439W1F1E~&amp;lid=23J28HG8VIz.search.1" redirect-url="/web/geek/chat?id=08bd643707d76b4d1n1z09i9EVI~" class="btn btn-startchat">立即沟通
+                <ul th:each="jwork:${jwork}">
+                    <li>
+                        <div class="job-primary">
+                            <div class="info-primary">
+                                <h3 class="name">
+                                    <a >
+                                        <div class="job-title"><span th:text="${jwork.zhiw}"></span></div>
+                                        <span class="red" th:text="${jwork.minsalary}"></span>
+                                        <span class="red">-</span>
+                                        <span class="red" th:text="${jwork.maxsalary}"></span>
+                                        <div class="info-detail"></div>
                                     </a>
+                                </h3>
+                                <p> <span  th:text="${jwork.diq}"></span> <em class="vline"></em><span  th:text="${jwork.jingy}"></span><em class="vline"></em><span  th:text="${jwork.xuel}"></span></p>
+                            </div>
+                            <div class="info-company">
+                                <div class="company-text">
+                                    <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_1_custompage" target="_blank"><span  th:text="${jwork.gongsmc}"></span></a></h3>
+                                    <p><span  th:text="${jwork.gongsxz}"></span><em class="vline"></em>不需要融资<em class="vline"></em><span  th:text="${jwork.yuangrs}"></span></p>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/97f23ad092a0e3f51HB83N6-FlE~.html" data-jid="97f23ad092a0e3f51HB83N6-FlE~" data-itemid="2" data-lid="23J28HG8VIz.search.2" data-jobid="34673363" data-index="1" ka="search_list_2" target="_blank">
-                                                <div class="job-title">研发工具应用安全架构师</div>
-                                                <span class="red">35-60K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>5-10年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_2_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/c19b58cc75964cfdd7d7f0d06083eaef8c7dd922ad47494fc02c388e12c00eac_s.jpg">慕先生<em class="vline"></em>前端工程师</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=97f23ad092a0e3f51HB83N6-FlE~&amp;lid=23J28HG8VIz.search.2" redirect-url="/web/geek/chat?id=8baeedd682b73e291n183du6EFU~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/2d627be5141df52903d439W-ElE~.html" data-jid="2d627be5141df52903d439W-ElE~" data-itemid="3" data-lid="23J28HG8VIz.search.3" data-jobid="43248323" data-index="2" ka="search_list_3" target="_blank">
-                                                <div class="job-title">GIS导航引擎技术专家</div>
-                                                <span class="red">40-50K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>5-10年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_3_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/d8de70b698930c46c5cb4586cf35c70bef20aabe7ed6add8aa465e2908f5c077_s.jpg">姜女士<em class="vline"></em>HR</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=2d627be5141df52903d439W-ElE~&amp;lid=23J28HG8VIz.search.3" redirect-url="/web/geek/chat?id=08bd643707d76b4d1n1z09i9EVI~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/eb2bee0ded0115a91HB83N66E1s~.html" data-jid="eb2bee0ded0115a91HB83N66E1s~" data-itemid="4" data-lid="23J28HG8VIz.search.4" data-jobid="34673739" data-index="3" ka="search_list_4" target="_blank">
-                                                <div class="job-title">云化工具DBA</div>
-                                                <span class="red">30-60K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>5-10年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_4_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/c19b58cc75964cfdd7d7f0d06083eaef8c7dd922ad47494fc02c388e12c00eac_s.jpg">慕先生<em class="vline"></em>前端工程师</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=eb2bee0ded0115a91HB83N66E1s~&amp;lid=23J28HG8VIz.search.4" redirect-url="/web/geek/chat?id=8baeedd682b73e291n183du6EFU~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/d2975dd2157b115f1XN-2N6_FVM~.html" data-jid="d2975dd2157b115f1XN-2N6_FVM~" data-itemid="5" data-lid="23J28HG8VIz.search.5" data-jobid="27433251" data-index="4" ka="search_list_5" target="_blank">
-                                                <div class="job-title">前端工程师</div>
-                                                <span class="red">20-40K</span>
-                                                
-                                                <div class="info-detail" style="top: 0px;"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>3-5年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_5_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/c19b58cc75964cfdd7d7f0d06083eaef8c7dd922ad47494fc02c388e12c00eac_s.jpg">慕先生<em class="vline"></em>前端工程师</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=d2975dd2157b115f1XN-2N6_FVM~&amp;lid=23J28HG8VIz.search.5" redirect-url="/web/geek/chat?id=8baeedd682b73e291n183du6EFU~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/214292049b44da2b03V50tu6FVc~.html" data-jid="214292049b44da2b03V50tu6FVc~" data-itemid="6" data-lid="23J28HG8VIz.search.6" data-jobid="41396755" data-index="5" ka="search_list_6" target="_blank">
-                                                <div class="job-title">流控开发工程师</div>
-                                                <span class="red">25-35K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>5-10年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/593b1622ba54c2a90nV80w~~.html" ka="search_list_company_6_custompage" target="_blank">全时</a></h3>
-                                            <p>互联网<em class="vline"></em>D轮及以上<em class="vline"></em>500-999人</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/52ab2f35c67a46a71e3e42904f76de4acfcd208495d565ef66e7dff9f98764da_s.jpg">王女士<em class="vline"></em>hr</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=214292049b44da2b03V50tu6FVc~&amp;lid=23J28HG8VIz.search.6" redirect-url="/web/geek/chat?id=ab48ac1d2eb8e3201nZ73Nq_GFs~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/39b2a47fbb8b66651HB83Nm-GVs~.html" data-jid="39b2a47fbb8b66651HB83Nm-GVs~" data-itemid="7" data-lid="23J28HG8VIz.search.7" data-jobid="34674399" data-index="6" ka="search_list_7" target="_blank">
-                                                <div class="job-title">构建工具架构师/工程师</div>
-                                                <span class="red">30-50K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>5-10年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_7_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/c19b58cc75964cfdd7d7f0d06083eaef8c7dd922ad47494fc02c388e12c00eac_s.jpg">慕先生<em class="vline"></em>前端工程师</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=39b2a47fbb8b66651HB83Nm-GVs~&amp;lid=23J28HG8VIz.search.7" redirect-url="/web/geek/chat?id=8baeedd682b73e291n183du6EFU~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/292909649901eac703V509q9F1Y~.html" data-jid="292909649901eac703V509q9F1Y~" data-itemid="8" data-lid="23J28HG8VIz.search.8" data-jobid="41387074" data-index="7" ka="search_list_8" target="_blank">
-                                                <div class="job-title">高级音频算法工程师</div>
-                                                <span class="red">25-30K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>3-5年<em class="vline"></em>硕士</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/593b1622ba54c2a90nV80w~~.html" ka="search_list_company_8_custompage" target="_blank">全时</a></h3>
-                                            <p>互联网<em class="vline"></em>D轮及以上<em class="vline"></em>500-999人</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/52ab2f35c67a46a71e3e42904f76de4acfcd208495d565ef66e7dff9f98764da_s.jpg">王女士<em class="vline"></em>hr</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=292909649901eac703V509q9F1Y~&amp;lid=23J28HG8VIz.search.8" redirect-url="/web/geek/chat?id=ab48ac1d2eb8e3201nZ73Nq_GFs~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/9703f3a5bfc811fb1HZ_2d-6FFU~.html" data-jid="9703f3a5bfc811fb1HZ_2d-6FFU~" data-itemid="9" data-lid="23J28HG8VIz.search.9" data-jobid="32522747" data-index="8" ka="search_list_9" target="_blank">
-                                                <div class="job-title">JAVA软件工程师/Software Engineer - JAVA</div>
-                                                <span class="red">20-25K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>5-10年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/791c1050c22360991X180tq5.html" ka="search_list_company_9_custompage" target="_blank">活跃网络</a></h3>
-                                            <p>互联网<em class="vline"></em>不需要融资<em class="vline"></em>500-999人</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/0dbe9291d71dff97a29b1ac8976a3fc9c972b58966bcbf4133872fcbb395eeea_s.png">康女士<em class="vline"></em>HRG</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=9703f3a5bfc811fb1HZ_2d-6FFU~&amp;lid=23J28HG8VIz.search.9" redirect-url="/web/geek/chat?id=a1f4c86fc05c3fbf1HFy3N2_FFY~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/bb7520b77e796f151HB639q5FVI~.html" data-jid="bb7520b77e796f151HB639q5FVI~" data-itemid="10" data-lid="23J28HG8VIz.search.10" data-jobid="34047450" data-index="9" ka="search_list_10" target="_blank">
-                                                <div class="job-title">大数据软件开发工程师</div>
-                                                <span class="red">20-30K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>3-5年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_10_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/d583828b53e5876bb8794a7371dd707d2b14a4133098796433be8368e0ef9765_s.jpg">李先生<em class="vline"></em>PM</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=bb7520b77e796f151HB639q5FVI~&amp;lid=23J28HG8VIz.search.10" redirect-url="/web/geek/chat?id=416ed4334e74fc231Hx-39m8FFM~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/b6caf243dad2a0461Hd63N-7Flc~.html" data-jid="b6caf243dad2a0461Hd63N-7Flc~" data-itemid="11" data-lid="23J28HG8VIz.search.11" data-jobid="33072665" data-index="10" ka="search_list_11" target="_blank">
-                                                <div class="job-title">DPI数据接入开发工程师</div>
-                                                <span class="red">20-30K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>3-5年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_11_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/d583828b53e5876bb8794a7371dd707d2b14a4133098796433be8368e0ef9765_s.jpg">李先生<em class="vline"></em>PM</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=b6caf243dad2a0461Hd63N-7Flc~&amp;lid=23J28HG8VIz.search.11" redirect-url="/web/geek/chat?id=416ed4334e74fc231Hx-39m8FFM~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/b337381ea93b8a631Hx42Nu6F1U~.html" data-jid="b337381ea93b8a631Hx42Nu6F1U~" data-itemid="12" data-lid="23J28HG8VIz.search.12" data-jobid="38236777" data-index="11" ka="search_list_12" target="_blank">
-                                                <div class="job-title">高级软件工程师</div>
-                                                <span class="red">25-50K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>5-10年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/21124e51a5ea83a80nR80ti8.html" ka="search_list_company_12_custompage" target="_blank">华为技术有限公司</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/avatar_1.png">谌女士<em class="vline"></em>招聘HR</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=b337381ea93b8a631Hx42Nu6F1U~&amp;lid=23J28HG8VIz.search.12" redirect-url="/web/geek/chat?id=815ddc5530eeae3f1Hx43tu4GVQ~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/f0211517941aeee51HB83Nm8EFc~.html" data-jid="f0211517941aeee51HB83Nm8EFc~" data-itemid="13" data-lid="23J28HG8VIz.search.13" data-jobid="34674105" data-index="12" ka="search_list_13" target="_blank">
-                                                <div class="job-title">测试工具架构师/工程师</div>
-                                                <span class="red">30-50K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>5-10年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_13_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/c19b58cc75964cfdd7d7f0d06083eaef8c7dd922ad47494fc02c388e12c00eac_s.jpg">慕先生<em class="vline"></em>前端工程师</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=f0211517941aeee51HB83Nm8EFc~&amp;lid=23J28HG8VIz.search.13" redirect-url="/web/geek/chat?id=8baeedd682b73e291n183du6EFU~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/f9652d838eaeb22203Z_2Ny7FlA~.html" data-jid="f9652d838eaeb22203Z_2Ny7FlA~" data-itemid="14" data-lid="23J28HG8VIz.search.14" data-jobid="42531662" data-index="13" ka="search_list_14" target="_blank">
-                                                <div class="job-title">项目经理</div>
-                                                <span class="red">20-30K·13薪</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>5-10年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/b43e9afee3596e9b1Xd60tu6.html" ka="search_list_company_14_custompage" target="_blank">神州信息</a></h3>
-                                            <p>计算机软件<em class="vline"></em>已上市<em class="vline"></em>1000-9999人</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/183e282adf4c75a1769b2daaf7e12aa2cfcd208495d565ef66e7dff9f98764da_s.jpg">高女士<em class="vline"></em>招聘顾问</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=f9652d838eaeb22203Z_2Ny7FlA~&amp;lid=23J28HG8VIz.search.14" redirect-url="/web/geek/chat?id=7c6860de571bd99c1HJz096-FFQ~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/c86ae2f2c6f922a603d439i-EVc~.html" data-jid="c86ae2f2c6f922a603d439i-EVc~" data-itemid="15" data-lid="23J28HG8VIz.search.15" data-jobid="43245315" data-index="14" ka="search_list_15" target="_blank">
-                                                <div class="job-title">GIS渲染引擎技术专家</div>
-                                                <span class="red">30-50K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>5-10年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_15_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/d8de70b698930c46c5cb4586cf35c70bef20aabe7ed6add8aa465e2908f5c077_s.jpg">姜女士<em class="vline"></em>HR</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=c86ae2f2c6f922a603d439i-EVc~&amp;lid=23J28HG8VIz.search.15" redirect-url="/web/geek/chat?id=08bd643707d76b4d1n1z09i9EVI~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/9fd2e06b24e487f003d53N6_EFc~.html" data-jid="9fd2e06b24e487f003d53N6_EFc~" data-itemid="16" data-lid="23J28HG8VIz.search.16" data-jobid="43373205" data-index="15" ka="search_list_16" target="_blank">
-                                                <div class="job-title">系统架构师（西安 微服务）</div>
-                                                <span class="red">20-30K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>5-10年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/5532224e28b7ea7d1nZz39i7Fw~~.html" ka="search_list_company_16_custompage" target="_blank">海尔U+智慧生活平台</a></h3>
-                                            <p>互联网<em class="vline"></em>不需要融资<em class="vline"></em>500-999人</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/adccd8d5613d231d28b952fd12e395c2cfcd208495d565ef66e7dff9f98764da_s.jpg">李女士<em class="vline"></em>人力行政专员</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=9fd2e06b24e487f003d53N6_EFc~&amp;lid=23J28HG8VIz.search.16" redirect-url="/web/geek/chat?id=30bab9269fb4c26d0nN709u-EVs~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/574352ebb220f2211XJ53tS-E1s~.html" data-jid="574352ebb220f2211XJ53tS-E1s~" data-itemid="17" data-lid="23J28HG8VIz.search.17" data-jobid="26359339" data-index="16" ka="search_list_17" target="_blank">
-                                                <div class="job-title">web前端</div>
-                                                <span class="red">20-40K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>3-5年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_17_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/dd7ab1924a20ed1132421c0a0d71c1927a53fade2d1f0cdf30c80bb89e7e3759_s.jpg">张先生<em class="vline"></em>工程师</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=574352ebb220f2211XJ53tS-E1s~&amp;lid=23J28HG8VIz.search.17" redirect-url="/web/geek/chat?id=d620dbcb7047982c03J62Ny4F1U~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/ea58938b58ca6ba303J_0ti4FFI~.html" data-jid="ea58938b58ca6ba303J_0ti4FFI~" data-itemid="18" data-lid="23J28HG8VIz.search.18" data-jobid="46595540" data-index="17" ka="search_list_18" target="_blank">
-                                                <div class="job-title">互金产品经理</div>
-                                                <span class="red">20-40K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安 碑林区 长安路<em class="vline"></em>1年以内<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/e3c139461e70d07e1X173N8~.html" ka="search_list_company_18_custompage" target="_blank">百善财富</a></h3>
-                                            <p>互联网金融<em class="vline"></em>未融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/avatar_3.png">张女士<em class="vline"></em>主管</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=ea58938b58ca6ba303J_0ti4FFI~&amp;lid=23J28HG8VIz.search.18" redirect-url="/web/geek/chat?id=b887080b04e56c281nV90t29FVo~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/9fd6eba4b3c4d6ef1HB83Nm7GVc~.html" data-jid="9fd6eba4b3c4d6ef1HB83Nm7GVc~" data-itemid="19" data-lid="23J28HG8VIz.search.19" data-jobid="34674695" data-index="18" ka="search_list_19" target="_blank">
-                                                <div class="job-title">IDE工具架构师/工程师</div>
-                                                <span class="red">30-50K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>5-10年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_19_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/c19b58cc75964cfdd7d7f0d06083eaef8c7dd922ad47494fc02c388e12c00eac_s.jpg">慕先生<em class="vline"></em>前端工程师</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=9fd6eba4b3c4d6ef1HB83Nm7GVc~&amp;lid=23J28HG8VIz.search.19" redirect-url="/web/geek/chat?id=8baeedd682b73e291n183du6EFU~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/a72a331d71fe528003N43N27F1M~.html" data-jid="a72a331d71fe528003N43N27F1M~" data-itemid="20" data-lid="23J28HG8VIz.search.20" data-jobid="47270671" data-index="19" ka="search_list_20" target="_blank">
-                                                <div class="job-title">高级前端开发（统招本科）</div>
-                                                <span class="red">20-30K·14薪</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>3-5年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/eb2bd6c6459bca4903V529-0GA~~.html" ka="search_list_company_20_custompage" target="_blank">北京朗杰</a></h3>
-                                            <p>培训机构<em class="vline"></em>D轮及以上<em class="vline"></em>100-499人</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/avatar_1(1).png">王女士<em class="vline"></em>人力总监</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=a72a331d71fe528003N43N27F1M~&amp;lid=23J28HG8VIz.search.20" redirect-url="/web/geek/chat?id=650b78a642ba814f0XJ73dS6FlU~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/546204102019f09c1HB83N-7FFE~.html" data-jid="546204102019f09c1HB83N-7FFE~" data-itemid="21" data-lid="23J28HG8VIz.search.21" data-jobid="34672643" data-index="20" ka="search_list_21" target="_blank">
-                                                <div class="job-title">云化工具容器架构师/工程师</div>
-                                                <span class="red">30-50K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>3-5年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_21_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/c19b58cc75964cfdd7d7f0d06083eaef8c7dd922ad47494fc02c388e12c00eac_s.jpg">慕先生<em class="vline"></em>前端工程师</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=546204102019f09c1HB83N-7FFE~&amp;lid=23J28HG8VIz.search.21" redirect-url="/web/geek/chat?id=8baeedd682b73e291n183du6EFU~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/1877d5634f846c811Hx72dm7FFo~.html" data-jid="1877d5634f846c811Hx72dm7FFo~" data-itemid="22" data-lid="23J28HG8VIz.search.22" data-jobid="38124648" data-index="21" ka="search_list_22" target="_blank">
-                                                <div class="job-title">云管理开发工程师</div>
-                                                <span class="red">20-40K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>3-5年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_22_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/avatar_10.png">杨女士<em class="vline"></em>招聘者</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=1877d5634f846c811Hx72dm7FFo~&amp;lid=23J28HG8VIz.search.22" redirect-url="/web/geek/chat?id=87703c328d4905810nxz0tW7FVo~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/87eccfce30dd2e8d1H153dm9EVU~.html" data-jid="87eccfce30dd2e8d1H153dm9EVU~" data-itemid="23" data-lid="23J28HG8VIz.search.23" data-jobid="39364017" data-index="22" ka="search_list_23" target="_blank">
-                                                <div class="job-title">云管理前端开发工程师</div>
-                                                <span class="red">20-40K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>3-5年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_23_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/avatar_10.png">杨女士<em class="vline"></em>招聘者</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=87eccfce30dd2e8d1H153dm9EVU~&amp;lid=23J28HG8VIz.search.23" redirect-url="/web/geek/chat?id=87703c328d4905810nxz0tW7FVo~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/698f516778017a141XZ83d-0FlU~.html" data-jid="698f516778017a141XZ83d-0FlU~" data-itemid="24" data-lid="23J28HG8VIz.search.24" data-jobid="22662967" data-index="23" ka="search_list_24" target="_blank">
-                                                <div class="job-title">模拟电路工程师</div>
-                                                <span class="red">30-40K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>1-3年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/417c1e22a7a3444e1ndy2dW6GA~~.html" ka="search_list_company_24_custompage" target="_blank">一诺仪器西安研发中心</a></h3>
-                                            <p>通信/网络设备<em class="vline"></em>500-999人</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/eea578de4cdd98cf683d5c4d985c6cb9c2520a78ce097f3b3688276fd839750d_s.jpg">包先生<em class="vline"></em>人力资源经理</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=698f516778017a141XZ83d-0FlU~&amp;lid=23J28HG8VIz.search.24" redirect-url="/web/geek/chat?id=e1f4d970bfcbf9791Hd93tS7EVI~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/b65389ce64b059a61HB83Ny6EFc~.html" data-jid="b65389ce64b059a61HB83Ny6EFc~" data-itemid="25" data-lid="23J28HG8VIz.search.25" data-jobid="34671705" data-index="24" ka="search_list_25" target="_blank">
-                                                <div class="job-title">资深devops研发工程师</div>
-                                                <span class="red">30-50K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>5-10年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_25_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/c19b58cc75964cfdd7d7f0d06083eaef8c7dd922ad47494fc02c388e12c00eac_s.jpg">慕先生<em class="vline"></em>前端工程师</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=b65389ce64b059a61HB83Ny6EFc~&amp;lid=23J28HG8VIz.search.25" redirect-url="/web/geek/chat?id=8baeedd682b73e291n183du6EFU~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/e48c367ff527fe0c1HZ62dS8FFo~.html" data-jid="e48c367ff527fe0c1HZ62dS8FFo~" data-itemid="26" data-lid="23J28HG8VIz.search.26" data-jobid="32029148" data-index="25" ka="search_list_26" target="_blank">
-                                                <div class="job-title">区块链高级算法工程师</div>
-                                                <span class="red">20-40K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安 雁塔区 唐延路<em class="vline"></em>经验不限<em class="vline"></em>大专</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/76d91de9fa9a7b933nN429-8.html" ka="search_list_company_26_custompage" target="_blank">小马</a></h3>
-                                            <p>企业服务<em class="vline"></em>不需要融资<em class="vline"></em>100-499人</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/avatar_11.png">武女士<em class="vline"></em>人事</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=e48c367ff527fe0c1HZ62dS8FFo~&amp;lid=23J28HG8VIz.search.26" redirect-url="/web/geek/chat?id=6b5399bd5d57ad3e03Jy3tW1GVE~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/44fa90f5a9d54ff11HV82dq5FVA~.html" data-jid="44fa90f5a9d54ff11HV82dq5FVA~" data-itemid="27" data-lid="23J28HG8VIz.search.27" data-jobid="31627452" data-index="26" ka="search_list_27" target="_blank">
-                                                <div class="job-title">大数据架构师</div>
-                                                <span class="red">20-25K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>5-10年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/43ca7cd54e1d278c1HV73tq-.html" ka="search_list_company_27_custompage" target="_blank">博达</a></h3>
-                                            <p>计算机软件<em class="vline"></em>已上市<em class="vline"></em>100-499人</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/avatar_6.png">严女士<em class="vline"></em>招聘培训经理</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=44fa90f5a9d54ff11HV82dq5FVA~&amp;lid=23J28HG8VIz.search.27" redirect-url="/web/geek/chat?id=eff043f19c96d7ac1nZ73t-9EFc~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/94d52dc2442905481HB83N68EVA~.html" data-jid="94d52dc2442905481HB83N68EVA~" data-itemid="28" data-lid="23J28HG8VIz.search.28" data-jobid="34673112" data-index="27" ka="search_list_28" target="_blank">
-                                                <div class="job-title">大数据架构师/工程师</div>
-                                                <span class="red">30-50K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>3-5年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_28_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/c19b58cc75964cfdd7d7f0d06083eaef8c7dd922ad47494fc02c388e12c00eac_s.jpg">慕先生<em class="vline"></em>前端工程师</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=94d52dc2442905481HB83N68EVA~&amp;lid=23J28HG8VIz.search.28" redirect-url="/web/geek/chat?id=8baeedd682b73e291n183du6EFU~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/f3eb78981fa146231HJ92t--FlY~.html" data-jid="f3eb78981fa146231HJ92t--FlY~" data-itemid="29" data-lid="23J28HG8VIz.search.29" data-jobid="36712364" data-index="28" ka="search_list_29" target="_blank">
-                                                <div class="job-title">产品总监</div>
-                                                <span class="red">20-40K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>5-10年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/0da4dbf2d06d699003J829i5.html" ka="search_list_company_29_custompage" target="_blank">陕西华筑科技有限公司</a></h3>
-                                            <p>其他行业<em class="vline"></em>A轮<em class="vline"></em>100-499人</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/c2bf309ca7e33ab865071d4528a7f3257cdfb99c594d45daff1acfdc80a1f774_s.png">王先生<em class="vline"></em>CEO</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=f3eb78981fa146231HJ92t--FlY~&amp;lid=23J28HG8VIz.search.29" redirect-url="/web/geek/chat?id=5fd7760d0bc19bfe1nZ939m8FlM~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="#://www.zhipin.com/job_detail/d55b83b6263e00641HB83Ny1FVM~.html" data-jid="d55b83b6263e00641HB83Ny1FVM~" data-itemid="30" data-lid="23J28HG8VIz.search.30" data-jobid="34671851" data-index="29" ka="search_list_30" target="_blank">
-                                                <div class="job-title">智能化研发工具架构师</div>
-                                                <span class="red">30-50K</span>
-                                                
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>西安  <em class="vline"></em>5-10年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="#://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html" ka="search_list_company_30_custompage" target="_blank">华为</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="../boss2_files/c19b58cc75964cfdd7d7f0d06083eaef8c7dd922ad47494fc02c388e12c00eac_s.jpg">慕先生<em class="vline"></em>前端工程师</h3>
-                                        <p></p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/wapi/zpgeek/friend/add.json?jobId=d55b83b6263e00641HB83Ny1FVM~&amp;lid=23J28HG8VIz.search.30" redirect-url="/web/geek/chat?id=8baeedd682b73e291n183du6EFU~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                    </ul>
+                            </div>
+                            <div class="info-publis">
+                                <h3 class="name"><img src="../boss2_files/d8de70b698930c46c5cb4586cf35c70bef20aabe7ed6add8aa465e2908f5c077_s.jpg"><span  th:text="${jwork.lianxr}"></span><em class="vline"></em>HR</h3>
+                                <p></p>
+                            </div>
+                            <a href="javascript:tou();"  redirect-url="/web/geek/chat?id=08bd643707d76b4d1n1z09i9EVI~" class="btn btn-startchat">投放简历
+                            </a>
+                        </div>
+                    </li>
+                </ul>
         <div class="page">
             <a href="#://www.zhipin.com/c101110100/?page=0" ka="page-prev" class="prev"></a>
         
@@ -2139,6 +1364,17 @@
         "upDate": "2019-05-27T10:53:40"
     }
 </script>
+<script>
+    function tou(){
+        alert("123");
+    }
 
+    function search2() {
+        var wk= $("#wk").val();
+        var xz= $("#team").val();
+        // alert(xz);
+        location.href="../zhf/search2?wk="+wk+"&xz="+xz;
+    }
+</script>
 
 <script></script></body></html>
