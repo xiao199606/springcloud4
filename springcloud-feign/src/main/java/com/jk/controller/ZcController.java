@@ -17,12 +17,13 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @Controller
+@RequestMapping("zcController")
 public class ZcController {
     @Autowired
     private ZcService zcService;
 
     //测试
-    @RequestMapping("zcController")
+    @RequestMapping("zcTest")
     @ResponseBody
     public Map test(){
         return zcService.test();
@@ -79,6 +80,26 @@ public class ZcController {
         String random=(int)((Math.random()*9+1)*100000)+"";
         userModel.setPwd(random);
         zcService.zcRegister(userModel);
+        return random;
+    }
+
+    //个人版登录
+    @RequestMapping("grDenLu")
+    @ResponseBody
+    public HashMap<String,Object> grDenLu(UserModel user){
+
+        return zcService.grDenLu(user);
+    }
+
+    //企业版注册
+    @RequestMapping("zcHrRegister")
+    @ResponseBody
+    public String zcHrRegister(String phone,UserModel userModel){
+        userModel.setTel(phone);
+        //随机生成密码
+        String random=(int)((Math.random()*9+1)*100000)+"";
+        userModel.setPwd(random);
+        zcService.zcHrRegister(userModel);
         return random;
     }
 }

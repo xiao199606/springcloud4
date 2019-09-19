@@ -4,6 +4,7 @@ import com.jk.model.Book;
 import com.jk.model.zcModel.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +26,37 @@ public class ZcServiceImpl implements ZcServiceApi {
     //注册
     @Override
     public void zcRegister(UserModel userModel) {
+
         zcDao.zcRegister(userModel);
     }
+
+    @Override
+    public HashMap<String, Object> grDenLu(UserModel user) {
+        HashMap<String, Object> map = new HashMap<>();
+        UserModel userModel = zcDao.queryTel(user);
+        //判断用户是否存在
+        if(userModel==null){
+            map.put("code",0);
+            map.put("msg","账号错误");
+            return map;
+        }
+        //判断密码是否一致
+        String pwd = user.getPwd();
+        if(!pwd.equals(userModel.getPwd())){
+            map.put("code",1);
+            map.put("msg","密码错误");
+            return map;
+        }
+        map.put("code",2);
+        Integer state = userModel.getState();
+        map.put("state",state);
+        return map;
+    }
+
+    @Override
+    public void zcHrRegister(UserModel userModel) {
+        zcDao.zcHrRegister(userModel);
+    }
+
+
 }
