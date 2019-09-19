@@ -50,9 +50,34 @@ public class ToController {
         return "index";
     }
 
+    //后台树页面
     @RequestMapping("tohbtree")
     public String tohbtree(){
         return "tree";
+    }
+
+    //简历查询页面
+    @RequestMapping("queryResume")
+    public String queryResume(){
+        return "queryResume";
+    }
+
+    //简历新增页面
+    @RequestMapping("toAddResume")
+    public String addResume(){
+        return "addResume";
+    }
+
+    //个人账号查询页面
+    @RequestMapping("queryAccount")
+    public String queryAccount(){
+        return "queryAccount";
+    }
+
+    //个人账号查询页面
+    @RequestMapping("queryStay")
+    public String queryStay(){
+        return "queryStay";
     }
 
     //跳转到企业版登录注册
@@ -71,4 +96,10 @@ public class ToController {
 
 
 
+
+    //跳转公司职位管理
+    @RequestMapping("toZwjl")
+    public String toZwjl(){
+        return "gsZwjl";
+    }
 }

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jk.dao.XxfDao" >
-<select id="test" resultType="book">
-    select * from book
+<select id="getTreeAll" resultType="tree">
+    select * from t_tree
 </select>
+    <select id="queryResumeCount" resultType="int">
+        select count(*) from zwjl a,gsyh b where a.gsid=b.id
+    </select>
+    <select id="queryZwjl" resultType="Zwjl">
+        select * from zwjl a,gsyh b,gryh c where a.gsid=b.id and b.id=c.gsyhid
+    </select>
 </mapper>
