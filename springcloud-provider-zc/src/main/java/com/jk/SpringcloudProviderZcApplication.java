@@ -12,6 +12,7 @@ public class SpringcloudProviderZcApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringcloudProviderZcApplication.class, args);
+
     }
 
 }

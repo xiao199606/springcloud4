@@ -1,7 +1,7 @@
 /**
  * @author vincent loh <vincent.ml@gmail.com>
  * @version: v1.0.0
- * https://github.com/vinzloh/bootstrap-table/
+ * #://github.com/vinzloh/bootstrap-table/
  * Sticky header for bootstrap-table
  */
 

@@ -7,7 +7,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     password: 123
-    url: jdbc:mysql://192.168.2.140/book2?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://192.168.2.119/springcloud?useUnicode=true&characterEncoding=utf-8
     username: root
   application:
     name: service-provider-lmh

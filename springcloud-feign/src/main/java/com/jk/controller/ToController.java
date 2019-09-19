@@ -13,6 +13,38 @@ public class ToController {
     }
 
     //登录页面
+    //跳转到招聘官网首页
+    @RequestMapping("toBosShow")
+    public String toBosShow(){
+        return "BOSS";
+    }
+
+    //查看更多职位
+    @RequestMapping("toBoss2")
+    public String boss2(){
+        return "boss2";
+    }
+
+    //查看跟多公司
+    @RequestMapping("toMoreCompanies")
+    public String toMoreCompanies(){
+        return  "boss3";
+    }
+
+    //跳转到个人登录注册
+    @RequestMapping("toRegister")
+    public String toRegister(){
+        return "register";
+    }
+
+    //跳转到Hr
+    @RequestMapping("toHr")
+    public String toHr(){
+
+        return "hrfile";
+    }
+
+
     @RequestMapping("tologin")
     public String tologin(){
         return "index";
@@ -46,5 +78,11 @@ public class ToController {
     @RequestMapping("queryStay")
     public String queryStay(){
         return "queryStay";
+    }
+
+    //跳转到企业版登录注册
+    @RequestMapping("toHrRegister")
+    public String toHrRegister(){
+        return "hrRegister";
     }
 }

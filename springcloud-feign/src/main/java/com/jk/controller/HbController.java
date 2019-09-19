@@ -31,6 +31,7 @@ public class HbController {
     @RequestMapping("test")
     @ResponseBody
     public Map test(){
+
         return hbService.test();
     }
 

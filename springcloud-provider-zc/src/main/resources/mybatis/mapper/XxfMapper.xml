@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jk.dao.XxfDao" >
+<mapper namespace="com.jk.dao.ZcDao" >
 <select id="test" resultType="book">
-    select * from book
+    select * from t_book
 </select>
+
+    <!--个人注册-->
+    <insert id="zcRegister">
+        INSERT INTO gryh(username,pwd,tel,zhucsj,state)
+        VALUES(
+           #{username},
+           #{pwd},
+           #{tel},
+           SYSDATE(),
+           1
+        )
+    </insert>
+
+    <!--企业版注册-->
+    <insert id="zcHrRegister">
+        INSERT INTO gryh(username,pwd,tel,zhucsj,state)
+        VALUES(
+           #{username},
+           #{pwd},
+           #{tel},
+           SYSDATE(),
+           2
+        )
+    </insert>
+
+    <select id="queryTel" resultType="com.jk.model.zcModel.UserModel">
+        select *  from  gryh WHERE tel = #{tel} and state = #{state}
+    </select>
 </mapper>
