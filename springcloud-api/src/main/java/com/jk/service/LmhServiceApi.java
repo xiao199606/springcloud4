@@ -6,5 +6,8 @@ public interface LmhServiceApi {
 
     @PostMapping("sendMails")
     Boolean sendMails();
-
+    @PostMapping("failureMails")
+    Boolean failureMails();
+    @PostMapping
+    void updateJianLi();
 }
