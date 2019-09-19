@@ -12,13 +12,39 @@ public class ToController {
         return "bookList";
     }
 
+    //登录页面
     @RequestMapping("tologin")
     public String tologin(){
         return "index";
     }
 
+    //后台树页面
     @RequestMapping("tohbtree")
     public String tohbtree(){
         return "tree";
+    }
+
+    //简历查询页面
+    @RequestMapping("queryResume")
+    public String queryResume(){
+        return "queryResume";
+    }
+
+    //简历新增页面
+    @RequestMapping("toAddResume")
+    public String addResume(){
+        return "addResume";
+    }
+
+    //个人账号查询页面
+    @RequestMapping("queryAccount")
+    public String queryAccount(){
+        return "queryAccount";
+    }
+
+    //个人账号查询页面
+    @RequestMapping("queryStay")
+    public String queryStay(){
+        return "queryStay";
     }
 }
