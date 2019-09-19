@@ -10,15 +10,15 @@
     </select>
 
     <select id="getTreeAll" resultType="Tree">
-    select e.* from user a,user_role b,role c,role_tree d,tree e where a.id=b.uid and b.rid=c.id and c.id=d.rid and d.tid=e.id and a.id=#{id}
+    select e.* from user a,user_role b,role c,role_tree d,tree e where a.status=b.ustatusid and b.rid=c.id and c.id=d.rid and d.tid=e.id and a.id=#{id}
     </select>
 
     <select id="queryResumeCount" resultType="int" parameterType="HashMap">
-    select count(*) from jianli
+    select count(*) from jianli where state='2'
     </select>
 
     <select id="HashMap" resultType="JianLi" parameterType="HashMap">
-    select * from jianli where state='2' limit #{start},#{end}
+    select * from jianli where state='2' order by zhiding desc limit #{start},#{end}
     </select>
 
     <delete id="deleteResume" parameterType="String">
@@ -33,7 +33,7 @@
     </select>
 
     <select id="HashMap2" resultType="Gryh" parameterType="HashMap">
-    select * from gryh where state='1' limit #{start},#{end}
+    select * from gryh limit #{start},#{end}
     </select>
 
     <delete id="deleteAccount" parameterType="String">
@@ -44,10 +44,56 @@
     </delete>
 
     <select id="queryStayCount" resultType="int" parameterType="HashMap">
-    select count(*) from zwjl
+    select count(*) from zwjl where start='2'
     </select>
 
     <select id="HashMap3" resultType="Zwjl" parameterType="HashMap">
-    select * from zwjl where start='1' ORDER BY fdate desc limit #{start},#{end}
+    select * from zwjl where start='2' ORDER BY fdate desc limit #{start},#{end}
     </select>
+
+    <delete id="deleteStay" parameterType="String">
+        delete from zwjl where id in
+        <foreach collection="array" index="index" item="ids" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </delete>
+
+    <update id="updateResume1" parameterType="Integer">
+        update jianli set zhiding=2 where id=#{id}
+    </update>
+
+    <update id="updateResume2" parameterType="Integer">
+        update jianli set zhiding=1 where id=#{id}
+    </update>
+
+    <select id="queryCompanyCount" resultType="int">
+    select count(*) from gsyh where state='2'
+    </select>
+
+    <select id="HashMap4" resultType="GsyhModel" parameterType="HashMap">
+    select * from gsyh where state='2' ORDER BY zhucsj desc limit #{start},#{end}
+    </select>
+
+    <delete id="deleteCompany" parameterType="String">
+        delete from gsyh where id in
+        <foreach collection="array" index="index" item="ids" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </delete>
+
+    <select id="queryDayCount" resultType="Highcharts">
+    select * from Highcharts ORDER BY dayTime
+    </select>
+
+    <select id="queryHighcharts" resultType="Highcharts">
+    SELECT * from highcharts WHERE dayTime=#{time}
+    </select>
+
+    <update id="updateHighcharts">
+    update highcharts set visitCount=visitCount+1 where id=#{id}
+    </update>
+
+    <insert id="addHighcharts" >
+    insert into highcharts(dayTime,visitCount) values (#{daytime},#{visitcount})
+    </insert>
 </mapper>

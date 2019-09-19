@@ -91,4 +91,22 @@ public class ToController {
     public String toZwjl(){
         return "gsZwjl";
     }
+
+    //注销
+    @RequestMapping("toIndex")
+    public String toIndex(){
+        return "index";
+    }
+
+    //公司查询
+    @RequestMapping("queryCompany")
+    public String queryCompany(){
+        return "queryCompany";
+    }
+
+    //业务数据
+    @RequestMapping("highcharts")
+    public String highcharts(){
+        return "highcharts";
+    }
 }

@@ -1,5 +1,6 @@
 package com.jk.controller;
 
+import com.jk.model.Highcharts;
 import com.jk.model.Tree;
 import com.jk.model.User;
 import com.jk.service.HbServiceApi;
@@ -71,5 +72,62 @@ public class HbController {
     @RequestMapping("queryStay")
     public ResultPage queryStay(@RequestBody ResultPage result){
         return hbServiceApi.queryStayList(result);
+    }
+
+    @RequestMapping("deleteStay")
+    public Boolean deleteStay(String ids){
+        try {
+            hbServiceApi.deleteStay(ids);
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @RequestMapping("updateResume1")
+    public void updateResume1(Integer id){
+        hbServiceApi.updateResume1(id);
+    }
+
+    @RequestMapping("updateResume2")
+    public void updateResume2(Integer id){
+        hbServiceApi.updateResume2(id);
+    }
+
+    @RequestMapping("queryCompany")
+    public ResultPage queryCompany(@RequestBody ResultPage result){
+        return hbServiceApi.queryCompanyList(result);}
+
+    @RequestMapping("deleteCompany")
+    public Boolean deleteCompany(String ids){
+        try {
+            hbServiceApi.deleteCompany(ids);
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @RequestMapping("queryDayCount")
+    public List<Highcharts> queryDayCount(){
+        List<Highcharts> list=hbServiceApi.queryDayCount();
+        return list;
+    }
+
+    @RequestMapping("queryHighcharts")
+    public Highcharts queryHighcharts(String time) {
+        return hbServiceApi.queryHighcharts(time);
+    }
+
+    @RequestMapping("addHighcharts")
+    public void addHighcharts(Highcharts highcharts) {
+        hbServiceApi.addHighcharts(highcharts);
+    }
+
+    @RequestMapping("updateHighcharts")
+    public void updateHighcharts(Integer id) {
+        hbServiceApi.updateHighcharts(id);
     }
 }

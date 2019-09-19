@@ -1,20 +1,16 @@
 package com.jk.controller;
 
 import com.jk.model.zcModel.UserModel;
-import com.jk.service.XxfService;
 import com.jk.service.ZcService;
 import com.jk.utils.CheckSumBuilder;
 import com.jk.utils.HttpClientUtil;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 @Controller
 @RequestMapping("zcController")
@@ -74,7 +70,7 @@ public class ZcController {
     //注册
     @RequestMapping("zcRegister")
     @ResponseBody
-    public String zcRegister(String phone,UserModel userModel){
+    public String zcRegister(String phone, UserModel userModel){
         userModel.setTel(phone);
         //随机生成密码
         String random=(int)((Math.random()*9+1)*100000)+"";

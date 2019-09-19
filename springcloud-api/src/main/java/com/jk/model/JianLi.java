@@ -52,4 +52,7 @@ public class JianLi {
     private String gerjs;
     private String tel;
     private String email;
+    private Integer zhiding;
+    private String tian;
+    private String jine;
 }

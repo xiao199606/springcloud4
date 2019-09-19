@@ -1,5 +1,6 @@
 package com.jk.service;
 
+import com.jk.model.Highcharts;
 import com.jk.model.Tree;
 import com.jk.model.User;
 import com.jk.util.ResultPage;
@@ -36,4 +37,31 @@ public interface HbServiceApi {
 
     @RequestMapping("queryStay")
     ResultPage queryStayList(@RequestBody ResultPage result);
+
+    @RequestMapping("deleteStay")
+    void deleteStay(@RequestParam("ids") String ids);
+
+    @RequestMapping("updateResume1")
+    void updateResume1(@RequestParam("id") Integer id);
+
+    @RequestMapping("updateResume2")
+    void updateResume2(@RequestParam("id") Integer id);
+
+    @RequestMapping("queryCompany")
+    ResultPage queryCompanyList(@RequestBody ResultPage result);
+
+    @RequestMapping("deleteCompany")
+    void deleteCompany(@RequestParam("ids") String ids);
+
+    @RequestMapping("queryDayCount")
+    List<Highcharts> queryDayCount();
+
+    @RequestMapping("queryHighcharts")
+    Highcharts queryHighcharts(@RequestParam("time") String time);
+
+    @RequestMapping("addHighcharts")
+    void addHighcharts(@RequestBody Highcharts highcharts);
+
+    @RequestMapping("updateHighcharts")
+    void updateHighcharts(@RequestParam("id") Integer id);
 }
