@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!-- saved from url=(0087)https://www.zhipin.com/job_detail/3c851883d4c8d1a71nd509-5EVQ~.html?ka=index_rcmd_job_1 -->
 <html class="standard"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="../zhiwei_files/style1536672475627.css">
     
@@ -102,10 +103,10 @@
                     <div class="info-primary">
                         <div class="job-status">招聘中</div>
                         <div class="name">
-                            <h1>大数据研发工程师</h1>
-                            <span class="salary">25-50K</span>
+                            <h1><span id="spzhiWei"></span></h1>
+                            <span class="salary" id="yex"></span>
                         </div>
-                            <p>北京<em class="dolt"></em>3-5年<em class="dolt"></em>本科</p>
+                            <p><span id="diq"></span><em class="dolt"></em><span id="jingy"></span><em class="dolt"></em><span id="xuel"></span></p>
                             <div class="tag-container">
                                 <div class="tag-more" style="opacity: 1; display: block; left: 720px;">
                                     <span class="link-more">...</span>
@@ -151,7 +152,7 @@
                 <div class="company-info">
                     <div class="name">
                         <h1>大数据研发工程师</h1>
-                        <span class="badge">25-50K</span></div>
+                        <span class="badge" ></span></div>
                         <div class="tag-container">
                             <div class="tag-more" style="opacity: 1; display: block; left: 720px;">
                                 <span class="link-more">...</span>
@@ -376,7 +377,7 @@
                     <div class="detail-figure">
                             <img src="../zhiwei_files/2525bf9151c94fa4293de0b86fa380b88c7dd922ad47494fc02c388e12c00eac_s.jpg" alt="">
                     </div>
-                    <h2 class="name">朱女士<i class="icon-vip"></i></h2>
+                    <h2 class="name"><span id="lianxr"></span><i class="icon-vip"></i></h2>
                     <p class="gray">HR<em class="vdot">·</em>刚刚在线</p>
                 </div>
                 <div class="detail-content">
@@ -385,7 +386,8 @@
                             <div class="job-sec">
                                 <h3>职位描述</h3>
                                 <div class="text">
-                                    岗位要求：  <br>-重点本科以上学历，3-5年工作经验，有带团队经验优先<br>-熟悉java/c++，java语言优先，有良好的算法和数据结构基础<br>-熟悉jvm和java应用调试技术，有java后端服务优化经验加分 <br>-熟悉linux，有大型开源项目研究和应用加分 <br>-使用过hadoop/spark相关大数据技术、有底层研究经验加分<br>-优秀的分析和解决问题能力，良好的团队协作精神，有责任心 <br> <br>加分项：<br>-有大数据全栈经验（hive/hbase/kylin/kafka/storm）<br>-了解cuda/cpu、tensorflow/caffe等<br> <br>岗位职责: <br>-负责hadoop/spark/hive/hbase等内核研发<br>-研究大数据相关前沿技术，包括机器学习和深度学习等<br>-负责大数据相关项目的软件分析、设计和开发工作 <br>-负责底层应用架构调整和系统调优
+                                    岗位要求：  <br>
+                                    <span id="jiesh"></span>
                                 </div>
                             </div>
                                 <div class="job-sec">
@@ -1555,7 +1557,34 @@
     }
 </script>
 <script>
+     $(function(){
+         loadParticulars();
+     })
 
+    //加载招聘详情页
+    function loadParticulars() {
+         var ids = $("#aa").val();
+         $.ajax({
+             url:"../zcController/loadParticulars",
+             type:"post",
+             data:{ids:ids},
+             dataType:"json",
+             success:function(data){
+                 //alert(data);
+                 $("#spzhiWei").html(data.zhiw);
+                 $("#yex").html(data.yex);
+                 $("#diq").html(data.diq);
+                 $("#jingy").html(data.jingy);
+                 $("#xuel").html(data.xuel);
+                 $("#lianxr").html(data.lianxr);
+                 $("#jiesh").html(data.jiesh);
+             },
+             error:function(){
+                 alert("加载招聘详情页失败");
+             }
+         })
+    }
 </script>
+<input type="text" id="aa" th:value="${ids}">
 </body>
 </html>
