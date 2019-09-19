@@ -40,8 +40,7 @@ public class ToController {
     //跳转到Hr
     @RequestMapping("toHr")
     public String toHr(){
-
-        return "hrfile";
+        return "tree";
     }
 
 
@@ -90,5 +89,12 @@ public class ToController {
     @RequestMapping("toZwjl")
     public String toZwjl(){
         return "gsZwjl";
+    }
+
+
+    //跳转公司面试管理
+    @RequestMapping("toMianShi")
+    public String toMianShi(){
+        return "mianshi";
     }
 }

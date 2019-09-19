@@ -50,6 +50,9 @@ public class ZcServiceImpl implements ZcServiceApi {
         map.put("code",2);
         Integer state = userModel.getState();
         map.put("state",state);
+        //获取用户Id
+        Integer ids = userModel.getGsyhid();
+        map.put("ids",ids);
         return map;
     }
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -83,12 +84,14 @@ public class ZcController {
         return random;
     }
 
-    //个人版登录
+    //登录
     @RequestMapping("grDenLu")
     @ResponseBody
-    public HashMap<String,Object> grDenLu(UserModel user){
-
-        return zcService.grDenLu(user);
+    public HashMap<String,Object> grDenLu(UserModel user, HttpServletRequest request){
+        HashMap<String, Object> map = zcService.grDenLu(user);
+        Integer ids = (Integer) map.get("ids");
+        request.getSession().setAttribute("id",ids);
+        return map;
     }
 
     //企业版注册

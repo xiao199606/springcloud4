@@ -16,4 +16,6 @@ public class UserModel {
     private Date zhucsj;
 
     private Integer state;
+
+    private Integer gsyhid;
 }
