@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.HbDao" >
+<select id="test" resultType="book">
+    select * from book
+</select>
+
+    <select id="login" resultType="user" parameterType="String">
+    select * from user where username=#{username}
+    </select>
+
+    <select id="getTreeAll" resultType="Tree">
+    select e.* from user a,user_role b,role c,role_tree d,tree e where a.id=b.uid and b.rid=c.id and c.id=d.rid and d.tid=e.id and a.id=#{id}
+    </select>
+
+    <select id="queryResumeCount" resultType="int" parameterType="HashMap">
+    select count(*) from jianli
+    </select>
+
+    <select id="HashMap" resultType="JianLi" parameterType="HashMap">
+    select * from jianli where state='2' limit #{start},#{end}
+    </select>
+
+    <delete id="deleteResume" parameterType="String">
+        delete from jianli where id in
+        <foreach collection="array" index="index" item="ids" open="(" separator="," close=")">
+        #{ids}
+    </foreach>
+    </delete>
+
+    <select id="queryAccountCount" resultType="int" parameterType="HashMap">
+    select count(*) from gryh
+    </select>
+
+    <select id="HashMap2" resultType="Gryh" parameterType="HashMap">
+    select * from gryh where state='1' limit #{start},#{end}
+    </select>
+
+    <delete id="deleteAccount" parameterType="String">
+        delete from gryh where id in
+        <foreach collection="array" index="index" item="ids" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </delete>
+
+    <select id="queryStayCount" resultType="int" parameterType="HashMap">
+    select count(*) from zwjl
+    </select>
+
+    <select id="HashMap3" resultType="Zwjl" parameterType="HashMap">
+    select * from zwjl where start='1' ORDER BY fdate desc limit #{start},#{end}
+    </select>
+</mapper>

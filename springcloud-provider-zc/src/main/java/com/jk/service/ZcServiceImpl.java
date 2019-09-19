@@ -1,6 +1,7 @@
 package com.jk.service;
 import com.jk.dao.ZcDao;
 import com.jk.model.Book;
+import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,14 +49,36 @@ public class ZcServiceImpl implements ZcServiceApi {
             return map;
         }
         map.put("code",2);
+        //企业和个人状态
         Integer state = userModel.getState();
         map.put("state",state);
+        //获取用户Id
+        Integer ids = userModel.getId();
+        map.put("ids",ids);
         return map;
     }
 
     @Override
     public void zcHrRegister(UserModel userModel) {
         zcDao.zcHrRegister(userModel);
+    }
+
+    //查询已发布职位
+    @Override
+    public List<Zwjl> zcIssue() {
+        return zcDao.zcIssue();
+    }
+
+    //查询热门职位
+    @Override
+    public List<Zwjl> hotCompany() {
+        return zcDao.hotCompany();
+    }
+
+    //查询招聘详情页
+    @Override
+    public Zwjl loadParticulars(String ids) {
+        return zcDao.loadParticulars(ids);
     }
 
 

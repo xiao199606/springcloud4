@@ -1,6 +1,7 @@
 package com.jk.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -49,14 +50,56 @@ public class ToController {
         return "index";
     }
 
+    //后台树页面
     @RequestMapping("tohbtree")
     public String tohbtree(){
         return "tree";
+    }
+
+    //简历查询页面
+    @RequestMapping("queryResume")
+    public String queryResume(){
+        return "queryResume";
+    }
+
+    //简历新增页面
+    @RequestMapping("toAddResume")
+    public String addResume(){
+        return "addResume";
+    }
+
+    //个人账号查询页面
+    @RequestMapping("queryAccount")
+    public String queryAccount(){
+        return "queryAccount";
+    }
+
+    //个人账号查询页面
+    @RequestMapping("queryStay")
+    public String queryStay(){
+        return "queryStay";
     }
 
     //跳转到企业版登录注册
     @RequestMapping("toHrRegister")
     public String toHrRegister(){
         return "hrRegister";
+    }
+
+    //跳转到招聘详情信息页面
+    @RequestMapping("toZhiwei")
+    public String toZhiwei(Model model,Integer ids){
+        System.out.println(ids+"===========");
+        model.addAttribute("ids",ids);
+        return "zhiwei";
+    }
+
+
+
+
+    //跳转公司职位管理
+    @RequestMapping("toZwjl")
+    public String toZwjl(){
+        return "gsZwjl";
     }
 }
