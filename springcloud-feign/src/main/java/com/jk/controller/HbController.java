@@ -97,4 +97,11 @@ public class HbController {
             return false;
         }
     }
+
+    @RequestMapping("queryStay")
+    @ResponseBody
+    public ResultPage queryStay(@RequestBody ResultPage result){
+        ResultPage resultPage = hbService.queryStayList(result);
+        return resultPage;
+    }
 }

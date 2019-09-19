@@ -42,4 +42,12 @@
             #{ids}
         </foreach>
     </delete>
+
+    <select id="queryStayCount" resultType="int" parameterType="HashMap">
+    select count(*) from zwjl
+    </select>
+
+    <select id="HashMap3" resultType="Zwjl" parameterType="HashMap">
+    select * from zwjl where start='1' ORDER BY fdate desc limit #{start},#{end}
+    </select>
 </mapper>

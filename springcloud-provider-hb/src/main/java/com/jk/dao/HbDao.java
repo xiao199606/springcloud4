@@ -23,4 +23,8 @@ public interface HbDao {
     List<Gryh> HashMap2(HashMap<String, Object> hashMap);
 
     void deleteAccount(String[] arrIds);
+
+    Integer queryStayCount(HashMap<String, Object> hashMap);
+
+    List<Zwjl> HashMap3(HashMap<String, Object> hashMap);
 }

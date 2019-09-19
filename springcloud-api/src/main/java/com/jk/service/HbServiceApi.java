@@ -33,4 +33,7 @@ public interface HbServiceApi {
 
     @RequestMapping("deleteAccount")
     void deleteAccount(@RequestParam("ids") String ids);
+
+    @RequestMapping("queryStay")
+    ResultPage queryStayList(@RequestBody ResultPage result);
 }

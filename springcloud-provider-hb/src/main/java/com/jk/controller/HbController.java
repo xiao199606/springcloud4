@@ -67,4 +67,9 @@ public class HbController {
             return false;
         }
     }
+
+    @RequestMapping("queryStay")
+    public ResultPage queryStay(@RequestBody ResultPage result){
+        return hbServiceApi.queryStayList(result);
+    }
 }

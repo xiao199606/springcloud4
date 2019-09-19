@@ -82,4 +82,23 @@ public class HbServiceImpl implements HbServiceApi {
         String[] arrIds= ids.split(",");
         hbDao.deleteAccount(arrIds);
     }
+
+    @Override
+    public ResultPage queryStayList(ResultPage result) {
+        ResultPage resultPage = new ResultPage();
+        HashMap<String, Object> hashMap = new HashMap<String, Object>();
+        hashMap.put("result", result);
+
+        //查询总条数
+        Integer count = hbDao.queryStayCount(hashMap);
+        resultPage.setTotal(count);
+
+        hashMap.put("start", (result.getPageNumber()-1)*result.getPageSize());
+        hashMap.put("end", result.getPageSize());
+
+        //查询所有数据
+        List<Zwjl> list = hbDao.HashMap3(hashMap);
+        resultPage.setRows(list);
+        return resultPage;
+    }
 }
