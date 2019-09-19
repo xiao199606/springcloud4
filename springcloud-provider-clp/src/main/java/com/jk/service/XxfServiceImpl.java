@@ -10,6 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class XxfServiceImpl implements XxfServiceApi {
+public class XxfServiceImpl implements ClpServiceApi {
 
 }
