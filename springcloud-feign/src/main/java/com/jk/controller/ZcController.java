@@ -85,6 +85,8 @@ public class ZcController {
         HashMap<String, Object> map = zcService.grDenLu(user);
         Integer ids = (Integer) map.get("ids");
         session.setAttribute("ids",ids);
+        Integer ids1 = (Integer) session.getAttribute("ids");
+        System.out.println(ids1+"用户Id");
         return map;
     }
 
