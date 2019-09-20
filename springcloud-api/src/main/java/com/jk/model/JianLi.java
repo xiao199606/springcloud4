@@ -45,14 +45,14 @@ public class JianLi {
     private String gangw;
     private String gangwlb;
     private String gongzdq;
-    private Integer yuexyq;
+    private String yuexyq;
     private String qiuzhzht;
     private String jishtch;
     private String gongzjl;
     private String gerjs;
     private String tel;
     private String email;
-    private Integer zhiding;
-    private String tian;
-    private String jine;
+
+    private String pwd;
+
 }

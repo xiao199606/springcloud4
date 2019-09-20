@@ -17,6 +17,7 @@ import java.util.Map;
 
 @RestController
 public class HbController {
+
     @Autowired
     private HbServiceApi hbServiceApi;
 

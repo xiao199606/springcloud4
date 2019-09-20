@@ -64,7 +64,8 @@ public class ToController {
 
     //简历新增页面
     @RequestMapping("toAddResume")
-    public String addResume(){
+    public String addResume(String phone,Model model){
+        model.addAttribute("phone",phone);
         return "addResume";
     }
 
@@ -87,7 +88,7 @@ public class ToController {
     }
 
     //跳转到招聘详情信息页面
-    @RequestMapping("toZhiwei")
+    @RequestMapping("loadParticulars")
     public String toZhiwei(Model model,Integer ids){
         System.out.println(ids+"===========");
         model.addAttribute("ids",ids);
@@ -103,21 +104,12 @@ public class ToController {
         return "gsZwjl";
     }
 
-    //注销
-    @RequestMapping("toIndex")
-    public String toIndex(){
-        return "index";
+    //跳转到企业认证页面
+    @RequestMapping("toAuthentication")
+    public String toAuthentication(Model model,String phone1){
+           model.addAttribute("phone1",phone1);
+        return "authentication";
+
     }
 
-    //公司查询
-    @RequestMapping("queryCompany")
-    public String queryCompany(){
-        return "queryCompany";
-    }
-
-    //业务数据
-    @RequestMapping("highcharts")
-    public String highcharts(){
-        return "highcharts";
-    }
 }

@@ -1,17 +1,22 @@
 package com.jk.controller;
 
+import com.jk.model.JianLi;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
+import com.jk.service.XxfService;
 import com.jk.service.ZcService;
 import com.jk.utils.CheckSumBuilder;
 import com.jk.utils.HttpClientUtil;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 @RequestMapping("zcController")
@@ -19,20 +24,13 @@ public class ZcController {
     @Autowired
     private ZcService zcService;
 
-    //测试
-    @RequestMapping("zcTest")
-    @ResponseBody
-    public Map test(){
-        return zcService.test();
-    }
-
     //短信验证码接口
     @RequestMapping("httpNote")
     @ResponseBody
-    public String  httpNote(String phone){
+    public String httpNote(String phone) {
         String url = "https://api.netease.im/sms/sendcode.action";
-        String CurTime=String.valueOf(new Date().getTime());
-        String Nonce= UUID.randomUUID().toString().replace("-", "");
+        String CurTime = String.valueOf(new Date().getTime());
+        String Nonce = UUID.randomUUID().toString().replace("-", "");
 
         HashMap<String, Object> headers = new HashMap<String, Object>();
         //开发者平台分配的appkey
@@ -47,17 +45,17 @@ public class ZcController {
 
         HashMap<String, Object> params = new HashMap<String, Object>();
         //手机号
-        params.put("mobile",phone);
-        params.put("templateid",14841054);
+        params.put("mobile", phone);
+        params.put("templateid", 14841054);
 
         try {//parseObject
-            String str=HttpClientUtil.post(url, params, headers);
+            String str = HttpClientUtil.post(url, params, headers);
             //JSONObject jsonObject = JSONObject.parseObject(str);
             JSONObject jsonObject = new JSONObject(str);
-            String code=jsonObject.getString("code");
-            String obj=jsonObject.getString("obj");
+            String code = jsonObject.getString("code");
+            String obj = jsonObject.getString("obj");
             //把验证码返回到前台
-            if("200".equals(code)){
+            if ("200".equals(code)) {
                 System.out.println(jsonObject);
                 return obj;
             }
@@ -68,43 +66,31 @@ public class ZcController {
         return "0";
     }
 
-    //注册
+    //个人版注册
     @RequestMapping("zcRegister")
     @ResponseBody
-    public String zcRegister(String phone, UserModel userModel){
-        userModel.setTel(phone);
+    public String zcRegister(JianLi jianLi) {
         //随机生成密码
-        String random=(int)((Math.random()*9+1)*100000)+"";
-        userModel.setPwd(random);
-        zcService.zcRegister(userModel);
+        String random = (int) ((Math.random() * 9 + 1) * 100000) + "";
+        jianLi.setPwd(random);
+        zcService.zcRegister(jianLi);
         return random;
     }
 
-    //登录
+    //个人版登录
     @RequestMapping("grDenLu")
     @ResponseBody
-    public HashMap<String,Object> grDenLu(UserModel user){
+    public HashMap<String, Object> grDenLu(UserModel user) {
         HashMap<String, Object> map = zcService.grDenLu(user);
         Integer ids = (Integer) map.get("ids");
         return map;
     }
 
-    //企业版注册
-    @RequestMapping("zcHrRegister")
-    @ResponseBody
-    public String zcHrRegister(String phone,UserModel userModel){
-        userModel.setTel(phone);
-        //随机生成密码
-        String random=(int)((Math.random()*9+1)*100000)+"";
-        userModel.setPwd(random);
-        zcService.zcHrRegister(userModel);
-        return random;
-    }
 
     //查询已发布职位
     @RequestMapping("zcIssue")
     @ResponseBody
-    public List<Zwjl> zcIssue(){
+    public List<Zwjl> zcIssue() {
         List<Zwjl> zwjls = zcService.zcIssue();
         return zwjls;
     }
@@ -112,7 +98,7 @@ public class ZcController {
     //查询热门职位
     @RequestMapping("hotCompany")
     @ResponseBody
-    public List<Zwjl> hotCompany(){
+    public List<Zwjl> hotCompany() {
         List<Zwjl> zwjlList = zcService.hotCompany();
         return zwjlList;
     }
@@ -120,7 +106,7 @@ public class ZcController {
     //加载招聘详情页
     @RequestMapping("loadParticulars")
     @ResponseBody
-    public Zwjl loadParticulars(String ids){
+    public Zwjl loadParticulars(String ids) {
         return zcService.loadParticulars(ids);
     }
 }
