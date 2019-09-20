@@ -96,4 +96,27 @@
     <insert id="addHighcharts" >
     insert into highcharts(dayTime,visitCount) values (#{daytime},#{visitcount})
     </insert>
+
+    <select id="queryUserCount" resultType="int">
+    select count(*) from user where audit='2' and status='3'
+    </select>
+
+    <select id="HashMap5" resultType="User" parameterType="HashMap">
+    select * from user where audit='2' and status='3' ORDER BY zhucsj desc limit #{start},#{end}
+    </select>
+
+    <delete id="deleteUser" parameterType="String">
+        delete from user where id in
+        <foreach collection="array" index="index" item="ids" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </delete>
+
+    <select id="queryGuangCount" resultType="int">
+    select count(*) from guanggao where state='2'
+    </select>
+
+    <select id="HashMap6" resultType="Guanggao" parameterType="HashMap">
+    select * from guanggao where state='2' ORDER BY createdate desc limit #{start},#{end}
+    </select>
 </mapper>

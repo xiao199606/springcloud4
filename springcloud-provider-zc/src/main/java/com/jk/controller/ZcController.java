@@ -1,5 +1,6 @@
 package com.jk.controller;
 
+import com.jk.model.JianLi;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
 import com.jk.service.XxfServiceApi;
@@ -16,17 +17,11 @@ public class ZcController {
     @Autowired
     private ZcServiceApi zcService;
 
-    @RequestMapping("/zcTest")
-    public Map test(){
-        Map map=zcService.test();
-        return map;
-    }
-
     //注册
     @RequestMapping("zcRegister")
-    public Boolean zcRegister(@RequestBody UserModel userModel){
+    public Boolean zcRegister(@RequestBody JianLi jianLi){
 
-        zcService.zcRegister(userModel);
+        zcService.zcRegister(jianLi);
         return true;
     }
 

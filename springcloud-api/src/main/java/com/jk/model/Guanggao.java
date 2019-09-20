@@ -1,5 +1,8 @@
 package com.jk.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Guanggao {
@@ -11,12 +14,18 @@ public class Guanggao {
 
     private String delflag;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
     private Date startime;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
     private Date endtime;
 
     private String createuser;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
     private Date createdate;
 
     private String audit;

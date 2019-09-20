@@ -120,4 +120,21 @@ public class ToController {
         return "highcharts";
     }
 
+    //公司员工查询
+    @RequestMapping("queryUser")
+    public String queryuser(){
+        return "queryUser";
+    }
+
+    //广告查询
+    @RequestMapping("queryGuang")
+    public String queryGuang(){
+        return "queryGuang";
+    }
+
+    //广告新增
+    @RequestMapping("addGuang")
+    public String addGuang(){
+        return "addGuang";
+    }
 }
