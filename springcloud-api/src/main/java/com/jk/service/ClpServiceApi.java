@@ -59,4 +59,7 @@ public interface ClpServiceApi {
 
     @RequestMapping(value = "deleteShenheNo",method = RequestMethod.POST)
     void deleteShenheNo(@RequestParam("id")Integer id);
+
+    @RequestMapping(value = "queryYuangongJianli",method = RequestMethod.GET)
+    Map queryYuangongJianli(@RequestBody PageRowsUtil pageRowsUtil);
 }

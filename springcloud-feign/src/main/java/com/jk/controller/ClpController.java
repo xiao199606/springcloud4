@@ -159,4 +159,17 @@ public class ClpController {
         clpService.deleteShenheNo(id);
     }
 
+
+
+    //员工  简历管理
+
+
+    @RequestMapping("queryYuangongJianli")
+    @ResponseBody
+    public Map queryYuangongJianli(PageRowsUtil pageRowsUtil){
+        return clpService.queryYuangongJianli(pageRowsUtil);
+    }
+
+
+
 }

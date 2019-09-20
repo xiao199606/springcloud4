@@ -138,4 +138,13 @@ public class ToController {
     public String addGuang(){
         return "addGuang";
     }
+
+    //员工 简历管理
+    @RequestMapping("toMianShi")
+    public String toMianShi(){
+        return "showMianShi";
+    }
+
+
+
 }
