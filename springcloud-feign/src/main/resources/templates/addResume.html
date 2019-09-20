@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
 </head>
 <body>
-<form role="form" id="formId">
+<form   id="addForm">
     <table>
         <tr>
             <td>姓名</td>
             <td>
-                <input type="text" class="form-control" id="name" name="name"/>
+                <input type="text" class="form-control"  name="name"/>
             </td>
         </tr>
         <tr>
@@ -103,13 +105,32 @@
         </tr>
         <tr>
             <td>手机号</td>
-            <td><input type="text" name="tel" id="tel"></td>
+            <td><input type="text" name="tel" th:value="${phone}"></td>
         </tr>
         <tr>
             <td>邮箱</td>
             <td><input type="text" name="email" id="email"></td>
         </tr>
     </table>
+    <input type="button" value="提交" onclick="tiJiao()">
 </form>
 </body>
+<script>
+    //../zcController/zcRegister
+    function tiJiao(){
+           $.ajax({
+               url:"../zcController/zcRegister",
+               type:"post",
+               data:$("#addForm").serialize(),
+               dataType:"json",
+               success:function(data){
+                   alert("您的密码为"+data+"请妥善保管");
+                   location.href = "../jump/toBosShow";
+               },
+               error:function(){
+                   alert("提交失败");
+               }
+           })
+    }
+</script>
 </html>

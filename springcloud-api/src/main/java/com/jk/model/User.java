@@ -41,4 +41,6 @@ public class User implements Serializable {
      private String doBusiness;
      private Integer status;
 
+
+
 }

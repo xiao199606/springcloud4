@@ -1,6 +1,8 @@
 package com.jk.service;
 
+import com.jk.model.Gsyh;
 import com.jk.model.JianLi;
+import com.jk.model.User;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,22 +15,23 @@ import java.util.Map;
 
 public interface ZcServiceApi {
 
-    @GetMapping(value="zcRegister")
+
+    @GetMapping(value = "zcRegister")
     void zcRegister(@RequestBody JianLi jianLi);
 
-    @GetMapping(value="grDenLu")
+    @GetMapping(value = "grDenLu")
     HashMap<String, Object> grDenLu(@RequestBody UserModel user);
 
-    @GetMapping(value="zcHrRegister")
-    void zcHrRegister(@RequestBody UserModel userModel);
 
-    @GetMapping(value="zcIssue")
+    @GetMapping(value = "zcIssue")
     List<Zwjl> zcIssue();
 
-    @GetMapping(value="hotCompany")
+    @GetMapping(value = "hotCompany")
     List<Zwjl> hotCompany();
 
-    @GetMapping(value="loadParticulars")
+    @GetMapping(value = "loadParticulars")
     Zwjl loadParticulars(@RequestParam(value = "ids") String ids);
 
+    @GetMapping(value = "loadCompany")
+    List<Gsyh> loadCompany();
 }

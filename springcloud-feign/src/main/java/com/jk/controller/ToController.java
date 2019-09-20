@@ -40,8 +40,7 @@ public class ToController {
     //跳转到Hr
     @RequestMapping("toHr")
     public String toHr(){
-
-        return "hrfile";
+        return "tree";
     }
 
     //后台登录页面
@@ -75,7 +74,7 @@ public class ToController {
         return "queryAccount";
     }
 
-    //职位查询页面
+    //个人账号查询页面
     @RequestMapping("queryStay")
     public String queryStay(){
         return "queryStay";
@@ -100,6 +99,8 @@ public class ToController {
     public String toZwjl(){
         return "gsZwjl";
     }
+
+
 
     //跳转到企业认证页面
     @RequestMapping("toAuthentication")

@@ -13,7 +13,6 @@ public class Guanggao {
     private String imgsrc;
 
     private String delflag;
-
     @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
     private Date startime;
