@@ -608,7 +608,8 @@
                         <div class="job-primary">
                             <div class="info-primary">
                                 <h3 class="name">
-                                    <a >
+                                    <a  href="javascript:xx()">
+                                        <input type="hidden" id="zwid" th:value="${jwork.id}">
                                         <div class="job-title"><span th:text="${jwork.zhiw}"></span></div>
                                         <span class="red" th:text="${jwork.minsalary}"></span>
                                         <span class="red">-</span>
@@ -1392,6 +1393,12 @@
         var jy= $("#jy").val();
         // alert(xz);
         location.href="../zhf/search2?wk="+wk+"&xz="+xz+"&xl="+xl+"&jy="+jy;
+    }
+
+    function xx(){
+        var ids= $("#zwid").val();
+       // alert(ids);
+        location.href="../jump/toZhiwei?ids="+ids;
     }
 </script>
 
