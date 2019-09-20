@@ -9,8 +9,5 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class SpringcloudProviderXxfApplicationTests {
 
-    @Test
-    public void contextLoads() {
-    }
 
 }

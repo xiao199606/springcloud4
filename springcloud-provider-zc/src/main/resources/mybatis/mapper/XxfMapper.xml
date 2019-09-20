@@ -30,7 +30,7 @@
     </insert>
 
     <select id="queryTel" resultType="com.jk.model.zcModel.UserModel">
-        select *  from  gryh WHERE tel = #{tel} and state = #{state}
+        select *  from  user WHERE tel = #{tel} and state = #{state}
     </select>
 
     <!--查询已发布职位-->

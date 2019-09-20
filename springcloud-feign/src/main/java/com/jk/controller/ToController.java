@@ -40,11 +40,10 @@ public class ToController {
     //跳转到Hr
     @RequestMapping("toHr")
     public String toHr(){
-
-        return "hrfile";
+        return "tree";
     }
 
-
+    //后台登录页面
     @RequestMapping("tologin")
     public String tologin(){
         return "index";
@@ -64,7 +63,8 @@ public class ToController {
 
     //简历新增页面
     @RequestMapping("toAddResume")
-    public String addResume(){
+    public String addResume(String phone,Model model){
+        model.addAttribute("phone",phone);
         return "addResume";
     }
 
@@ -74,7 +74,7 @@ public class ToController {
         return "queryAccount";
     }
 
-    //个人账号查询页面
+    //职位查询页面
     @RequestMapping("queryStay")
     public String queryStay(){
         return "queryStay";
@@ -87,7 +87,7 @@ public class ToController {
     }
 
     //跳转到招聘详情信息页面
-    @RequestMapping("toZhiwei")
+    @RequestMapping("loadParticulars")
     public String toZhiwei(Model model,Integer ids){
         System.out.println(ids+"===========");
         model.addAttribute("ids",ids);
@@ -101,5 +101,32 @@ public class ToController {
     @RequestMapping("toZwjl")
     public String toZwjl(){
         return "gsZwjl";
+    }
+
+    //跳转到企业认证页面
+    @RequestMapping("toAuthentication")
+    public String toAuthentication(Model model,String phone1){
+           model.addAttribute("phone1",phone1);
+        return "authentication";
+    }
+
+    //跳转公司用户查询
+    @RequestMapping("queryCompany")
+    public String queryCompany(){
+        return "queryCompany";
+    }
+
+    //报表查询
+    @RequestMapping("highcharts")
+    public String highcharts(){
+        return "highcharts";
+    }
+
+
+
+    //跳转公司面试管理
+    @RequestMapping("toMianShi")
+    public String toMianShi(){
+        return "mianshi";
     }
 }
