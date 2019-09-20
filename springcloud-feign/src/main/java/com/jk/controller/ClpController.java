@@ -80,7 +80,7 @@ public class ClpController {
 
     @RequestMapping("queryGuanggao")
     @ResponseBody
-    public Map queryGuanggao(@RequestBody PageRowsUtil pageRowsUtil){
+    public Map queryGuanggao(PageRowsUtil pageRowsUtil){
         return clpService.queryGuanggao(pageRowsUtil);
     }
 
