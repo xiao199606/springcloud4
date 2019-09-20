@@ -13,12 +13,14 @@ import com.jk.utils.HttpClientUtil;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.*;
@@ -95,6 +97,18 @@ public class ZcController {
         return map;
     }
 
+    //企业版版登录
+    @RequestMapping("companiesIn")
+    @ResponseBody
+    public HashMap<String, Object> companiesIn(User user,HttpSession session) {
+        HashMap<String, Object> map = zcService.companiesIn(user);
+        Integer ids = (Integer) map.get("ids");
+        session.setAttribute("ids",ids);
+        Integer ids1 = (Integer) session.getAttribute("ids");
+        System.out.println(ids1+"用户Id");
+        return map;
+    }
+
 
     //查询已发布职位
     @RequestMapping("zcIssue")
@@ -122,12 +136,13 @@ public class ZcController {
     //阿里云上传图片
     @RequestMapping("updaloadImg")
     @ResponseBody
-    public String uploadImg(MultipartFile imgg)throws IOException {
-        if (imgg == null || imgg.getSize() <= 0) {
+    public String uploadImg(MultipartFile img)throws IOException {
+        System.out.println(img+"=============");
+        if (img == null || img.getSize() <= 0) {
             throw new IOException("file不能为空");
         }
         OSSClientUtil ossClient=new OSSClientUtil();
-        String name = ossClient.uploadImg2Oss(imgg);
+        String name = ossClient.uploadImg2Oss(img);
         String imgUrl = ossClient.getImgUrl(name);
         String[] split = imgUrl.split("\\?");
         //System.out.println(split[0]);
@@ -138,10 +153,11 @@ public class ZcController {
     @RequestMapping("businessRegistration")
     @ResponseBody
     public String businessRegistration(User user){
+        System.out.println(user);
         //随机生成密码
         String random = (int) ((Math.random() * 9 + 1) * 100000) + "";
-        //jianLi.setPwd(random);
-        //zcService.zcRegister(jianLi);
+        user.setPassword(random);
+        zcService.businessRegistrations(user);
         return random;
     }
 
@@ -152,4 +168,27 @@ public class ZcController {
         List<Gsyh> userList = zcService.loadCompany();
         return userList;
     }
+
+    //跳转到修改简历
+    @RequestMapping("toTheResume")
+    //@ResponseBody
+    public String modifyResume(HttpServletRequest request, Model model){
+        Integer ids = (Integer) request.getSession().getAttribute("ids");
+        JianLi jianLi = zcService.queryTheResume(ids);
+        model.addAttribute("model",jianLi);
+        return "updHighcharts";
+    }
+
+    //修改简历
+    @RequestMapping("updHighcharts")
+    @ResponseBody
+    public Boolean updHighcharts(JianLi jianLi){
+        //System.out.println(jianLi.getId()+"=======================");
+        if(jianLi.getId()!=null){
+            zcService.updHighcharts(jianLi);
+            return true;
+        }
+        return false;
+    }
+
 }

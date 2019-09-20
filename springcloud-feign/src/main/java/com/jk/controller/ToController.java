@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("jump")
 public class ToController {
@@ -15,7 +17,11 @@ public class ToController {
 
     //跳转到招聘官网首页
     @RequestMapping("toBosShow")
-    public String toBosShow(){
+    public String toBosShow(HttpSession session){
+        Integer ids = (Integer) session.getAttribute("ids");
+        if(ids==null){
+            return "notLogIn";
+        }
         return "BOSS";
     }
 
@@ -40,6 +46,7 @@ public class ToController {
     //跳转到Hr
     @RequestMapping("toHr")
     public String toHr(){
+
         return "tree";
     }
 
@@ -118,7 +125,9 @@ public class ToController {
     //报表查询
     @RequestMapping("highcharts")
     public String highcharts(){
-        return "highcharts";
+        return "updHighcharts";
     }
+
+
 
 }

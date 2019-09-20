@@ -7,8 +7,10 @@ import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
 import com.jk.service.ZcServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +35,13 @@ public class ZcController {
     public HashMap<String, Object> grDenLu(@RequestBody UserModel user) {
 
         return zcService.grDenLu(user);
+    }
+
+    //企业版版登录
+    @RequestMapping("companiesIn")
+    public HashMap<String, Object> companiesIn(@RequestBody User user) {
+
+        return zcService.companiesIn(user);
     }
 
 
@@ -60,4 +69,28 @@ public class ZcController {
         List<Gsyh> userList = zcService.loadCompany();
         return userList;
     }
+
+    //企业版注册
+    @RequestMapping("businessRegistrations")
+    public void businessRegistration(@RequestBody User user){
+        //随机生成密码
+        String random = (int) ((Math.random() * 9 + 1) * 100000) + "";
+        user.setPassword(random);
+        zcService.businessRegistrations(user);
+    }
+
+    //跳转到修改简历
+    @RequestMapping("queryTheResume")
+    public JianLi modifyResume(@RequestParam(value = "ids") Integer ids){
+        JianLi jianLi = zcService.queryTheResume(ids);
+        return jianLi;
+    }
+
+
+    //修改简历
+    @RequestMapping("updHighcharts")
+    public void updHighcharts(@RequestBody JianLi jianLi){
+            zcService.updHighcharts(jianLi);
+    }
+
 }

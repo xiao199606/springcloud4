@@ -32,29 +32,25 @@
 <body>
     <center>
         <form id="addForm">
-            <input type="hidden" id="aa" th:value="${phone1}">
+            <input type="hidden" name="tel" th:value="${phone1}">
             <table>
                 <tr>
                     <td>姓名</td>
                     <td><input type="text" name="username"></td>
                 </tr>
                 <br>
-                <tr>
-                    <td>手机号</td>
-                    <td><input type="text" name="tel"></td>
-                </tr>
                 <br>
                 <tr>
                     <td>营业执照</td>
                     <td>
-                        <input type="hidden" id="testimg" name="pictureUrl" />
-                        <input type="file" style="width: 10px;"  name="doBusiness" id="headImg">
+                        <input type="hidden" id="testimg" name="doBusiness" />
+                        <input type="file" style="width: 10px;"  name="img" id="headImg">
                     </td>
                 </tr>
                 <tr>
                     <td>绑定公司</td>
                     <td>
-                        <select id="se">
+                        <select name="gsyhid" id="se">
 
                         </select>
                     </td>
@@ -73,7 +69,7 @@
     function uploadImg(){
         $('#headImg').fileinput({
             language: 'zh', //设置语言
-            uploadUrl: '../lmh/updaloadImg', //上传的地址
+            uploadUrl: '../zcController/updaloadImg', //上传的地址
             allowedFileExtensions: ['jpg', 'gif', 'png'],//接收的文件后缀
             showUpload: true, //是否显示上传按钮
             showCaption: false,//是否显示标题
@@ -132,7 +128,7 @@
 
                     html += "<option value='"+data[i].id+"'>"+data[i].gongsmc+"</option>";
                 }
-                alert(html);
+                //alert(html);
                 $("#se").html(html);
             },
             error:function(){

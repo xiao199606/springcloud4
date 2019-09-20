@@ -34,4 +34,16 @@ public interface ZcServiceApi {
 
     @GetMapping(value = "loadCompany")
     List<Gsyh> loadCompany();
+
+    @GetMapping(value = "businessRegistrations")
+    void businessRegistrations(@RequestBody User user);
+
+    @GetMapping(value = "companiesIn")
+    HashMap<String, Object> companiesIn(@RequestBody User user);
+
+    @GetMapping(value = "queryTheResume")
+    JianLi queryTheResume(@RequestParam(value = "ids") Integer ids);
+
+    @GetMapping(value = "updHighcharts")
+    void updHighcharts(@RequestBody JianLi jianLi);
 }
