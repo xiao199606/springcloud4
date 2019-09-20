@@ -1,8 +1,6 @@
 package com.jk.dao;
 
-import com.jk.model.Book;
-import com.jk.model.JianLi;
-import com.jk.model.Zwjl;
+import com.jk.model.*;
 import com.jk.model.zcModel.UserModel;
 import org.apache.ibatis.annotations.Select;
 
@@ -32,4 +30,7 @@ public interface ZcDao {
 
     //个人版注册
     void addPersonalUser(UserModel userModel);
+
+    @Select("select id,gongsmc  from  gsyh")
+    List<Gsyh> loadCompany();
 }

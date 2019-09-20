@@ -532,30 +532,7 @@
 
     }
 
-    //企业版注册
-    function register() {
-        var phone = $("#phone1").val();
-        var obj = $("#obj").val();
-        var phoneCode1 = $("#phoneCode1").val();
-        if(obj==phoneCode1){
-          $.ajax({
-            url:"../zcController/zcHrRegister",
-            type:"post",
-            data:{phone:phone},
-            dataType:"json",
-            success:function(data){
-              alert("您的密码为"+data+"请妥善保管");
-              location.href="toBosShow";
-            },
-            error:function(){
-              alert("注册失败");
-            }
-          })
-        }else {
-          alert("验证码不一致")
-        }
 
-    }
     
     //企业登录
   function grDenLu() {
@@ -591,8 +568,28 @@
 
   //跳转到企业认证页面
   function toAuthentication(){
+      //获取后台验证码
+      var obj = $("#obj").val();
+      //获取用户手机号
       var phone1 = $("#phone1").val();
-      location.href = "../jump/toAuthentication?phone1="+phone1;
+      //判断手机号是否为空
+      if(phone1==""){
+        alert("请输入手机号");
+        return 0;
+      }
+
+      //获取输入验证码
+      var phoneCode1 = $("#phoneCode1").val();
+      if(obj!=phoneCode1){
+        alert("验证码不一致");
+        return 0;
+      }else{
+        //获取手机号
+        //var phone1 = $("#phone1").val();
+        location.href = "../jump/toAuthentication?phone1="+phone1;
+      }
+
+
   }
 </script>
 <!--存放验证码-->

@@ -1,6 +1,8 @@
 package com.jk.controller;
 
+import com.jk.model.Gsyh;
 import com.jk.model.JianLi;
+import com.jk.model.User;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
 import com.jk.service.ZcServiceApi;
@@ -50,5 +52,12 @@ public class ZcController {
     @RequestMapping("loadParticulars")
     public Zwjl loadParticulars(@RequestParam(value = "ids") String ids) {
         return zcService.loadParticulars(ids);
+    }
+
+    //加载公司
+    @RequestMapping("loadCompany")
+    public List<Gsyh> loadCompany(){
+        List<Gsyh> userList = zcService.loadCompany();
+        return userList;
     }
 }

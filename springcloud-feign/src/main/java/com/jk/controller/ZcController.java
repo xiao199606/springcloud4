@@ -1,10 +1,13 @@
 package com.jk.controller;
 
+import com.jk.model.Gsyh;
 import com.jk.model.JianLi;
+import com.jk.model.User;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
 import com.jk.service.XxfService;
 import com.jk.service.ZcService;
+import com.jk.util.OSSClientUtil;
 import com.jk.utils.CheckSumBuilder;
 import com.jk.utils.HttpClientUtil;
 import org.json.JSONObject;
@@ -14,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -112,5 +117,39 @@ public class ZcController {
     @ResponseBody
     public Zwjl loadParticulars(String ids) {
         return zcService.loadParticulars(ids);
+    }
+
+    //阿里云上传图片
+    @RequestMapping("updaloadImg")
+    @ResponseBody
+    public String uploadImg(MultipartFile imgg)throws IOException {
+        if (imgg == null || imgg.getSize() <= 0) {
+            throw new IOException("file不能为空");
+        }
+        OSSClientUtil ossClient=new OSSClientUtil();
+        String name = ossClient.uploadImg2Oss(imgg);
+        String imgUrl = ossClient.getImgUrl(name);
+        String[] split = imgUrl.split("\\?");
+        //System.out.println(split[0]);
+        return split[0];
+    }
+
+    //企业版注册
+    @RequestMapping("businessRegistration")
+    @ResponseBody
+    public String businessRegistration(User user){
+        //随机生成密码
+        String random = (int) ((Math.random() * 9 + 1) * 100000) + "";
+        //jianLi.setPwd(random);
+        //zcService.zcRegister(jianLi);
+        return random;
+    }
+
+    //加载公司
+    @RequestMapping("loadCompany")
+    @ResponseBody
+    public List<Gsyh> loadCompany(){
+        List<Gsyh> userList = zcService.loadCompany();
+        return userList;
     }
 }

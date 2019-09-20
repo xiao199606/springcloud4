@@ -1,9 +1,7 @@
 package com.jk.service;
 
 import com.jk.dao.ZcDao;
-import com.jk.model.Book;
-import com.jk.model.JianLi;
-import com.jk.model.Zwjl;
+import com.jk.model.*;
 import com.jk.model.zcModel.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -80,6 +78,12 @@ public class ZcServiceImpl implements ZcServiceApi {
     @Override
     public Zwjl loadParticulars(String ids) {
         return zcDao.loadParticulars(ids);
+    }
+
+    //加载所有公司
+    @Override
+    public List<Gsyh> loadCompany() {
+        return zcDao.loadCompany();
     }
 
 

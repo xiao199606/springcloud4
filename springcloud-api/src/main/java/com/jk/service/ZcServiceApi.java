@@ -1,6 +1,8 @@
 package com.jk.service;
 
+import com.jk.model.Gsyh;
 import com.jk.model.JianLi;
+import com.jk.model.User;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,4 +32,6 @@ public interface ZcServiceApi {
     @GetMapping(value = "loadParticulars")
     Zwjl loadParticulars(@RequestParam(value = "ids") String ids);
 
+    @GetMapping(value = "loadCompany")
+    List<Gsyh> loadCompany();
 }
