@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script src="../highcharts/code/highcharts.js"></script>
+    <style type="text/css">
+        body {padding-top:55px;}
+    </style>
+</head>
+<body>
+<table id="container"></table>
+</body>
+<script type="text/javascript">
+    $(function(){
+        tohighcharts();
+    })
+
+    function  tohighcharts(){
+        $(function(){
+            $.ajax({
+                url:"../Hb/queryDayCount",
+                success:function (data) {
+                    var count=[];
+                    var time=[];
+                    for (var i=0;i<data.length;i++){
+                        count[i]=data[i].visitcount;
+                        time[i]=data[i].daytime;
+                    }
+                    var chart = Highcharts.chart('container',{
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: '日活跃数'
+                        },
+                        xAxis: {
+                            title: {
+                                text: '人数'
+                            },
+                            categories:time,
+                            crosshair: true
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: '人数'
+                            }
+                        },
+                        tooltip: {
+                            // head + 每个 point + footer 拼接成完整的 table
+                            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                            pointFormat:
+                                '<td style="padding:0"><b>{point.y:.1f} 人</b></td></tr>',
+                            footerFormat: '</table>',
+                            shared: true,
+                            useHTML: true
+                        },
+                        plotOptions: {
+                            column: {
+                                borderWidth: 0
+                            }
+                        },
+                        series: [{
+                            data: count
+                        }]
+                    });
+                }
+            })
+        })
+    }
+</script>
+</html>

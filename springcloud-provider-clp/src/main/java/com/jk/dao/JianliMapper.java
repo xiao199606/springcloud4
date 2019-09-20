@@ -1,7 +1,7 @@
 package com.jk.dao;
 
 
-import com.jk.model.ClpModel.Jianli;
+import com.jk.model.JianLi;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -9,17 +9,17 @@ import java.util.List;
 public interface JianliMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Jianli record);
+    int insert(JianLi record);
 
-    int insertSelective(Jianli record);
+    int insertSelective(JianLi record);
 
-    Jianli selectByPrimaryKey(Integer id);
+    JianLi selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(Jianli record);
+    int updateByPrimaryKeySelective(JianLi record);
 
-    int updateByPrimaryKey(Jianli record);
+    int updateByPrimaryKey(JianLi record);
 
-    List<Jianli> queryJianli(@Param("sta") int sta,@Param("rows") Integer rows);
+    List<JianLi> queryJianli(@Param("sta") int sta,@Param("rows") Integer rows);
 
     long queryCount();
 

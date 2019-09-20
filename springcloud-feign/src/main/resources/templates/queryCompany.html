@@ -35,7 +35,7 @@
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
 </head>
 <body>
-<button type="button"  class="btn btn-info btn-lg" onclick="deleteStayById()">批量删除</button>
+<button type="button"  class="btn btn-info btn-lg" onclick="deleteCompanyById()">批量删除</button>
 <table id="dataGrid" ></table>
 </body>
 <script type="text/javascript">
@@ -47,7 +47,7 @@
     function initDataGrid() {
         //创建bootstrapTable
         $("#dataGrid").bootstrapTable({
-            url: "../Hb/queryStay",
+            url: "../Hb/queryCompany",
             method: 'post',
             striped: true,  	         // 斑马线效果     默认false
             singleSelect: false,        //只允许选中一行
@@ -83,28 +83,26 @@
             columns: [
                 {field: 'ckAll', checkbox: true},  //开启复选框
                 {field:'id',title:'编号'},
-                {field:'zhiw',title:'职位招聘'},
-                {field:'leib',title:'职位类别'},
-                {field:'diq',title:'工作地区'},
-                {field:'rensh',title:'招聘人数'},
-                {field:'yex',title:'月薪'},
-                {field:'jiesh',title:'岗位介绍'},
-                {field:'zhuany',title:'专业要求'},
-                {field:'xuel',title:'学历'},
-                {field:'jingy',title:'工作经验'},
-                {field:'sex',title:'性别'},
-                {field:'minage',title:'最小年龄'},
-                {field:'maxage',title:'最大年龄'},
+                {field:'email',title:'邮箱'},
+                {field:'zhucsj',title:'注册时间'},
+                {field:'gongsmc',title:'公司名称'},
+                {field:'yuangrs',title:'员工人数'},
+                {field:'diq',title:'所在地区'},
+                {field:'gongsxz',title:'公司性质'},
+                {field:'chenglrq',title:'成立日期'},
+                {field:'zhuczj',title:'注册资金'},
+                {field:'gongsjj',title:'公司简介'},
                 {field:'lianxr',title:'联系人'},
                 {field:'lianxtel',title:'联系电话'},
-                {field:'email',title:'电子邮件'},
-                {field:'fdate',title:'发布时间'},
+                {field:'adress',title:'公司地址'},
+                {field:'qq',title:'在线洽谈qq'},
+                {field:'web',title:'公司网站'},
             ]
         });
     }
 
     //批删
-    function deleteStayById() {
+    function deleteCompanyById() {
         var arr = $("#dataGrid").bootstrapTable("getSelections");
         var ids="";
         if (arr==null || arr.length<=0) {
@@ -122,7 +120,7 @@
                 for (var i = 0; i < arr.length; i++) {
                     ids+= ids==''?arr[i].id:","+arr[i].id;
                 }
-                $.post('../Hb/deleteStay',{ids:ids},function(data){
+                $.post('../Hb/deleteCompany',{ids:ids},function(data){
                     if (data) {
                         $("#dataGrid").bootstrapTable("refresh");
                     }else{
