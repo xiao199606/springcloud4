@@ -5,32 +5,81 @@
     select * from t_book
 </select>
 
-    <!--个人注册-->
+    <!--新增简历-->
     <insert id="zcRegister">
-        INSERT INTO gryh(username,pwd,tel,zhucsj,state)
+        INSERT INTO jianli (
+            name,
+            sex,
+            birthday,
+            minz,
+            huny,
+            zhengzh,
+            xuex,
+            zhuany,
+            xuel,
+            gongzjy,
+            xianjd,
+            jig,
+            gangw,
+            gangwlb,
+            gongzdq,
+            yuexyq,
+            qiuzhzht,
+            jishtch,
+            gongzjl,
+            gerjs,
+            tel,
+            email,
+            state
+        )
         VALUES(
-           #{username},
-           #{pwd},
+           #{name},
+           #{sex},
+           #{birthday},
+           #{minz},
+           #{huny},
+           #{zhengzh},
+           #{xuex},
+           #{zhuany},
+           #{xuel},
+           #{gongzjy},
+           #{xianjd},
+           #{jig},
+           #{gangw},
+           #{gangwlb},
+           #{gongzdq},
+           #{yuexyq},
+           #{qiuzhzht},
+           #{jishtch},
+           #{gongzjl},
+           #{gerjs},
            #{tel},
-           SYSDATE(),
+           #{email},
            1
         )
     </insert>
 
+    <!--个人版注册-->
+    <insert id="addPersonalUser">
+         INSERT INTO  gryh (pwd,tel,email,zhucsj,jianLiId) VALUES(#{pwd},#{tel},#{email},SYSDATE(),#{jianLiId})
+    </insert>
+
     <!--企业版注册-->
     <insert id="zcHrRegister">
-        INSERT INTO gryh(username,pwd,tel,zhucsj,state)
+        INSERT INTO jianli VALUE(name,sex,birthday,minz,huny,zhengzh,xuex,zhuany,xuel,gongzjy,xianjd,jig,gangw,gangwlb,gongzdq,yuexyq,qiuzhzht,jishtch,gongzjl,gerjs,tel,email)
         VALUES(
-           #{username},
-           #{pwd},
-           #{tel},
-           SYSDATE(),
-           2
+           #{jianli},
+           #{sex},
+           #{birthday},
+           #{minz},
+           #{huny},
+           #{zhengzh},
         )
     </insert>
 
+    <!---->
     <select id="queryTel" resultType="com.jk.model.zcModel.UserModel">
-        select *  from  gryh WHERE tel = #{tel} and state = #{state}
+        select *  from  gryh WHERE tel = #{tel}
     </select>
 
     <!--查询已发布职位-->

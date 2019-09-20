@@ -1,5 +1,6 @@
 package com.jk.controller;
 
+import com.jk.model.JianLi;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
 import com.jk.service.XxfServiceApi;
@@ -22,11 +23,11 @@ public class ZcController {
         return map;
     }
 
-    //注册
+    //个人版注册
     @RequestMapping("zcRegister")
-    public Boolean zcRegister(@RequestBody UserModel userModel){
+    public Boolean zcRegister(@RequestBody JianLi jianLi){
 
-        zcService.zcRegister(userModel);
+        zcService.zcRegister(jianLi);
         return true;
     }
 

@@ -9,15 +9,10 @@
  * 作者姓名           修改时间           版本号              描述
  */
 package com.jk.model;
-
-<<<<<<< HEAD
 import lombok.Data;
-=======
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
->>>>>>> 9f27dcb8c3222979b42c9ed9a244c7cf3e68cb64
-
 import java.util.Date;
 
 /**
@@ -46,7 +41,6 @@ public class Zwjl {
     private String lianxr;
     private String lianxtel;
     private String email;
-    private Date fdate;
 
     //一下是联查所需字段
     private String gongsmc;//公司名称

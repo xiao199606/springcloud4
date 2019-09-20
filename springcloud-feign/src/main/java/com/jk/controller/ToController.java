@@ -64,7 +64,8 @@ public class ToController {
 
     //简历新增页面
     @RequestMapping("toAddResume")
-    public String addResume(){
+    public String addResume(String phone,Model model){
+        model.addAttribute("phone",phone);
         return "addResume";
     }
 
@@ -87,7 +88,7 @@ public class ToController {
     }
 
     //跳转到招聘详情信息页面
-    @RequestMapping("toZhiwei")
+    @RequestMapping("loadParticulars")
     public String toZhiwei(Model model,Integer ids){
         System.out.println(ids+"===========");
         model.addAttribute("ids",ids);
@@ -102,4 +103,7 @@ public class ToController {
     public String toZwjl(){
         return "gsZwjl";
     }
+
+    //跳转到新增简历页面
+
 }

@@ -1,5 +1,6 @@
 package com.jk.controller;
 
+import com.jk.model.JianLi;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
 import com.jk.service.XxfService;
@@ -72,19 +73,18 @@ public class ZcController {
         return "0";
     }
 
-    //注册
+    //个人版注册
     @RequestMapping("zcRegister")
     @ResponseBody
-    public String zcRegister(String phone,UserModel userModel){
-        userModel.setTel(phone);
+    public String zcRegister(JianLi jianLi){
         //随机生成密码
         String random=(int)((Math.random()*9+1)*100000)+"";
-        userModel.setPwd(random);
-        zcService.zcRegister(userModel);
+        jianLi.setPwd(random);
+        zcService.zcRegister(jianLi);
         return random;
     }
 
-    //登录
+    //个人版登录
     @RequestMapping("grDenLu")
     @ResponseBody
     public HashMap<String,Object> grDenLu(UserModel user){

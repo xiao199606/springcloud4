@@ -1,6 +1,7 @@
 package com.jk.service;
 import com.jk.dao.ZcDao;
 import com.jk.model.Book;
+import com.jk.model.JianLi;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,24 @@ public class ZcServiceImpl implements ZcServiceApi {
         return map;
     }
 
-    //注册
+    //个人版注册
     @Override
-    public void zcRegister(UserModel userModel) {
+    public void zcRegister(JianLi jianLi) {
+        //新增简历
+        zcDao.zcRegister(jianLi);
+        //根据手机号 查询 新增后简历的的主键Id
+        String tel = jianLi.getTel();
+        Integer tell = zcDao.queryCellPhoneNumber(tel);
 
-        zcDao.zcRegister(userModel);
+        //新增注册信息
+        UserModel userModel = new UserModel();
+        userModel.setJianLiId(tell);
+        userModel.setTel(jianLi.getTel());
+        userModel.setPwd(jianLi.getPwd());
+        userModel.setEmail(jianLi.getEmail());
+        zcDao.addPersonalUser(userModel);
+
+
     }
 
     @Override
@@ -49,9 +63,6 @@ public class ZcServiceImpl implements ZcServiceApi {
             return map;
         }
         map.put("code",2);
-        //企业和个人状态
-        Integer state = userModel.getState();
-        map.put("state",state);
         //获取用户Id
         Integer ids = userModel.getId();
         map.put("ids",ids);
