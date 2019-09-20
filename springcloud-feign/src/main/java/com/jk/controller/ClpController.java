@@ -34,7 +34,10 @@ public class ClpController {
         return "shenheGuanggao";
     }
 
-
+    @RequestMapping("toZhewei")
+    public String toZhewei(){
+        return "shenheZhewei";
+    }
 
     //简历审核
     @RequestMapping("queryJianli")
@@ -95,6 +98,40 @@ public class ClpController {
     public void deleteGgNo(Integer id){
         clpService.deleteGgNo(id);
     }
+
+
+
+
+    @RequestMapping("queryZhiwei")
+    @ResponseBody
+    public Map queryZhiwei(PageRowsUtil pageRowsUtil){
+        return clpService.queryZhiwei(pageRowsUtil);
+    }
+
+    @RequestMapping("updateZhiweiYes")
+    @ResponseBody
+    public void updateZhiweiYes(Integer id){
+        clpService.updateZhiweiYes(id);
+    }
+
+    @RequestMapping("updateZhiweiNo")
+    @ResponseBody
+    public void updateZhiweiNo(Integer id){
+        clpService.updateZhiweiNo(id);
+    }
+
+
+
+
+    @RequestMapping("deleteZhiweiNo")
+    @ResponseBody
+    public void deleteZhiweiNo(Integer id){
+        clpService.deleteZhiweiNo(id);
+    }
+
+
+
+
 
 
 }

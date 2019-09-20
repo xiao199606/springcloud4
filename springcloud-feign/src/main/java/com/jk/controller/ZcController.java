@@ -28,10 +28,10 @@ public class ZcController {
     //短信验证码接口
     @RequestMapping("httpNote")
     @ResponseBody
-    public String  httpNote(String phone){
+    public String httpNote(String phone) {
         String url = "https://api.netease.im/sms/sendcode.action";
-        String CurTime=String.valueOf(new Date().getTime());
-        String Nonce= UUID.randomUUID().toString().replace("-", "");
+        String CurTime = String.valueOf(new Date().getTime());
+        String Nonce = UUID.randomUUID().toString().replace("-", "");
 
         HashMap<String, Object> headers = new HashMap<String, Object>();
         //开发者平台分配的appkey
@@ -50,13 +50,13 @@ public class ZcController {
         params.put("templateid", 14841054);
 
         try {//parseObject
-            String str = HttpClientUtil.post(url, params, headers);
+            String str=HttpClientUtil.post(url, params, headers);
             //JSONObject jsonObject = JSONObject.parseObject(str);
             JSONObject jsonObject = new JSONObject(str);
-            String code = jsonObject.getString("code");
-            String obj = jsonObject.getString("obj");
+            String code=jsonObject.getString("code");
+            String obj=jsonObject.getString("obj");
             //把验证码返回到前台
-            if ("200".equals(code)) {
+            if("200".equals(code)){
                 System.out.println(jsonObject);
                 return obj;
             }
@@ -70,15 +70,15 @@ public class ZcController {
     //个人版注册
     @RequestMapping("zcRegister")
     @ResponseBody
-    public String zcRegister(UserModel userModel) {
+    public String zcRegister(JianLi jianLi) {
         //随机生成密码
         String random = (int) ((Math.random() * 9 + 1) * 100000) + "";
-        userModel.setPwd(random);
-        zcService.zcRegister(userModel);
+        jianLi.setPwd(random);
+        zcService.zcRegister(jianLi);
         return random;
     }
 
-    //个人版登录
+    //登录
     @RequestMapping("grDenLu")
     @ResponseBody
     public HashMap<String,Object> grDenLu(UserModel user, HttpServletRequest request) {
