@@ -3,14 +3,12 @@ package com.jk.controller;
 
 import com.jk.service.ClpService;
 import com.jk.util.PageRowsUtil;
-import com.jk.utils.HttpClientUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @RequestMapping("shenhe")
@@ -30,6 +28,12 @@ public class ClpController {
     public String toGsyh(){
         return "shenheGsyh";
     }
+
+    @RequestMapping("toGuanggao")
+    public String toGuanggao(){
+        return "shenheGuanggao";
+    }
+
 
 
     //简历审核
@@ -74,6 +78,23 @@ public class ClpController {
 
     }
 
+    @RequestMapping("queryGuanggao")
+    @ResponseBody
+    public Map queryGuanggao(PageRowsUtil pageRowsUtil){
+        return clpService.queryGuanggao(pageRowsUtil);
+    }
+
+    @RequestMapping("updateGgYes")
+    @ResponseBody
+    public void updateGgYes(Integer id){
+        clpService.updateGgYes(id);
+    }
+
+    @RequestMapping("deleteGgNo")
+    @ResponseBody
+    public void deleteGgNo(Integer id){
+        clpService.deleteGgNo(id);
+    }
 
 
 }

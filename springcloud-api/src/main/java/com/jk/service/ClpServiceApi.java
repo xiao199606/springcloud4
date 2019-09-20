@@ -30,5 +30,13 @@ public interface ClpServiceApi {
     void deleteGsNo(@RequestParam("id")Integer id);
 
 
+    @RequestMapping(value = "queryGuanggao",method = RequestMethod.GET)
+    Map queryGuanggao(@RequestBody PageRowsUtil pageRowsUtil);
+
+    @RequestMapping(value = "updateGgYes",method = RequestMethod.POST)
+    void updateGgYes(@RequestParam("id")Integer id);
+
+    @RequestMapping(value = "deleteGgNo",method = RequestMethod.POST)
+    void deleteGgNo(@RequestParam("id")Integer id);
 
 }
