@@ -40,11 +40,10 @@ public class ToController {
     //跳转到Hr
     @RequestMapping("toHr")
     public String toHr(){
-
-        return "hrfile";
+        return "tree";
     }
 
-
+    //后台登录页面
     @RequestMapping("tologin")
     public String tologin(){
         return "index";
@@ -94,9 +93,6 @@ public class ToController {
         model.addAttribute("ids",ids);
         return "zhiwei";
     }
-
-
-
 
     //跳转公司职位管理
     @RequestMapping("toZwjl")

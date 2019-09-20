@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -38,9 +38,9 @@
 <body>
 <form id="pro_from" class="form-inline">
     <div class="form-group">
-        <label>职位名称</label>
+        <label>书籍名称</label>
         <br>
-        <input type="text" class="form-control" name = "name" id="name" placeholder="职位名称">
+        <input type="text" class="form-control" name = "name" id="name" placeholder="书籍名称">
     </div>
     <br>
     <button type="button" class="btn btn-success" onclick="queryData()">搜索</button>
@@ -64,7 +64,7 @@
     function initDataGrid() {
         //创建bootstrapTable
         $("#dataGrid").bootstrapTable({
-            url: "../queryZwjl",
+            url: "../shenhe/queryZhiwei",
             method: 'get',
             striped: true,  	// 斑马线效果     默认false
             //只允许选中一行
@@ -99,29 +99,206 @@
             // 请求服务器数据
             queryParams: function queryParams(params) {
                 var param = {
-                    pageNumber: params.pageNumber,
-                    pageSize: params.pageSize,
-                    name: $("#name").val()
+                    page: params.pageNumber,
+                    rows: params.pageSize
+
                 };
                 return param;
             },
             columns: [
-                {field: 'checkbox', checkbox: true},  //开启复选框
-                {field: 'id', title: 'id', width: 300},      //  列    field   代表是 后台  传过来的值
-                {field: 'zhiw', title: '职位', width: 300},
-                {field: 'leib', title: '类别', width: 300},
-                {field:'rensh',title:'人数',width:100},
-                {field:'yex',title:'月薪',width:100},
-                {field:'jiesh',title:'介绍',width:100},
-                {field:'xuel',title:'学历',width:100},
-                {field:'jingy',title:'经验',width:100},
-                {field:'sex',title:'性别',width:100},
-                {field:'cc',title:'操作',width:100,formatter:function(value,row,index){
-                        return "<a href='javascript:update("+row.id+")'>修改</a>"
+                {field: 'checkbox', checkbox: true},
+                //开启复选框
+                {field: 'id', title: 'id', width: 300},
+                //  列    field   代表是 后台  传过来的值
+                {field: 'zhiw', title: '职位名称', width: 300},
+
+                {field: 'leib', title: '职位类别', width: 300,
+
+
+
+
+                },
+
+                {field: 'diq', title: '工作地区', width: 300,
+
+
+
+                },
+
+                {field: 'rensh', title: '招聘人数', width: 300},
+
+                {field: 'yex', title: '月薪', width: 300},
+
+                {field: 'jiesh', title: '岗位介绍', width: 300},
+
+                {field: 'zhuany', title: '专业要求', width: 300},
+
+                {field: 'xuel', title: '学历', width: 300},
+
+                {field: 'jingy', title: '工作经验', width: 300},
+
+                {field: 'sex', title: '性别1-男，2-女，3不限', width: 300,
+
+                    formatter:function(value,row,index){
+                        if(value==1){
+                            return "男";
+                        }
+                        if(value==2){
+                            return "女";
+                        }
+                        if(value==3){
+                            return "不限";
+                        }
+                    }
+
+                },
+
+                {field: 'minage', title: '最小年龄', width: 300},
+
+                {field: 'maxage', title: '最大年龄', width: 300},
+
+                {field: 'lianxr', title: '联系人', width: 300},
+
+                {field: 'lianxtel', title: '联系电话', width: 300},
+
+                {field: 'email', title: '电子邮件', width: 300},
+
+                {field: 'fdate', title: '发布时间', width: 300},
+
+                {field: 'start', title: '1-待审批，2-已通过，3-已驳回', width: 300,
+
+                    formatter:function(value,row,index){
+                        if(value==1){
+                            return "待审核";
+                        }
+                        if(value==2){
+                            return "审核通过";
+                        }
+                        if(value==3){
+                            return "已驳回";
+                        }
+                    }
+
+                },
+
+
+                {field: 'hot', title: '热度', width: 300},
+
+                {field: 'gsid', title: '公司管理Id', width: 300},
+
+
+
+                {field:'cc',title:'审核',width:100,formatter:function(value,row,index){
+                        if(row.start==1){
+                            a= "<a href='javascript:updateYes("+row.id+")'>同意</a>"
+                            a+="   <a href='javascript:updateNo("+row.id+")'>拒绝</a> "
+                            return a;
+                        }
+
                     }}
             ]
         });
     }
+
+
+    function updateYes(id){
+
+        $.ajax({
+            url: "../shenhe/updateZhiweiYes",
+            data: {id: id},
+            type: "post",
+            success: function () {
+                alert("审核通过！");
+                $("#dataGrid").bootstrapTable("refresh");
+
+            }, error: function () {
+                alert("审核失败");
+            }
+        })
+
+    }
+
+
+    function updateNo(id){
+
+        $.ajax({
+            url: "../shenhe/updateZhiweiNo",
+            data: {id: id},
+            type: "post",
+            success: function () {
+                alert("审核拒绝！");
+                $("#dataGrid").bootstrapTable("refresh");
+
+            }, error: function () {
+                alert("审核失败");
+            }
+        })
+
+
+        $.ajax({
+            url: "../lmh/failureMails",
+            type: "post",
+            success: function () {
+
+                $("#dataGrid").bootstrapTable("refresh");
+
+            }, error: function () {
+            }
+        })
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function deleteNo(id){
+        $.ajax({
+            url: "../shenhe/deleteZhiweiNo?id="+id,
+            type: "post",
+            success: function () {
+                $("#dataGrid").bootstrapTable("refresh");
+
+            }, error: function () {
+            }
+        })
+
+
+        $.ajax({
+            url: "../lmh/failureMails",
+            type: "post",
+            success: function () {
+
+                $("#dataGrid").bootstrapTable("refresh");
+
+            }, error: function () {
+            }
+        })
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     var res;
@@ -140,8 +317,8 @@
     function addBook(){
         //打开新增弹框
         bootbox.dialog({
-            title: '新增职位',
-            message: createAddContent("../toAddZwjl"),
+            title: '新增书籍',
+            message: createAddContent("../toAddBook"),
             closeButton: true,//是否显示关闭按钮
             buttons: {
                 "success": {
@@ -149,7 +326,7 @@
                     "className": "btn-sm btn-success",
                     "callback": function () {
                         $.ajax({
-                            url: '../addgsZwjl',
+                            url: '../addBook',
                             type: 'post',
                             data: $("#formId").serialize(),
                             success: function () {
@@ -175,7 +352,7 @@
 
 
     //批量删除
-    function deleteZwjl() {
+    function deleteBook() {
         var arr = $('#dataGrid').bootstrapTable("getSelections");//获取选中的行
         console.log(arr);
         if (arr.length <= 0) {
@@ -187,7 +364,7 @@
             }
             ids = ids.substring(0, ids.length - 1);
             $.ajax({
-                url: "../deleteZwjl",
+                url: "../deleteBook",
                 data: {ids: ids},
                 type: "post",
                 success: function () {
@@ -207,8 +384,8 @@
     //修改
     function update(id){
         bootbox.dialog({
-            title: '修改职位',
-            message: createAddContent("../findZwjlById?id="+id),
+            title: '修改用户',
+            message: createAddContent("../findBookById?id="+id),
             closeButton: true,//是否显示关闭按钮
             buttons: {
                 "success": {
@@ -216,7 +393,7 @@
                     "className": "btn-sm btn-success",
                     "callback": function () {
                         $.ajax({
-                            url: '../updateZwjl',
+                            url: '../updateBook',
                             type: 'post',
                             data: $("#formId").serialize(),
                             success: function () {
@@ -242,4 +419,6 @@
 
 
 </script>
+
+</body>
 </html>

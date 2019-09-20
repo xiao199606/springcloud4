@@ -26,6 +26,15 @@ public class ResultPage implements Serializable {
    private Integer pageNumber;//当前页
    private Integer pageSize;//每页条数
    private String name;//条查名称
+   private Integer gsyhid;
+
+	public Integer getGsyhid() {
+		return gsyhid;
+	}
+
+	public void setGsyhid(Integer gsyhid) {
+		this.gsyhid = gsyhid;
+	}
 
 	public String getName() {
 		return name;

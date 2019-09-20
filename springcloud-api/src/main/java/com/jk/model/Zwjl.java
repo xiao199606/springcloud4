@@ -53,6 +53,10 @@ public class Zwjl {
     @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
     private Date fdate;
+    private Integer start;
+    private Integer hot;
+    private Integer gsid;
+
     //一下是联查所需字段
     private String gongsmc;//公司名称
     private String gongsxz;//公司性质

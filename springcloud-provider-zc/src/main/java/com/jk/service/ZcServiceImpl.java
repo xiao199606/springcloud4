@@ -1,5 +1,4 @@
 package com.jk.service;
-
 import com.jk.dao.ZcDao;
 import com.jk.model.*;
 import com.jk.model.zcModel.UserModel;
@@ -16,6 +15,13 @@ public class ZcServiceImpl implements ZcServiceApi {
     @Autowired
     private ZcDao zcDao;
 
+    @Override
+    public Map test() {
+        List<Book> list=zcDao.test();
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("rows",list);
+        return map;
+    }
 
     //个人版注册
     @Override
@@ -34,7 +40,7 @@ public class ZcServiceImpl implements ZcServiceApi {
         userModel.setEmail(jianLi.getEmail());
         zcDao.addPersonalUser(userModel);
 
-
+        zcDao.zcRegister(userModel);
     }
 
     @Override
@@ -42,25 +48,32 @@ public class ZcServiceImpl implements ZcServiceApi {
         HashMap<String, Object> map = new HashMap<>();
         UserModel userModel = zcDao.queryTel(user);
         //判断用户是否存在
-        if (userModel == null) {
-            map.put("code", 0);
-            map.put("msg", "账号错误");
+        if(userModel==null){
+            map.put("code",0);
+            map.put("msg","账号错误");
             return map;
         }
         //判断密码是否一致
         String pwd = user.getPwd();
-        if (!pwd.equals(userModel.getPwd())) {
-            map.put("code", 1);
-            map.put("msg", "密码错误");
+        if(!pwd.equals(userModel.getPwd())){
+            map.put("code",1);
+            map.put("msg","密码错误");
             return map;
         }
-        map.put("code", 2);
+        map.put("code",2);
+        //企业和个人状态
+        Integer state = userModel.getState();
+        map.put("state",state);
         //获取用户Id
         Integer ids = userModel.getId();
         map.put("ids", ids);
         return map;
     }
 
+    @Override
+    public void zcHrRegister(UserModel userModel) {
+        zcDao.zcHrRegister(userModel);
+    }
 
     //查询已发布职位
     @Override

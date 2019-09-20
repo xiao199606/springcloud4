@@ -18,4 +18,7 @@ public class UserModel {
     private Integer jianLiId;//关联简历Id;
 
     private String email;//邮箱
+    private Integer state;
+
+    private Integer gsyhid;
 }
