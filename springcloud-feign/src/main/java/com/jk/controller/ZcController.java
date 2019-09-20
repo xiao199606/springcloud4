@@ -70,11 +70,11 @@ public class ZcController {
     //个人版注册
     @RequestMapping("zcRegister")
     @ResponseBody
-    public String zcRegister(UserModel userModel) {
+    public String zcRegister(JianLi jianLi) {
         //随机生成密码
         String random = (int) ((Math.random() * 9 + 1) * 100000) + "";
-        userModel.setPwd(random);
-        zcService.zcRegister(userModel);
+        jianLi.setPwd(random);
+        zcService.zcRegister(jianLi);
         return random;
     }
 

@@ -39,6 +39,12 @@ public class ClpController {
         return "shenheZhewei";
     }
 
+    @RequestMapping("toShenheUser")
+    public String toShenheUser(){
+        return "shenheUser";
+    }
+
+
     //简历审核
     @RequestMapping("queryJianli")
     @ResponseBody
@@ -80,6 +86,9 @@ public class ClpController {
         clpService.deleteGsNo(id);
 
     }
+
+
+    //广告审核
 
     @RequestMapping("queryGuanggao")
     @ResponseBody
@@ -131,7 +140,23 @@ public class ClpController {
 
 
 
+    //公司人员审核
+    @RequestMapping("queryShenheUser")
+    @ResponseBody
+    public Map queryShenheUser(PageRowsUtil pageRowsUtil){
+        return clpService.queryShenheUser(pageRowsUtil);
+    }
 
+    @RequestMapping("updateShenheYes")
+    @ResponseBody
+    public void updateShenheYes(Integer id){
+        clpService.updateShenheYes(id);
+    }
 
+    @RequestMapping("deleteShenheNo")
+    @ResponseBody
+    public void deleteShenheNo(Integer id){
+        clpService.deleteShenheNo(id);
+    }
 
 }
