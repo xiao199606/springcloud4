@@ -68,6 +68,7 @@ public class XxfController {
         Integer id = (Integer) request.getSession().getAttribute("id");
         zwjl.setGsid(id);
         XxfService.addgsZwjl(zwjl);
+
     }
 
     @PostMapping("updateZwjl")
