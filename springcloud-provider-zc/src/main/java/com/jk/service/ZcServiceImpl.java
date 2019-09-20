@@ -15,13 +15,7 @@ public class ZcServiceImpl implements ZcServiceApi {
     @Autowired
     private ZcDao zcDao;
 
-    @Override
-    public Map test() {
-        List<Book> list=zcDao.test();
-        HashMap<Object, Object> map = new HashMap<>();
-        map.put("rows",list);
-        return map;
-    }
+
 
     //个人版注册
     @Override
@@ -40,9 +34,10 @@ public class ZcServiceImpl implements ZcServiceApi {
         userModel.setEmail(jianLi.getEmail());
         zcDao.addPersonalUser(userModel);
 
-        zcDao.zcRegister(userModel);
+        zcDao.zcRegister(jianLi);
     }
 
+    //个人版登录
     @Override
     public HashMap<String, Object> grDenLu(UserModel user) {
         HashMap<String, Object> map = new HashMap<>();
@@ -61,19 +56,12 @@ public class ZcServiceImpl implements ZcServiceApi {
             return map;
         }
         map.put("code",2);
-        //企业和个人状态
-        Integer state = userModel.getState();
-        map.put("state",state);
         //获取用户Id
         Integer ids = userModel.getId();
         map.put("ids", ids);
         return map;
     }
 
-    @Override
-    public void zcHrRegister(UserModel userModel) {
-        zcDao.zcHrRegister(userModel);
-    }
 
     //查询已发布职位
     @Override
