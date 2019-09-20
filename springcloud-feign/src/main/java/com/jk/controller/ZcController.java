@@ -102,9 +102,12 @@ public class ZcController {
     @ResponseBody
     public HashMap<String, Object> companiesIn(User user,HttpSession session) {
         HashMap<String, Object> map = zcService.companiesIn(user);
+        //获取map存入定的Id
         Integer ids = (Integer) map.get("ids");
-        session.setAttribute("ids",ids);
-        Integer ids1 = (Integer) session.getAttribute("ids");
+
+        session.setAttribute("ids2",ids);
+        Integer ids1 = (Integer) session.getAttribute("ids2");
+
         System.out.println(ids1+"用户Id");
         return map;
     }
