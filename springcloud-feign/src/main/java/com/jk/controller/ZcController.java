@@ -1,5 +1,6 @@
 package com.jk.controller;
 
+import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
 import com.jk.service.XxfService;
 import com.jk.service.ZcService;
@@ -87,10 +88,10 @@ public class ZcController {
     //登录
     @RequestMapping("grDenLu")
     @ResponseBody
-    public HashMap<String,Object> grDenLu(UserModel user, HttpServletRequest request){
+    public HashMap<String,Object> grDenLu(UserModel user, HttpServletRequest request) {
         HashMap<String, Object> map = zcService.grDenLu(user);
         Integer ids = (Integer) map.get("ids");
-        request.getSession().setAttribute("id",ids);
+        request.getSession().setAttribute("id", ids);
         return map;
     }
 
@@ -104,5 +105,28 @@ public class ZcController {
         userModel.setPwd(random);
         zcService.zcHrRegister(userModel);
         return random;
+    }
+
+    //查询已发布职位
+    @RequestMapping("zcIssue")
+    @ResponseBody
+    public List<Zwjl> zcIssue(){
+        List<Zwjl> zwjls = zcService.zcIssue();
+        return zwjls;
+    }
+
+    //查询热门职位
+    @RequestMapping("hotCompany")
+    @ResponseBody
+    public List<Zwjl> hotCompany(){
+        List<Zwjl> zwjlList = zcService.hotCompany();
+        return zwjlList;
+    }
+
+    //加载招聘详情页
+    @RequestMapping("loadParticulars")
+    @ResponseBody
+    public Zwjl loadParticulars(String ids){
+        return zcService.loadParticulars(ids);
     }
 }

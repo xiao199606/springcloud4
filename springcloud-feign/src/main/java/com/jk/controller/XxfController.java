@@ -1,6 +1,7 @@
 package com.jk.controller;
 
 
+import com.jk.config.EsConfig;
 import com.jk.model.Leib;
 import com.jk.model.Tree;
 import com.jk.model.Zwjl;
