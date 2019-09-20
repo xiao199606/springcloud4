@@ -116,7 +116,7 @@ public class ZhfController {
 
 
     @RequestMapping("search2")
-    public String search2(String wk,int xz, Model model){
+    public String search2(String wk,int xz, int xl,int jy,Model model){
         //    SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         //对电影名称进行模糊查询并设置高亮
         //对作者，id进行精确查询
@@ -142,8 +142,53 @@ public class ZhfController {
                 boolQueryBuilder.filter(QueryBuilders.rangeQuery("minsalary").lte(30000));
             }
         }
+        if(xl != 0){
+            //must代表必须返回
+            //mustnot代表必须不
+            //filter代表过滤
+            //matchquery代表查询所有
+            //tearmquery精确查询
+            //rangequery区间查询
+              if(xl ==1){
+                boolQueryBuilder.filter(QueryBuilders.termQuery("xuel","大专以下"));
+            }
+            else if(xl ==2){
+                boolQueryBuilder.filter(QueryBuilders.termQuery("xuel","大专"));
+            }
+            else  if(xl ==3){
+                boolQueryBuilder.filter(QueryBuilders.termQuery("xuel","本科"));
+            }
+            else if(xl ==4){
+                boolQueryBuilder.filter(QueryBuilders.termQuery("xuel","博士"));
+            }
+            else if(xl ==5){
+                boolQueryBuilder.filter(QueryBuilders.termQuery("xuel","硕士"));
+              }
+
+        }
+        if(jy != 0){
+            //must代表必须返回
+            //mustnot代表必须不
+            //filter代表过滤
+            //matchquery代表查询所有
+            //tearmquery精确查询
+            //rangequery区间查询
+             if(jy ==1){
+                boolQueryBuilder.filter(QueryBuilders.termQuery("jingy","1到2年"));
+            }
+            else if(jy ==2){
+                boolQueryBuilder.filter(QueryBuilders.termQuery("jingy","2到5年"));
+            }
+            else if(jy ==3){
+                boolQueryBuilder.filter(QueryBuilders.termQuery("jingy","3到5年"));
+            }
+            else  if(jy ==4){
+                boolQueryBuilder.filter(QueryBuilders.termQuery("jingy","6到8年"));
+            }
 
 
+
+        }
 
         SearchRequestBuilder searchRequestBuilder = elasticsearchTemplate.getClient().prepareSearch("work")
                 //.setSearchType("bookaction")//设置查询索引类型
@@ -190,6 +235,8 @@ public class ZhfController {
         model.addAttribute("jwork",jworks);
         model.addAttribute("wk",wk);
         model.addAttribute("xz",xz);
+        model.addAttribute("xl",xl);
+        model.addAttribute("jy",jy);
         return "boss2";
     }
 }

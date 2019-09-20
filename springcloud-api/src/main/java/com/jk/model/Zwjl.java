@@ -44,7 +44,9 @@ public class Zwjl {
     private String yex;
     private String jiesh;
     private String zhuany;
+    @Field(type = FieldType.Keyword)
     private String xuel;
+    @Field(type = FieldType.Keyword)
     private String jingy;
     private Integer sex;
     private Integer minage;
