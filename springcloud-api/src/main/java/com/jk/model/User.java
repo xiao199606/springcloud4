@@ -13,6 +13,7 @@ package com.jk.model;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -29,4 +30,11 @@ public class User implements Serializable {
      private Integer id;
      private String username;
      private String password;
+     private String tel;
+     private Date zhucsj;
+     private Integer gsyhid;
+     private Integer audit;
+     private String doBusiness;
+     private Integer status;
+
 }

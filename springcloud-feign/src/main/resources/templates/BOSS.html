@@ -4015,7 +4015,7 @@
                     //alert(data[i].zhiw);
                     html+="<li>\n" +
                         "                                        <div onclick='toZhiwei("+data[i].id+")' class=\"sub-li\" id=\"sub-li\">\n" +
-                        "                                            <a href=\"#://www.zhipin.com/job_detail/189991d2e81d0acb1XNy2ty6ElE~.html\" ka=\"index_rcmd_job_9\" class=\"job-info\" target=\"_blank\">\n" +
+                        "                                            <a  ka=\"index_rcmd_job_9\" class=\"job-info\" target=\"_blank\">\n" +
                         "                                                <p>"+data[i].zhiw+"<span class=\"salary\">"+data[i].yex+"</span></p>\n" +
                         "                                                <p class=\"job-text\">"+data[i].diq+"<span class=\"vline\"></span>"+data[i].jingy+"<span class=\"vline\"></span>"+data[i].xuel+"</p>\n" +
                         "                                            </a>\n" +
@@ -4068,7 +4068,7 @@
 
     //跳转到zhiwei.html
     function toZhiwei(id){
-         location.href = "../jump/loadParticulars?ids="+id;
+         location.href = "../jump/toZhiwei?ids="+id;
     }
     // search1
     function search1(){

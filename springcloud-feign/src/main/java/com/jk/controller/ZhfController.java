@@ -149,7 +149,7 @@ public class ZhfController {
             //matchquery代表查询所有
             //tearmquery精确查询
             //rangequery区间查询
-              if(xl ==1){
+            if(xl ==1){
                 boolQueryBuilder.filter(QueryBuilders.termQuery("xuel","大专以下"));
             }
             else if(xl ==2){
@@ -163,7 +163,7 @@ public class ZhfController {
             }
             else if(xl ==5){
                 boolQueryBuilder.filter(QueryBuilders.termQuery("xuel","硕士"));
-              }
+            }
 
         }
         if(jy != 0){
@@ -173,7 +173,7 @@ public class ZhfController {
             //matchquery代表查询所有
             //tearmquery精确查询
             //rangequery区间查询
-             if(jy ==1){
+            if(jy ==1){
                 boolQueryBuilder.filter(QueryBuilders.termQuery("jingy","1到2年"));
             }
             else if(jy ==2){

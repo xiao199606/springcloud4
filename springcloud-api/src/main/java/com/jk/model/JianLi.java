@@ -55,4 +55,16 @@ public class JianLi {
 
     private String pwd;
 
+
+    private String pwd;
+
+    private Integer state;
+
+    private Integer zhiding;
+
+    private String tian;
+
+    private String jine;
+
+    private Integer gid;
 }
