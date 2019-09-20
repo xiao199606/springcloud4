@@ -10,17 +10,12 @@ import com.jk.util.ResultPage;
 import com.jk.util.TreeNoteUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import sun.font.EAttribute;
 
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("Hb")
@@ -156,4 +151,31 @@ public class HbController {
         List<Highcharts> list=hbService.queryDayCount();
         return list;
     }
+
+    @RequestMapping("queryUser")
+    @ResponseBody
+    public ResultPage queryUser(@RequestBody ResultPage result) {
+        ResultPage resultPage = hbService.queryUserList(result);
+        return resultPage;
+    }
+
+    @RequestMapping("deleteUser")
+    @ResponseBody
+    public Boolean deleteUser(String ids) {
+        try {
+            hbService.deleteUser(ids);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @RequestMapping("queryGuang")
+    @ResponseBody
+    public ResultPage queryGuang(@RequestBody ResultPage result) {
+        ResultPage resultPage = hbService.queryGuangList(result);
+        return resultPage;
+    }
+
 }

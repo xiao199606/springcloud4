@@ -55,6 +55,7 @@ public class JianLi {
 
     private String pwd;
 
+
     private Integer state;
 
     private Integer zhiding;
@@ -64,4 +65,6 @@ public class JianLi {
     private String jine;
 
     private Integer gid;
+
+
 }

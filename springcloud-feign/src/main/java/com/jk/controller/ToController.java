@@ -74,7 +74,7 @@ public class ToController {
         return "queryAccount";
     }
 
-    //职位查询页面
+    //个人账号查询页面
     @RequestMapping("queryStay")
     public String queryStay(){
         return "queryStay";
@@ -94,14 +94,13 @@ public class ToController {
         return "zhiwei";
     }
 
-
-
-
     //跳转公司职位管理
     @RequestMapping("toZwjl")
     public String toZwjl(){
         return "gsZwjl";
     }
+
+
 
     //跳转到企业认证页面
     @RequestMapping("toAuthentication")
@@ -122,11 +121,21 @@ public class ToController {
         return "highcharts";
     }
 
+    //公司员工查询
+    @RequestMapping("queryUser")
+    public String queryuser(){
+        return "queryUser";
+    }
 
+    //广告查询
+    @RequestMapping("queryGuang")
+    public String queryGuang(){
+        return "queryGuang";
+    }
 
-    //跳转公司面试管理
-    @RequestMapping("toMianShi")
-    public String toMianShi(){
-        return "mianshi";
+    //广告新增
+    @RequestMapping("addGuang")
+    public String addGuang(){
+        return "addGuang";
     }
 }

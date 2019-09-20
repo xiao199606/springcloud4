@@ -1,6 +1,8 @@
 package com.jk.service;
 import com.jk.dao.ZcDao;
+import com.jk.model.*;
 import com.jk.model.Book;
+import com.jk.model.JianLi;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,21 +18,29 @@ public class ZcServiceImpl implements ZcServiceApi {
     @Autowired
     private ZcDao zcDao;
 
+
+
+    //个人版注册
     @Override
-    public Map test() {
-        List<Book> list=zcDao.test();
-        HashMap<Object, Object> map = new HashMap<>();
-        map.put("rows",list);
-        return map;
+    public void zcRegister(JianLi jianLi) {
+        //新增简历
+        zcDao.zcRegister(jianLi);
+        //根据手机号 查询 新增后简历的的主键Id
+        String tel = jianLi.getTel();
+        Integer tell = zcDao.queryCellPhoneNumber(tel);
+
+        //新增注册信息
+        UserModel userModel = new UserModel();
+        userModel.setJianLiId(tell);
+        userModel.setTel(jianLi.getTel());
+        userModel.setPwd(jianLi.getPwd());
+        userModel.setEmail(jianLi.getEmail());
+        zcDao.addPersonalUser(userModel);
+
+        zcDao.zcRegister(jianLi);
     }
 
-    //注册
-    @Override
-    public void zcRegister(UserModel userModel) {
-
-        zcDao.zcRegister(userModel);
-    }
-
+    //个人版登录
     @Override
     public HashMap<String, Object> grDenLu(UserModel user) {
         HashMap<String, Object> map = new HashMap<>();
@@ -49,19 +59,12 @@ public class ZcServiceImpl implements ZcServiceApi {
             return map;
         }
         map.put("code",2);
-        //企业和个人状态
-        Integer state = userModel.getState();
-        map.put("state",state);
         //获取用户Id
-        Integer ids = userModel.getGsyhid();
-        map.put("ids",ids);
+        Integer ids = userModel.getId();
+        map.put("ids", ids);
         return map;
     }
 
-    @Override
-    public void zcHrRegister(UserModel userModel) {
-        zcDao.zcHrRegister(userModel);
-    }
 
     //查询已发布职位
     @Override
@@ -79,6 +82,12 @@ public class ZcServiceImpl implements ZcServiceApi {
     @Override
     public Zwjl loadParticulars(String ids) {
         return zcDao.loadParticulars(ids);
+    }
+
+    //加载所有公司
+    @Override
+    public List<Gsyh> loadCompany() {
+        return zcDao.loadCompany();
     }
 
 

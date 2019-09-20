@@ -1,10 +1,13 @@
 package com.jk.controller;
 
+import com.jk.model.Gsyh;
 import com.jk.model.JianLi;
+import com.jk.model.User;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
 import com.jk.service.XxfService;
 import com.jk.service.ZcService;
+import com.jk.util.OSSClientUtil;
 import com.jk.utils.CheckSumBuilder;
 import com.jk.utils.HttpClientUtil;
 import org.json.JSONObject;
@@ -14,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -28,10 +33,10 @@ public class ZcController {
     //短信验证码接口
     @RequestMapping("httpNote")
     @ResponseBody
-    public String  httpNote(String phone){
+    public String httpNote(String phone) {
         String url = "https://api.netease.im/sms/sendcode.action";
-        String CurTime=String.valueOf(new Date().getTime());
-        String Nonce= UUID.randomUUID().toString().replace("-", "");
+        String CurTime = String.valueOf(new Date().getTime());
+        String Nonce = UUID.randomUUID().toString().replace("-", "");
 
         HashMap<String, Object> headers = new HashMap<String, Object>();
         //开发者平台分配的appkey
@@ -81,29 +86,20 @@ public class ZcController {
     //个人版登录
     @RequestMapping("grDenLu")
     @ResponseBody
-    public HashMap<String,Object> grDenLu(UserModel user, HttpServletRequest request) {
+    public HashMap<String, Object> grDenLu(UserModel user,HttpSession session) {
         HashMap<String, Object> map = zcService.grDenLu(user);
         Integer ids = (Integer) map.get("ids");
-        request.getSession().setAttribute("id", ids);
+        session.setAttribute("ids",ids);
+        Integer ids1 = (Integer) session.getAttribute("ids");
+        System.out.println(ids1+"用户Id");
         return map;
     }
 
-    //企业版注册
-    @RequestMapping("zcHrRegister")
-    @ResponseBody
-    public String zcHrRegister(String phone,UserModel userModel){
-        userModel.setTel(phone);
-        //随机生成密码
-        String random=(int)((Math.random()*9+1)*100000)+"";
-        userModel.setPwd(random);
-        zcService.zcHrRegister(userModel);
-        return random;
-    }
 
     //查询已发布职位
     @RequestMapping("zcIssue")
     @ResponseBody
-    public List<Zwjl> zcIssue(){
+    public List<Zwjl> zcIssue() {
         List<Zwjl> zwjls = zcService.zcIssue();
         return zwjls;
     }
@@ -111,7 +107,7 @@ public class ZcController {
     //查询热门职位
     @RequestMapping("hotCompany")
     @ResponseBody
-    public List<Zwjl> hotCompany(){
+    public List<Zwjl> hotCompany() {
         List<Zwjl> zwjlList = zcService.hotCompany();
         return zwjlList;
     }
@@ -119,7 +115,41 @@ public class ZcController {
     //加载招聘详情页
     @RequestMapping("loadParticulars")
     @ResponseBody
-    public Zwjl loadParticulars(String ids){
+    public Zwjl loadParticulars(String ids) {
         return zcService.loadParticulars(ids);
+    }
+
+    //阿里云上传图片
+    @RequestMapping("updaloadImg")
+    @ResponseBody
+    public String uploadImg(MultipartFile imgg)throws IOException {
+        if (imgg == null || imgg.getSize() <= 0) {
+            throw new IOException("file不能为空");
+        }
+        OSSClientUtil ossClient=new OSSClientUtil();
+        String name = ossClient.uploadImg2Oss(imgg);
+        String imgUrl = ossClient.getImgUrl(name);
+        String[] split = imgUrl.split("\\?");
+        //System.out.println(split[0]);
+        return split[0];
+    }
+
+    //企业版注册
+    @RequestMapping("businessRegistration")
+    @ResponseBody
+    public String businessRegistration(User user){
+        //随机生成密码
+        String random = (int) ((Math.random() * 9 + 1) * 100000) + "";
+        //jianLi.setPwd(random);
+        //zcService.zcRegister(jianLi);
+        return random;
+    }
+
+    //加载公司
+    @RequestMapping("loadCompany")
+    @ResponseBody
+    public List<Gsyh> loadCompany(){
+        List<Gsyh> userList = zcService.loadCompany();
+        return userList;
     }
 }

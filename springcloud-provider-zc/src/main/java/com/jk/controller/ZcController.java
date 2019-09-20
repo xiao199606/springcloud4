@@ -1,8 +1,11 @@
 package com.jk.controller;
 
+import com.jk.model.JianLi;
+import com.jk.model.Gsyh;
+import com.jk.model.JianLi;
+import com.jk.model.User;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
-import com.jk.service.XxfServiceApi;
 import com.jk.service.ZcServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,53 +16,49 @@ import java.util.Map;
 
 @RestController
 public class ZcController {
+
     @Autowired
     private ZcServiceApi zcService;
 
-    @RequestMapping("/zcTest")
-    public Map test(){
-        Map map=zcService.test();
-        return map;
-    }
 
-    //注册
+    //个人版注册
     @RequestMapping("zcRegister")
-    public Boolean zcRegister(@RequestBody UserModel userModel){
+    public Boolean zcRegister(@RequestBody JianLi jianLi) {
 
-        zcService.zcRegister(userModel);
+        zcService.zcRegister(jianLi);
         return true;
     }
 
     //个人版登录
     @RequestMapping("grDenLu")
-    public HashMap<String,Object> grDenLu(@RequestBody UserModel user){
+    public HashMap<String, Object> grDenLu(@RequestBody UserModel user) {
 
         return zcService.grDenLu(user);
     }
 
-    //zcHrRegister 企业版注册
-    @RequestMapping("zcHrRegister")
-    public Boolean zcHrRegister(@RequestBody UserModel userModel){
-        
-        zcService.zcHrRegister(userModel);
-        return true;
-    }
 
     //查询已发布职位
     @RequestMapping("zcIssue")
-    public List<Zwjl> zcIssue(){
+    public List<Zwjl> zcIssue() {
         return zcService.zcIssue();
     }
 
     @RequestMapping("hotCompany")
-    public List<Zwjl> hotCompany(){
+    public List<Zwjl> hotCompany() {
         List<Zwjl> zwjlList = zcService.hotCompany();
         return zwjlList;
     }
 
     //加载招聘详情页
     @RequestMapping("loadParticulars")
-    public Zwjl loadParticulars(@RequestParam(value = "ids") String ids){
+    public Zwjl loadParticulars(@RequestParam(value = "ids") String ids) {
         return zcService.loadParticulars(ids);
+    }
+
+    //加载公司
+    @RequestMapping("loadCompany")
+    public List<Gsyh> loadCompany(){
+        List<Gsyh> userList = zcService.loadCompany();
+        return userList;
     }
 }
