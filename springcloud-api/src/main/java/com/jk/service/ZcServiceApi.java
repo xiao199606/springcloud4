@@ -1,5 +1,6 @@
 package com.jk.service;
 
+import com.jk.model.JianLi;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,11 +12,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface ZcServiceApi {
-    @GetMapping(value="zcTest")
-    Map test();
 
     @GetMapping(value="zcRegister")
-    void zcRegister(@RequestBody UserModel userModel);
+    void zcRegister(@RequestBody JianLi jianLi);
 
     @GetMapping(value="grDenLu")
     HashMap<String, Object> grDenLu(@RequestBody UserModel user);

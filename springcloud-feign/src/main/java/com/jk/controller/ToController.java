@@ -44,7 +44,7 @@ public class ToController {
         return "hrfile";
     }
 
-
+    //后台登录页面
     @RequestMapping("tologin")
     public String tologin(){
         return "index";
@@ -75,7 +75,7 @@ public class ToController {
         return "queryAccount";
     }
 
-    //个人账号查询页面
+    //职位查询页面
     @RequestMapping("queryStay")
     public String queryStay(){
         return "queryStay";
@@ -95,9 +95,6 @@ public class ToController {
         return "zhiwei";
     }
 
-
-
-
     //跳转公司职位管理
     @RequestMapping("toZwjl")
     public String toZwjl(){
@@ -109,7 +106,18 @@ public class ToController {
     public String toAuthentication(Model model,String phone1){
            model.addAttribute("phone1",phone1);
         return "authentication";
+    }
 
+    //跳转公司用户查询
+    @RequestMapping("queryCompany")
+    public String queryCompany(){
+        return "queryCompany";
+    }
+
+    //报表查询
+    @RequestMapping("highcharts")
+    public String highcharts(){
+        return "highcharts";
     }
 
 }

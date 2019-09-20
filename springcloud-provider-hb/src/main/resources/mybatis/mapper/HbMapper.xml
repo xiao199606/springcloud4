@@ -33,7 +33,7 @@
     </select>
 
     <select id="HashMap2" resultType="Gryh" parameterType="HashMap">
-    select * from gryh where state='1' limit #{start},#{end}
+    select * from gryh limit #{start},#{end}
     </select>
 
     <delete id="deleteAccount" parameterType="String">
