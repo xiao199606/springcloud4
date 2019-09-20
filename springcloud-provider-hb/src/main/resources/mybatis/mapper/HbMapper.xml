@@ -10,7 +10,7 @@
     </select>
 
     <select id="getTreeAll" resultType="Tree">
-    select e.* from user a,user_role b,role c,role_tree d,tree e where a.id=b.uid and b.rid=c.id and c.id=d.rid and d.tid=e.id and a.id=#{id}
+            select e.* from user a,user_role b,role c,role_tree d,tree e where a.status=b.ustatusid and b.rid=c.id and c.id=d.rid and d.tid=e.id and a.id=#{id}
     </select>
 
     <select id="queryResumeCount" resultType="int" parameterType="HashMap">

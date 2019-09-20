@@ -1,8 +1,8 @@
 /**
  * Copyright (C), 2019, XXX有限公司
- * FileName: JianliServiceImpl
+ * FileName: GuanggaoServiceImpl
  * Author:   clp
- * Date:     2019/9/19 11:17
+ * Date:     2019/9/20 9:10
  * Description:
  * History:
  * <author>          <time>          <version>          <desc>
@@ -10,8 +10,8 @@
  */
 package com.jk.service;
 
-import com.jk.dao.JianliMapper;
-import com.jk.model.JianLi;
+import com.jk.dao.GuanggaoMapper;
+import com.jk.model.Guanggao;
 import com.jk.util.PageRowsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,21 +25,20 @@ import java.util.Map;
  * 〈〉
  *
  * @author clp
- * @create 2019/9/19
+ * @create 2019/9/20
  * @since 1.0.0
  */
 @Service
-public class JianliServiceImpl implements JianliService {
+public class GuanggaoServiceImpl implements GuanggaoService{
 
     @Autowired
-    private JianliMapper jianliMapper;
+    private GuanggaoMapper guanggaoMapper;
 
     @Override
-    public Map queryJianli(PageRowsUtil pageRowsUtil) {
-
+    public Map queryGuanggao(PageRowsUtil pageRowsUtil) {
         int sta=(pageRowsUtil.getPage()-1)*pageRowsUtil.getRows();
-        List<JianLi> list=jianliMapper.queryJianli(sta,pageRowsUtil.getRows());
-        long count=jianliMapper.queryCount();
+        List<Guanggao> list=guanggaoMapper.queryGuanggao(sta,pageRowsUtil.getRows());
+        long count=guanggaoMapper.queryCount();
 
         Map map=new HashMap();
         map.put("rows",list);
@@ -48,12 +47,12 @@ public class JianliServiceImpl implements JianliService {
     }
 
     @Override
-    public void updateYes(Integer id) {
-        jianliMapper.updateYes(id);
+    public void updateGgYes(Integer id) {
+        guanggaoMapper.updateGgYes(id);
     }
 
     @Override
-    public void deleteNo(Integer id) {
-        jianliMapper.deleteNo(id);
+    public void deleteGgNo(Integer id) {
+        guanggaoMapper.deleteGgNo(id);
     }
 }
