@@ -32,4 +32,23 @@
     <select id="queryTel" resultType="com.jk.model.zcModel.UserModel">
         select *  from  user WHERE tel = #{tel} and state = #{state}
     </select>
+
+    <!--查询已发布职位-->
+    <select id="zcIssue" resultType="com.jk.model.Zwjl">
+        select *  from  zwjl zw
+        left join gsyh gs on gs.id = zw.gsid
+        ORDER BY hot desc  LIMIT 0,9
+    </select>
+
+    <!--查询热门公司-->
+    <select id="hotCompany" resultType="com.jk.model.Zwjl">
+         select *  from  zwjl zw
+        left join gsyh gs on gs.id = zw.gsid
+        ORDER BY hot desc  LIMIT 0,12
+    </select>
+
+    <!--查询招聘详情页-->
+    <select id="loadParticulars" resultType="com.jk.model.Zwjl">
+        select  *  from  zwjl WHERE id = #{value}
+    </select>
 </mapper>

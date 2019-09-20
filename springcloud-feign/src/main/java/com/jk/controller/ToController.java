@@ -1,6 +1,7 @@
 package com.jk.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -12,7 +13,6 @@ public class ToController {
         return "bookList";
     }
 
-    //登录页面
     //跳转到招聘官网首页
     @RequestMapping("toBosShow")
     public String toBosShow(){
@@ -85,6 +85,17 @@ public class ToController {
     public String toHrRegister(){
         return "hrRegister";
     }
+
+    //跳转到招聘详情信息页面
+    @RequestMapping("toZhiwei")
+    public String toZhiwei(Model model,Integer ids){
+        System.out.println(ids+"===========");
+        model.addAttribute("ids",ids);
+        return "zhiwei";
+    }
+
+
+
 
     //跳转公司职位管理
     @RequestMapping("toZwjl")

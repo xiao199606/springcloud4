@@ -63,7 +63,7 @@ public class LmhServiceImpl implements LmhService {
         MailVo mailVo = new MailVo();
         mailVo.setMailTiTle("简历违规提醒");
         mailVo.setMailContent("您的简历存在违规字符，请您修改后重新投放。"+"<a herf=''>投放地址</a>");
-        mailVo.setRecipients("543379207@qq.com");
+        mailVo.setRecipients("646187818@qq.com");
         // 获取当前正在使用的发件人配置
         CmsMailConfig cmsMailConfig = new CmsMailConfig();
         cmsMailConfig.setMailLicense("lmh521123");

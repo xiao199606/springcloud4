@@ -51,6 +51,7 @@
             <version>2.1.8.RELEASE</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <dependencyManagement>
