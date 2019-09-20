@@ -137,24 +137,24 @@
         <div class="inner home-inner">
             <div class="search-box">
                 <div class="search-form ">
-                    <form action="#://www.zhipin.com/job_detail/" method="get">
+
                         <div class="logo"><a href="#://www.zhipin.com/" ka="header-home-logo" title="BOSS直聘"><span>BOSS直聘</span></a></div>
                         <div class="search-form-con">
                             <div class="position-sel" ka="search_box_sel_jobtype">
                                 <span class="label-text"><b>职位类型</b><i class="icon-arrow-down"></i></span>
                             </div>
-                            <p class="ipt-wrap"><input type="text" name="query" class="ipt-search" maxlength="50" autocomplete="off" placeholder="搜索职位、公司"></p>
+                            <p class="ipt-wrap"><input type="text" name="query" id="wk" class="ipt-search" maxlength="50" autocomplete="off" placeholder="搜索职位、公司"></p>
                         </div>
                         <input type="hidden" name="city" class="city-code" value="101110100">
                         <input type="hidden" name="industry" class="industry-code" value="">
                         <input type="hidden" name="position" class="position-code" value="">
-                        <button class="btn btn-search" ka="search_box_index">搜索</button>
+                    <button class="btn btn-search" onclick="search1()">搜索</button>
                         <div class="suggest-result" style="display: none;">
                             <ul></ul>
                         </div>
 
 
-                    </form>
+
                 </div>
                 <div class="search-hot">
                     <b>热门职位:</b>
@@ -4069,6 +4069,12 @@
     //跳转到zhiwei.html
     function toZhiwei(id){
          location.href = "../jump/loadParticulars?ids="+id;
+    }
+    // search1
+    function search1(){
+        var wk= $("#wk").val();
+        // alert(wk);
+        location.href="../zhf/search1?wk="+wk;
     }
 </script>
 </body>
