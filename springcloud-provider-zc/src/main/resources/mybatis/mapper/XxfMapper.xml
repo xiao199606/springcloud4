@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jk.dao.ZcDao" >
-<select id="test" resultType="book">
-    select * from t_book
-</select>
+<mapper namespace="com.jk.dao.ZcDao">
+
 
     <!--新增简历-->
-    <insert id="zcRegister">
+    <insert id="zcRegister" parameterType="com.jk.model.JianLi">
         INSERT INTO jianli (
             name,
             sex,
@@ -60,24 +58,12 @@
     </insert>
 
     <!--个人版注册-->
-    <insert id="addPersonalUser">
+    <insert id="addPersonalUser" parameterType="com.jk.model.zcModel.UserModel">
          INSERT INTO  gryh (pwd,tel,email,zhucsj,jianLiId) VALUES(#{pwd},#{tel},#{email},SYSDATE(),#{jianLiId})
     </insert>
 
-    <!--企业版注册-->
-    <insert id="zcHrRegister">
-        INSERT INTO jianli VALUE(name,sex,birthday,minz,huny,zhengzh,xuex,zhuany,xuel,gongzjy,xianjd,jig,gangw,gangwlb,gongzdq,yuexyq,qiuzhzht,jishtch,gongzjl,gerjs,tel,email)
-        VALUES(
-           #{jianli},
-           #{sex},
-           #{birthday},
-           #{minz},
-           #{huny},
-           #{zhengzh},
-        )
-    </insert>
 
-    <!---->
+    <!--查询用户-->
     <select id="queryTel" resultType="com.jk.model.zcModel.UserModel">
         select *  from  gryh WHERE tel = #{tel}
     </select>

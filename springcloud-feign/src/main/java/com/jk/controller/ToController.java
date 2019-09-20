@@ -104,6 +104,12 @@ public class ToController {
         return "gsZwjl";
     }
 
-    //跳转到新增简历页面
+    //跳转到企业认证页面
+    @RequestMapping("toAuthentication")
+    public String toAuthentication(Model model,String phone1){
+           model.addAttribute("phone1",phone1);
+        return "authentication";
+
+    }
 
 }

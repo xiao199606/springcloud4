@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 public interface ZcDao {
-    List<Book> test();
 
     //新增简历
     void zcRegister(JianLi jianLi);
@@ -17,9 +16,6 @@ public interface ZcDao {
     //查询用户
     //@Select("select *  from  gryh WHERE tel = #{value} and and state = #{tel}")
     UserModel queryTel(UserModel userModel);
-
-    //企业版注册
-    void zcHrRegister(UserModel userModel);
 
     //查询已发布职位
     List<Zwjl> zcIssue();

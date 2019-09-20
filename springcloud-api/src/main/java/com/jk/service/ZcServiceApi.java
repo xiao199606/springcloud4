@@ -12,25 +12,22 @@ import java.util.List;
 import java.util.Map;
 
 public interface ZcServiceApi {
-    @GetMapping(value="zcTest")
-    Map test();
 
-    @GetMapping(value="zcRegister")
+
+    @GetMapping(value = "zcRegister")
     void zcRegister(@RequestBody JianLi jianLi);
 
-    @GetMapping(value="grDenLu")
+    @GetMapping(value = "grDenLu")
     HashMap<String, Object> grDenLu(@RequestBody UserModel user);
 
-    @GetMapping(value="zcHrRegister")
-    void zcHrRegister(@RequestBody UserModel userModel);
 
-    @GetMapping(value="zcIssue")
+    @GetMapping(value = "zcIssue")
     List<Zwjl> zcIssue();
 
-    @GetMapping(value="hotCompany")
+    @GetMapping(value = "hotCompany")
     List<Zwjl> hotCompany();
 
-    @GetMapping(value="loadParticulars")
+    @GetMapping(value = "loadParticulars")
     Zwjl loadParticulars(@RequestParam(value = "ids") String ids);
 
 }
