@@ -162,4 +162,48 @@ public class HbServiceImpl implements HbServiceApi {
     public void updateHighcharts(Integer id) {
         hbDao.updateHighcharts(id);
     }
+
+    @Override
+    public ResultPage queryUserList(ResultPage result) {
+        ResultPage resultPage = new ResultPage();
+        HashMap<String, Object> hashMap = new HashMap<String, Object>();
+        hashMap.put("result", result);
+
+        //查询总条数
+        Integer count = hbDao.queryUserCount();
+        resultPage.setTotal(count);
+
+        hashMap.put("start", (result.getPageNumber()-1)*result.getPageSize());
+        hashMap.put("end", result.getPageSize());
+
+        //查询所有数据
+        List<User> list = hbDao.HashMap5(hashMap);
+        resultPage.setRows(list);
+        return resultPage;
+    }
+
+    @Override
+    public void deleteUser(String ids) {
+        String[] arrIds= ids.split(",");
+        hbDao.deleteUser(arrIds);
+    }
+
+    @Override
+    public ResultPage queryGuangList(ResultPage result) {
+        ResultPage resultPage = new ResultPage();
+        HashMap<String, Object> hashMap = new HashMap<String, Object>();
+        hashMap.put("result", result);
+
+        //查询总条数
+        Integer count = hbDao.queryGuangCount();
+        resultPage.setTotal(count);
+
+        hashMap.put("start", (result.getPageNumber()-1)*result.getPageSize());
+        hashMap.put("end", result.getPageSize());
+
+        //查询所有数据
+        List<Guanggao> list = hbDao.HashMap6(hashMap);
+        resultPage.setRows(list);
+        return resultPage;
+    }
 }

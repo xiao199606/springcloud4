@@ -57,9 +57,14 @@
   </delete>
 
 
+  <select id="queryYuangongJianli" resultMap="BaseResultMap" >
+    select * from gsyh a ,gsyh_jianli b ,jianli c where a.id=b.gongsiid and b.jianliid=c.id
+      limit #{sta},#{rows}
+  </select>
 
 
-
-
+  <select id="queryYuangongJianliCount" resultType="long">
+    select count(*) from gsyh a ,gsyh_jianli b ,jianli c where a.id=b.gongsiid and b.jianliid=c.id
+  </select>
 
 </mapper>

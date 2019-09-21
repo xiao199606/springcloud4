@@ -46,7 +46,6 @@ public class ToController {
     //跳转到Hr
     @RequestMapping("toHr")
     public String toHr(){
-
         return "tree";
     }
 
@@ -125,7 +124,33 @@ public class ToController {
     //报表查询
     @RequestMapping("highcharts")
     public String highcharts(){
-        return "updHighcharts";
+        return "highcharts";
+    }
+
+
+
+    //公司员工查询
+    @RequestMapping("queryUser")
+    public String queryuser(){
+        return "queryUser";
+    }
+
+    //广告查询
+    @RequestMapping("queryGuang")
+    public String queryGuang(){
+        return "queryGuang";
+    }
+
+    //广告新增
+    @RequestMapping("addGuang")
+    public String addGuang(){
+        return "addGuang";
+    }
+
+    //员工 简历管理
+    @RequestMapping("toMianShi")
+    public String toMianShi(){
+        return "showMianShi";
     }
 
 

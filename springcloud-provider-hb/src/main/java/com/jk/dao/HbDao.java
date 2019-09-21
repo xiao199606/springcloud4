@@ -47,4 +47,14 @@ public interface HbDao {
     void addHighcharts(Highcharts highcharts);
 
     void updateHighcharts(Integer id);
+
+    Integer queryUserCount();
+
+    List<User> HashMap5(HashMap<String, Object> hashMap);
+
+    void deleteUser(String[] arrIds);
+
+    Integer queryGuangCount();
+
+    List<Guanggao> HashMap6(HashMap<String, Object> hashMap);
 }

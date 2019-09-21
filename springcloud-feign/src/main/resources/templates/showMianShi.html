@@ -64,7 +64,7 @@
     function initDataGrid() {
         //创建bootstrapTable
         $("#dataGrid").bootstrapTable({
-            url: "../shenhe/queryJianli",
+            url: "../shenhe/queryYuangongJianli",
             method: 'get',
             striped: true,  	// 斑马线效果     默认false
             //只允许选中一行
@@ -171,8 +171,6 @@
 
                     }}
 
-
-
             ]
         });
     }
@@ -181,7 +179,7 @@
     function updateYes(id){
 
         $.ajax({
-            url: "../shenhe/updateYes",
+            url: "../shenhe/updateZhiweiYes",
             data: {id: id},
             type: "post",
             success: function () {
@@ -195,9 +193,51 @@
 
     }
 
+
+    function updateNo(id){
+
+        $.ajax({
+            url: "../shenhe/updateZhiweiNo",
+            data: {id: id},
+            type: "post",
+            success: function () {
+                alert("审核拒绝！");
+                $("#dataGrid").bootstrapTable("refresh");
+
+            }, error: function () {
+                alert("审核失败");
+            }
+        })
+
+
+        $.ajax({
+            url: "../lmh/failureMails",
+            type: "post",
+            success: function () {
+
+                $("#dataGrid").bootstrapTable("refresh");
+
+            }, error: function () {
+            }
+        })
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     function deleteNo(id){
         $.ajax({
-            url: "../shenhe/deleteNo?id="+id,
+            url: "../shenhe/deleteZhiweiNo?id="+id,
             type: "post",
             success: function () {
                 $("#dataGrid").bootstrapTable("refresh");

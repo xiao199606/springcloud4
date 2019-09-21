@@ -64,4 +64,13 @@ public interface HbServiceApi {
 
     @RequestMapping("updateHighcharts")
     void updateHighcharts(@RequestParam("id") Integer id);
+
+    @RequestMapping("queryUser")
+    ResultPage queryUserList(@RequestBody ResultPage result);
+
+    @RequestMapping("deleteUser")
+    void deleteUser(@RequestParam("id") String ids);
+
+    @RequestMapping("queryGuang")
+    ResultPage queryGuangList(@RequestBody ResultPage result);
 }
