@@ -103,6 +103,7 @@
                     <div class="info-primary">
                         <div class="job-status">招聘中</div>
                         <div class="name">
+                            <input id="gsid" type="text" >
                             <h1><span id="spzhiWei"></span></h1>
                             <span class="salary" id="yex"></span>
                         </div>
@@ -122,7 +123,7 @@
                     <div class="job-op">
                         <div class="btn-container">
                             <!-- 未登录 -->
-                                                 <a class="btn btn-startchat" ka="go_greet_tosign_13382416" href="javascript:;" redirect-url="/web/geek/chat?id=8e2ef9befa1d15411nZ43926FFU~" data-url="/wapi/zpgeek/friend/add.json?jobId=3c851883d4c8d1a71nd509-5EVQ~">投递简历</a>
+                                                 <a class="btn btn-startchat" href="javascript:tou1();"  >投递简历</a>
                                                 
                         </div>
 												<div class="btn-container">
@@ -1578,11 +1579,28 @@
                  $("#xuel").html(data.xuel);
                  $("#lianxr").html(data.lianxr);
                  $("#jiesh").html(data.jiesh);
+                 $("#gsid").val(data.gsid)
              },
              error:function(){
                  alert("加载招聘详情页失败");
              }
          })
+    }
+
+    function tou1() {
+     //   alert("123");
+       var gsid=$("#gsid").val();
+      // alert(gsid);
+        $.ajax({
+            url:"../zhf/toujl",
+            data:{
+              gsid:gsid
+            },
+            type:"post",
+            success:function(){
+
+            }
+        })
     }
 </script>
 <input type="text" id="aa" th:value="${ids}">

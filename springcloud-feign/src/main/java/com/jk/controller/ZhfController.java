@@ -1,30 +1,32 @@
 package com.jk.controller;
 
 import com.jk.dao.JworkRepository;
+import com.jk.model.Gryh;
 import com.jk.model.Zwjl;
+import com.jk.model.Gsyhjianli;
+import com.jk.service.ZhfService;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
-import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RequestMapping("zhf")
 @Controller
 public class ZhfController {
+
+    @Autowired
+    private ZhfService zhfService;
 
     @RequestMapping("showwork")
     public String showwork(){
@@ -239,4 +241,26 @@ public class ZhfController {
         model.addAttribute("jy",jy);
         return "boss2";
     }
+
+    //投递简历
+    @PostMapping("toujl")
+    @ResponseBody
+    public String toujl(Integer gsid){
+        //首先要获取 登录人的id   简单做下 一个人只有一份简历
+        Integer id=11;
+        Gryh gryh=zhfService.querygy(id);
+        //公司的id  gsid
+        System.err.println(gsid);
+        // 获取简历ID
+       Integer jlid= gryh.getJianLiId();
+        System.err.println(jlid);
+        zhfService.toujl(gsid,jlid);
+        //Gsyhjianli gsyhjianli = new Gsyhjianli();
+        //gsyhjianli.setJianliid(jlid);
+        //gsyhjianli.setGongsiid(gsid);
+        //zhfService.toujl(gsyhjianli);
+     //   ZhfService.toujl()
+        return "suc";
+    }
+
 }

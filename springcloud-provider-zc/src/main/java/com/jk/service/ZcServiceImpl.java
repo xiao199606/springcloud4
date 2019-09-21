@@ -1,6 +1,7 @@
 package com.jk.service;
 import com.jk.dao.ZcDao;
 import com.jk.model.Book;
+import com.jk.model.JianLi;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,19 +17,13 @@ public class ZcServiceImpl implements ZcServiceApi {
     @Autowired
     private ZcDao zcDao;
 
-    @Override
-    public Map test() {
-        List<Book> list=zcDao.test();
-        HashMap<Object, Object> map = new HashMap<>();
-        map.put("rows",list);
-        return map;
-    }
+
 
     //注册
     @Override
-    public void zcRegister(UserModel userModel) {
+    public void zcRegister(JianLi jianLi) {
 
-        zcDao.zcRegister(userModel);
+        zcDao.zcRegister(jianLi);
     }
 
     @Override

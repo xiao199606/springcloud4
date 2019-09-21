@@ -87,7 +87,7 @@ public class ToController {
     }
 
     //跳转到招聘详情信息页面
-    @RequestMapping("loadParticulars")
+    @RequestMapping("toZhiwei")
     public String toZhiwei(Model model,Integer ids){
         System.out.println(ids+"===========");
         model.addAttribute("ids",ids);
