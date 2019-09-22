@@ -540,12 +540,11 @@
       var tel = $("#account2").val();
       var pwd = $("#password").val();
       $.ajax({
-        url:"../zcController/grDenLu",
+        url:"../zcController/companiesIn",
         type:"post",
         data:{
           tel:tel,
-          pwd:pwd,
-          state:state
+          password:pwd
         },
         dataType:"json",
         success:function(data){
@@ -561,7 +560,7 @@
           }
         },
         error:function () {
-          alert("个人登录失败");
+          alert("登录失败");
         }
       })
   }

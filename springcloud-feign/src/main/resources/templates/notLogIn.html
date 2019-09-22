@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0051)#://www.zhipin.com/?sid=sem_pz_bdpc_dasou_title -->
 <html class="standard"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+
     <title>BOSS直聘-互联网招聘神器！</title>
     <meta name="keywords" content="BOSS直聘,直聘网,招聘网,人才网,找工作">
     <meta name="description" content="BOSS直聘是权威领先的招聘网，开启人才网招聘求职新时代，让求职者与Boss直接开聊、加快面试、即时反馈，找工作就来BOSS直聘和Boss开聊吧！">
@@ -59,7 +59,8 @@
                     <a href="#://www.zhipin.com/geek/attresume/parser.html" ka="nlp_resume_upload" class="link-sign-resume" title="上传简历，解析内容，完善注册">上传简历</a>
                     <a href="#://www.zhipin.com/geek/attresume/parser.html" ka="header-geek" class="link-sign-resume" title="上传简历，解析内容，完善注册">我要找工作<span class="new" style="display: inline;">hot</span></a>
                     <a href="javascript:toHrRegister()" class="link-scan" ka="header-boss" title="我要招聘">我要招聘</a>
-                    <a href="javascript:modifyResume()" ka="header-register" class="btn btn-outline">修改简历</a>
+                    <a href="javascript:toRegister()" ka="header-register" class="btn btn-outline">注册</a>
+                    <a href="javascript:toRegister()" ka="header-login" class="btn btn-outline">登录</a>
                 </div>
         </div>
     </div>
@@ -3984,26 +3985,27 @@
 
     //查看更多职位
     function toBoss2() {
-        location.href = "../jump/toBoss2";
+        alert("请先登录");
     }
 
     //查看更多公司
     function moreCompanies() {
-        location.href = "../jump/toMoreCompanies";
+        alert("请先登录");
     }
-    
+
     //跳转到登录页面
     function toRegister() {
         location.href="../jump/toRegister";
     }
-    
+
     //跳转到企业版登录注册
     function toHrRegister() {
         location.href="../jump/toHrRegister";
     }
-    
+
     //发布职位展示
     function issue() {
+        alert("您当前未登录请先登录");
         $.ajax({
             url:"../zcController/zcIssue",
             type:"post",
@@ -4039,24 +4041,24 @@
             type:"post",
             dataType:"json",
             success:function(data){
-                 var html = "";
-                 for(var i=0;i<data.length;i++){
-                     html += "<li>\n" +
-                         "                                        <div onclick='toTheCompanyDetails("+data[i].id+")' class=\"sub-li\">\n" +
-                         "                                            <a href=\"#://www.zhipin.com/gongsi/234cbd8324ef61b61nV-3NS_.html\" target=\"_blank\" ka=\"index_rcmd_companylogo_1_custompage\" class=\"company-info\">\n" +
-                         "                                                <img src=\"../BOSS_files/5ad5a43fed7dfd30f36aef0b1beb31d6be1bd4a3bd2a63f070bdbdada9aad826.jpg\" data-src=\"#://img.bosszhipin.com/beijin/mcs/bar/20190103/5ad5a43fed7dfd30f36aef0b1beb31d6be1bd4a3bd2a63f070bdbdada9aad826.jpg?x-oss-process=image/resize,w_100,limit_0\" alt=\"\">\n" +
-                         "                                                <div class=\"conpany-text\">\n" +
-                         "                                                    <h4>"+data[i].gongsmc+"</h4>\n" +
-                         "                                                    <p>C轮<span class=\"vline\"></span>"+data[i].gongsxz+"</p>\n" +
-                         "                                                </div>\n" +
-                         "                                            </a>\n" +
-                         "                                            <a href=\"#://www.zhipin.com/gongsir/234cbd8324ef61b61nV-3NS_.html\" target=\"_blank\" ka=\"index_rcmd_company_1_custompage\" class=\"about-info\">\n" +
-                         "                                                <p><span class=\"pull-right\"><span class=\"text-blue\">22</span>位BOSS在线</span><span class=\"text-blue\">"+data[i].rensh+"</span>个热招职位</p>\n" +
-                         "                                            </a>\n" +
-                         "                                        </div>\n" +
-                         "                                    </li>";
-                 }
-                 $("#hotCompany").html(html);
+                var html = "";
+                for(var i=0;i<data.length;i++){
+                    html += "<li>\n" +
+                        "                                        <div class=\"sub-li\">\n" +
+                        "                                            <a href=\"#://www.zhipin.com/gongsi/234cbd8324ef61b61nV-3NS_.html\" target=\"_blank\" ka=\"index_rcmd_companylogo_1_custompage\" class=\"company-info\">\n" +
+                        "                                                <img src=\"../BOSS_files/5ad5a43fed7dfd30f36aef0b1beb31d6be1bd4a3bd2a63f070bdbdada9aad826.jpg\" data-src=\"#://img.bosszhipin.com/beijin/mcs/bar/20190103/5ad5a43fed7dfd30f36aef0b1beb31d6be1bd4a3bd2a63f070bdbdada9aad826.jpg?x-oss-process=image/resize,w_100,limit_0\" alt=\"\">\n" +
+                        "                                                <div class=\"conpany-text\">\n" +
+                        "                                                    <h4>"+data[i].gongsmc+"</h4>\n" +
+                        "                                                    <p>C轮<span class=\"vline\"></span>"+data[i].gongsxz+"</p>\n" +
+                        "                                                </div>\n" +
+                        "                                            </a>\n" +
+                        "                                            <a href=\"#://www.zhipin.com/gongsir/234cbd8324ef61b61nV-3NS_.html\" target=\"_blank\" ka=\"index_rcmd_company_1_custompage\" class=\"about-info\">\n" +
+                        "                                                <p><span class=\"pull-right\"><span class=\"text-blue\">22</span>位BOSS在线</span><span class=\"text-blue\">"+data[i].rensh+"</span>个热招职位</p>\n" +
+                        "                                            </a>\n" +
+                        "                                        </div>\n" +
+                        "                                    </li>";
+                }
+                $("#hotCompany").html(html);
             },
             error:function(){
                 alert("展示热门公司失败");
@@ -4065,26 +4067,13 @@
         })
     }
 
-    //跳转到公司详情页面
-    function toTheCompanyDetails(ids) {
-        location.href = "../jump/toTheCompanyDetails?ids="+ids;
-    }
-    
     //跳转到zhiwei.html
     function toZhiwei(id){
-        alert(id);
-         location.href = "../jump/toZhiwei?ids="+id;
+        alert("请先登录");
     }
     // search1
     function search1(){
-        var wk= $("#wk").val();
-        // alert(wk);
-        location.href="../zhf/search1?wk="+wk;
-    }
-
-    //跳转到修改简历
-    function modifyResume(){
-        location.href = "../zcController/toTheResume";
+        alert("请先登录");
     }
 </script>
 </body>

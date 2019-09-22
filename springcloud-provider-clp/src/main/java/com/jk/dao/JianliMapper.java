@@ -26,4 +26,8 @@ public interface JianliMapper {
     void updateYes(@Param("id")Integer id);
 
     void deleteNo(@Param("id")Integer id);
+
+    List queryYuangongJianli(@Param("sta")int sta,@Param("rows") Integer rows);
+
+    long queryYuangongJianliCount();
 }
