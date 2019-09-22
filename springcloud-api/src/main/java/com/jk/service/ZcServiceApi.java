@@ -46,4 +46,7 @@ public interface ZcServiceApi {
 
     @GetMapping(value = "updHighcharts")
     void updHighcharts(@RequestBody JianLi jianLi);
+
+    @GetMapping(value = "loaTheCompanyDetails")
+    Gsyh loaTheCompanyDetails(@RequestParam(value = "ids") Integer ids);
 }

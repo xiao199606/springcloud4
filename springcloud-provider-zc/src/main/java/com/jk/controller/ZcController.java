@@ -94,4 +94,10 @@ public class ZcController {
             zcService.updHighcharts(jianLi);
     }
 
+    //加载公司详情
+    @RequestMapping("loaTheCompanyDetails")
+    public  Gsyh loaTheCompanyDetails(@RequestParam(value = "ids") Integer ids){
+        return zcService.loaTheCompanyDetails(ids);
+    }
+
 }

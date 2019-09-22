@@ -54,7 +54,7 @@ public class ZcController {
         HashMap<String, Object> params = new HashMap<String, Object>();
         //手机号
         params.put("mobile", phone);
-        params.put("templateid", 14841054);
+        params.put("templateid", 14842059);
 
         try {//parseObject
             String str = HttpClientUtil.post(url, params, headers);
@@ -192,6 +192,13 @@ public class ZcController {
             return true;
         }
         return false;
+    }
+
+    //加载公司详情
+    @RequestMapping("loaTheCompanyDetails")
+    @ResponseBody
+    public  Gsyh loaTheCompanyDetails(Integer ids){
+        return zcService.loaTheCompanyDetails(ids);
     }
 
 }

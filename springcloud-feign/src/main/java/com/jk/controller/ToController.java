@@ -153,6 +153,12 @@ public class ToController {
         return "showMianShi";
     }
 
+    //跳转到公司详情页面
+    @RequestMapping("toTheCompanyDetails")
+    public String toTheCompanyDetails(String ids,Model model){
+        model.addAttribute("ids",ids);
+        return "gongsi";
+    }
 
 
 }

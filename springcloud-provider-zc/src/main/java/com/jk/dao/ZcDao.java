@@ -46,4 +46,8 @@ public interface ZcDao {
 
     //修改简历
     void updHighcharts(JianLi jianLi);
+
+    //加载公司详情
+    @Select("select *  from gsyh WHERE id = #{value}")
+    Gsyh loaTheCompanyDetails(Integer ids);
 }

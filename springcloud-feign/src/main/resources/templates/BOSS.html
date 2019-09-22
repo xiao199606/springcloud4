@@ -4042,7 +4042,7 @@
                  var html = "";
                  for(var i=0;i<data.length;i++){
                      html += "<li>\n" +
-                         "                                        <div class=\"sub-li\">\n" +
+                         "                                        <div onclick='toTheCompanyDetails("+data[i].id+")' class=\"sub-li\">\n" +
                          "                                            <a href=\"#://www.zhipin.com/gongsi/234cbd8324ef61b61nV-3NS_.html\" target=\"_blank\" ka=\"index_rcmd_companylogo_1_custompage\" class=\"company-info\">\n" +
                          "                                                <img src=\"../BOSS_files/5ad5a43fed7dfd30f36aef0b1beb31d6be1bd4a3bd2a63f070bdbdada9aad826.jpg\" data-src=\"#://img.bosszhipin.com/beijin/mcs/bar/20190103/5ad5a43fed7dfd30f36aef0b1beb31d6be1bd4a3bd2a63f070bdbdada9aad826.jpg?x-oss-process=image/resize,w_100,limit_0\" alt=\"\">\n" +
                          "                                                <div class=\"conpany-text\">\n" +
@@ -4065,6 +4065,11 @@
         })
     }
 
+    //跳转到公司详情页面
+    function toTheCompanyDetails(ids) {
+        location.href = "../jump/toTheCompanyDetails?ids="+ids;
+    }
+    
     //跳转到zhiwei.html
     function toZhiwei(id){
         alert(id);

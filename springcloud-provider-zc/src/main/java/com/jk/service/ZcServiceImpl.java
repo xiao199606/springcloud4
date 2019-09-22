@@ -134,5 +134,11 @@ public class ZcServiceImpl implements ZcServiceApi {
         zcDao.updHighcharts(jianLi);
     }
 
+    //加载公司详情
+    @Override
+    public Gsyh loaTheCompanyDetails(Integer ids) {
+        return zcDao.loaTheCompanyDetails(ids);
+    }
+
 
 }
