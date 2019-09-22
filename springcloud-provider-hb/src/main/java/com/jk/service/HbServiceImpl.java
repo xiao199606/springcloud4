@@ -214,7 +214,7 @@ public class HbServiceImpl implements HbServiceApi {
             return "1";
         }
         Gsyh gs=hbDao.querygs(guanggao.getGsid());
-        String url="";
+        String url="jump/toTheCompanyDetails?ids=gs.getId()";
         guanggao.setUrl(url);
         guanggao.setGsid(gs.getId());
         hbDao.addGuang(guanggao);
