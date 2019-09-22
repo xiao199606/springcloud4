@@ -1,8 +1,6 @@
 package com.jk.controller;
 
-import com.jk.model.Highcharts;
-import com.jk.model.Tree;
-import com.jk.model.User;
+import com.jk.model.*;
 import com.jk.service.HbServiceApi;
 import com.jk.service.XxfServiceApi;
 import com.jk.util.ResultPage;
@@ -152,5 +150,16 @@ public class HbController {
     @RequestMapping("queryGuang")
     public ResultPage queryGuangList(@RequestBody ResultPage result) {
         return hbServiceApi.queryGuangList(result);
+    }
+
+    @RequestMapping("addGuang")
+    public String addGuang(@RequestBody Guanggao guanggao){
+        return hbServiceApi.addGuang(guanggao);
+    }
+
+    @RequestMapping("querylanwei")
+
+    public List<LanWei> querylanwei(){
+        return hbServiceApi.querylanwei();
     }
 }

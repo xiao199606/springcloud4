@@ -57,4 +57,12 @@ public interface HbDao {
     Integer queryGuangCount();
 
     List<Guanggao> HashMap6(HashMap<String, Object> hashMap);
+
+    void addGuang(Guanggao guanggao);
+
+    Integer queryaddGuang();
+
+    List<LanWei> querylanwei();
+
+    Gsyh querygs(Integer gsid);
 }

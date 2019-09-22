@@ -206,4 +206,23 @@ public class HbServiceImpl implements HbServiceApi {
         resultPage.setRows(list);
         return resultPage;
     }
+
+    @Override
+    public String addGuang(Guanggao guanggao) {
+        Integer count = hbDao.queryaddGuang();
+        if (count>3){
+            return "1";
+        }
+        Gsyh gs=hbDao.querygs(guanggao.getGsid());
+        String url="";
+        guanggao.setUrl(url);
+        guanggao.setGsid(gs.getId());
+        hbDao.addGuang(guanggao);
+        return "2";
+    }
+
+    @Override
+    public List<LanWei> querylanwei() {
+        return hbDao.querylanwei();
+    }
 }

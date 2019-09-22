@@ -29,11 +29,31 @@ public class Guanggao {
 
     private String audit;
 
-    private String payment;
+    private Integer payment;
 
-    private Integer column;
+    private Integer lcolumn;
 
     private Integer state;
+
+    private Integer days;
+
+    private Integer gsid;
+
+    public Integer getGsid() {
+        return gsid;
+    }
+
+    public void setGsid(Integer gsid) {
+        this.gsid = gsid;
+    }
+
+    public Integer getDays() {
+        return days;
+    }
+
+    public void setDays(Integer days) {
+        this.days = days;
+    }
 
     public Integer getId() {
         return id;
@@ -107,20 +127,20 @@ public class Guanggao {
         this.audit = audit == null ? null : audit.trim();
     }
 
-    public String getPayment() {
+    public Integer getPayment() {
         return payment;
     }
 
-    public void setPayment(String payment) {
-        this.payment = payment == null ? null : payment.trim();
+    public void setPayment(Integer payment) {
+        this.payment = payment;
     }
 
-    public Integer getColumn() {
-        return column;
+    public Integer getLcolumn() {
+        return lcolumn;
     }
 
-    public void setColumn(Integer column) {
-        this.column = column;
+    public void setLcolumn(Integer lcolumn) {
+        this.lcolumn = lcolumn;
     }
 
     public Integer getState() {

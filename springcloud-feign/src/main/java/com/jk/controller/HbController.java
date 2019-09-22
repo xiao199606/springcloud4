@@ -1,20 +1,22 @@
 package com.jk.controller;
 
-import com.jk.model.Highcharts;
-import com.jk.model.Tree;
-import com.jk.model.User;
+import com.jk.model.*;
 import com.jk.service.HbService;
 import com.jk.service.HbServiceApi;
 import com.jk.service.XxfService;
+import com.jk.util.OSSClientUtil;
 import com.jk.util.ResultPage;
 import com.jk.util.TreeNoteUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import sun.font.EAttribute;
 
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.*;
 
 @Controller
@@ -23,13 +25,6 @@ public class HbController {
 
     @Autowired
     private HbService hbService;
-
-    @RequestMapping("test")
-    @ResponseBody
-    public Map test() {
-
-        return hbService.test();
-    }
 
     @RequestMapping("login")
     @ResponseBody
@@ -178,4 +173,35 @@ public class HbController {
         return resultPage;
     }
 
+    //阿里云上传图片
+    @RequestMapping("updaloadImg")
+    @ResponseBody
+    public String uploadImg(MultipartFile img)throws IOException {
+        System.out.println(img+"=============");
+        if (img == null || img.getSize() <= 0) {
+            throw new IOException("file不能为空");
+        }
+        OSSClientUtil ossClient=new OSSClientUtil();
+        String name = ossClient.uploadImg2Oss(img);
+        String imgUrl = ossClient.getImgUrl(name);
+        String[] split = imgUrl.split("\\?");
+        //System.out.println(split[0]);
+        return split[0];
+    }
+
+    @RequestMapping("addGuang")
+    @ResponseBody
+    public String addGuang(Guanggao guanggao, HttpServletRequest request){
+        Integer ids2 = (Integer) request.getSession().getAttribute("ids2");
+        guanggao.setGsid(ids2);
+        return hbService.addGuang(guanggao);
+    }
+
+
+
+    @RequestMapping("querylanwei")
+    @ResponseBody
+    public List<LanWei> querylanwei() {
+        return hbService.querylanwei();
+    }
 }

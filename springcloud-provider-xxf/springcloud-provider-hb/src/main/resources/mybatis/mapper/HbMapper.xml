@@ -119,4 +119,19 @@
     <select id="HashMap6" resultType="Guanggao" parameterType="HashMap">
     select * from guanggao where state='2' ORDER BY createdate desc limit #{start},#{end}
     </select>
+
+    <insert id="addGuang" parameterType="Guanggao">
+        insert into guanggao (url,imgsrc,startime,endtime,createdate,payment,lcolumn,state,gsid) values
+        (#{url},#{imgsrc},#{startime},#{endtime},now(),#{payment},#{lcolumn},1,#{gsid})
+    </insert>
+
+    <select id="queryaddGuang" resultType="int">
+        select count(*) from guanggao where state = '2'
+    </select>
+    <select id="querylanwei" resultType="lanwei">
+        select * from lanwei
+    </select>
+    <select id="guanggao" resultType="gsyh">
+        select * from gsyh where id=#{gsid}
+    </select>
 </mapper>
