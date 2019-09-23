@@ -2,6 +2,7 @@ package com.jk.controller;
 
 import com.jk.dao.JworkRepository;
 import com.jk.model.Gryh;
+import com.jk.model.User;
 import com.jk.model.Zwjl;
 import com.jk.model.Gsyhjianli;
 import com.jk.service.ZhfService;
@@ -19,6 +20,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @RequestMapping("zhf")
@@ -247,15 +250,16 @@ public class ZhfController {
     //投递简历
     @PostMapping("toujl")
     @ResponseBody
-    public String toujl(Integer gsid){
+    public String toujl(Integer gsid, HttpServletRequest request){
         //首先要获取 登录人的id   简单做下 一个人只有一份简历
-        Integer id=11;
+        Integer   id=(Integer) request.getSession().getAttribute("ids");
+
+
         Gryh gryh=zhfService.querygy(id);
         //公司的id  gsid
       //  System.err.println(gsid);
         // 获取简历ID
        Integer jlid= gryh.getJianLiId();
-       // System.err.println("简历id"+jlid);
         zhfService.toujl(gsid,jlid);
 
         return "suc";

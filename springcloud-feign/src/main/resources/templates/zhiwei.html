@@ -152,7 +152,7 @@
                 </div>
                 <div class="company-info">
                     <div class="name">
-                        <h1>大数据研发工程师</h1>
+                        <h1><span id="spzhiWei2"></span></h1>
                         <span class="badge" ></span></div>
                         <div class="tag-container">
                             <div class="tag-more" style="opacity: 1; display: block; left: 720px;">
@@ -1573,6 +1573,7 @@
              success:function(data){
                  //alert(data);
                  $("#spzhiWei").html(data.zhiw);
+                 $("#spzhiWei2").html(data.zhiw);
                  $("#yex").html(data.yex);
                  $("#diq").html(data.diq);
                  $("#jingy").html(data.jingy);
@@ -1598,7 +1599,7 @@
             },
             type:"post",
             success:function(){
-
+                alert("投递成功")
             }
         })
     }
