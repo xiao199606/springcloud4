@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<center>
+    <form id="addForm">
+        <table>
+            <tr>
+                <td>天数</td>
+                <td>
+                    <select name="tian" id="tian" onchange="jia()">
+                        <option value="0" >--请选择--
+                        <option value="1" >一星期
+                        <option value="2" >一个月
+                        <option value="3" >三个月
+                    </select><font color="red"><span id="dazhe"></span></font>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <del id="marketPrice"></del>
+                </td>
+                <td>
+                    <span id="marketPrice2"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>价格</td>
+                <td>
+                    <span id="price" ></span>
+                </td>
+            </tr>
+        </table>
+    </form>
+</center>
+</body>
+<script>
+    jia = function(){
+        var shu =$("#tian").val();
+        if (shu==1){
+           price = shu*10*7
+            price2 = shu*10*7
+            dazhe = ""
+        }
+        if (shu==2){
+            price = shu*10*30*0.95
+            price2 = shu*10*30
+            dazhe = "九五折"
+        }
+        if (shu==3){
+            price = shu*10*30*3*0.9
+            price2 = shu*10*30*3
+            dazhe = "九折"
+        }
+        $("#price").html(price);
+        $("#dazhe").html(dazhe);
+        $("#marketPrice").html("原价￥"+price2);
+        $("#marketPrice2").html("现价￥"+price);
+    }
+</script>
+</html>

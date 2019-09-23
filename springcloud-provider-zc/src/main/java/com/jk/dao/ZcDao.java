@@ -41,7 +41,7 @@ public interface ZcDao {
     User companiesIn(User user);
 
     //查询简历
-    @Select("select *  from  jianli where id = #{value}")
+    @Select("select *  from  jianli where gid = #{value}")
     JianLi queryTheResume(Integer ids);
 
     //修改简历

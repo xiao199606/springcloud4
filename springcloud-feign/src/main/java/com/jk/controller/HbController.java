@@ -26,6 +26,10 @@ public class HbController {
     @Autowired
     private HbService hbService;
 
+    @Autowired
+    private LmhController lmhController;
+
+
     @RequestMapping("login")
     @ResponseBody
     public String login(User user, HttpServletRequest request) {
@@ -124,6 +128,7 @@ public class HbController {
     @ResponseBody
     public void updateResume1(Integer id) {
         hbService.updateResume1(id);
+        lmhController.timer1();
     }
 
     @RequestMapping("updateResume2")

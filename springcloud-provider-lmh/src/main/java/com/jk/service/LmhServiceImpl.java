@@ -87,6 +87,7 @@ public class LmhServiceImpl implements LmhService {
 
     @Override
     public void updateJianLi() {
+
         lmhDao.updateJianLi();
     }
 

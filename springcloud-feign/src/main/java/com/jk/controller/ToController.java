@@ -160,5 +160,10 @@ public class ToController {
         return "gongsi";
     }
 
+    //置顶天数
+    @RequestMapping("top")
+    public String top(){
+        return "top";
+    }
 
 }
