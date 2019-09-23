@@ -1,10 +1,7 @@
 package com.jk.service;
 
 import com.jk.dao.XxfDao;
-import com.jk.model.Book;
-import com.jk.model.Leib;
-import com.jk.model.Tree;
-import com.jk.model.Zwjl;
+import com.jk.model.*;
 import com.jk.util.ResultPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,8 +45,10 @@ public class XxfServiceImpl implements XxfServiceApi {
     }
 
     @Override
-    public void addgsZwjl(Zwjl zwjl) {
-        xxfDao.addgsZwjl(zwjl);
+    public Integer addgsZwjl(Zwjl zwjl) {
+         xxfDao.addgsZwjl(zwjl);
+         int zid= zwjl.getId();
+         return zid;
     }
 
     @Override
@@ -66,6 +65,11 @@ public class XxfServiceImpl implements XxfServiceApi {
     @Override
     public void updateZwjl(Zwjl zwjl) {
         xxfDao.updateZwjl(zwjl);
+    }
+
+    @Override
+    public Gsyh querygsbyid(Integer gsid) {
+        return xxfDao.querygsbyid(gsid);
     }
 
 

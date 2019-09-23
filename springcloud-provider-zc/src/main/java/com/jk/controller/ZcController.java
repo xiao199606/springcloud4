@@ -90,7 +90,7 @@ public class ZcController {
 
 
     //修改简历
-    @RequestMapping("updHighcharts")
+    @RequestMapping("updJianLi")
     public void updHighcharts(@RequestBody JianLi jianLi){
             zcService.updHighcharts(jianLi);
     }

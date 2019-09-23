@@ -6,4 +6,14 @@
         update jianli set zhiding=0 where id=1;
     </update>
 
+    <select id="queryJianL" parameterType="int" resultType="com.jk.model.JianLi">
+        select
+        a.id,a.name,a.sex,a.birthday,a.minz,
+        a.huny,a.zhengzh,a.xuex,a.zhuany,a.xuel,
+        a.gongzjy,a.xianjd,a.jig,a.gangw,a.gangwlb,
+        a.gongzdq,a.yuexyq,a.qiuzhzht,a.jishtch,
+        a.gongzjl,a.gerjs,a.tel,a.email
+
+          from jianli a where gid=#{value}
+    </select>
 </mapper>

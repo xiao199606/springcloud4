@@ -46,7 +46,7 @@ public class ToController {
     //跳转到Hr
     @RequestMapping("toHr")
     public String toHr(){
-        return "tree";
+        return "tree2";
     }
 
     //后台登录页面
@@ -93,7 +93,7 @@ public class ToController {
     }
 
     //跳转到招聘详情信息页面
-    @RequestMapping("loadParticulars")
+    @RequestMapping("toZhiwei")
     public String toZhiwei(Model model,Integer ids){
         System.out.println(ids+"===========");
         model.addAttribute("ids",ids);
@@ -160,6 +160,11 @@ public class ToController {
         return "gongsi";
     }
 
+    //置顶天数
+    @RequestMapping("top")
+    public String top(){
+        return "top";
+    }
     //跳转到招聘职位
     @RequestMapping("toJobVacancy")
     public String toJobVacancy(Model model,String ids){

@@ -1,8 +1,6 @@
 package com.jk.service;
 
-import com.jk.model.Highcharts;
-import com.jk.model.Tree;
-import com.jk.model.User;
+import com.jk.model.*;
 import com.jk.util.ResultPage;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -73,4 +71,12 @@ public interface HbServiceApi {
 
     @RequestMapping("queryGuang")
     ResultPage queryGuangList(@RequestBody ResultPage result);
+
+    @RequestMapping("addGuang")
+    String addGuang(@RequestBody Guanggao guanggao);
+
+    @RequestMapping("querylanwei")
+    List<LanWei> querylanwei();
+    @RequestMapping("getAllTree2")
+    List<Tree> getTreeAll2(@RequestParam("ids")Integer ids);
 }

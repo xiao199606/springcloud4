@@ -2,6 +2,7 @@ package com.jk.service;
 
 import com.jk.dao.LmhDao;
 import com.jk.model.CmsMailConfig;
+import com.jk.model.JianLi;
 import com.jk.model.MailVo;
 import com.jk.model.User;
 import com.jk.utils.MailUtils;
@@ -86,6 +87,12 @@ public class LmhServiceImpl implements LmhService {
 
     @Override
     public void updateJianLi() {
+
         lmhDao.updateJianLi();
+    }
+
+    @Override
+    public List<JianLi> queryJianL(Integer ids1) {
+        return lmhDao.queryJianL(ids1);
     }
 }

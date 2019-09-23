@@ -4,10 +4,12 @@ server:
   port: 8085
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     password: 123
-    url: jdbc:mysql://192.168.2.141/springcloud?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://192.168.2.115/springcloud?useUnicode=true&characterEncoding=utf-8
     username: root
   application:
     name: service-provider-xxf
@@ -25,4 +27,3 @@ mybatis:
   config-locations: classpath:mybatis/confg.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
   type-aliases-package: com.jk.model
-

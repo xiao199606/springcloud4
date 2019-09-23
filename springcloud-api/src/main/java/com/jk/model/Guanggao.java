@@ -12,7 +12,6 @@ public class Guanggao {
 
     private String imgsrc;
 
-    private String delflag;
     @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
     private Date startime;
@@ -21,19 +20,33 @@ public class Guanggao {
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
     private Date endtime;
 
-    private String createuser;
-
     @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
     private Date createdate;
 
-    private String audit;
+    private Integer payment;
 
-    private String payment;
-
-    private Integer column;
+    private Integer lcolumn;
 
     private Integer state;
+
+    private Integer gsid;
+
+    public Integer getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Integer payment) {
+        this.payment = payment;
+    }
+
+    public Integer getGsid() {
+        return gsid;
+    }
+
+    public void setGsid(Integer gsid) {
+        this.gsid = gsid;
+    }
 
     public Integer getId() {
         return id;
@@ -59,14 +72,6 @@ public class Guanggao {
         this.imgsrc = imgsrc == null ? null : imgsrc.trim();
     }
 
-    public String getDelflag() {
-        return delflag;
-    }
-
-    public void setDelflag(String delflag) {
-        this.delflag = delflag == null ? null : delflag.trim();
-    }
-
     public Date getStartime() {
         return startime;
     }
@@ -83,14 +88,6 @@ public class Guanggao {
         this.endtime = endtime;
     }
 
-    public String getCreateuser() {
-        return createuser;
-    }
-
-    public void setCreateuser(String createuser) {
-        this.createuser = createuser == null ? null : createuser.trim();
-    }
-
     public Date getCreatedate() {
         return createdate;
     }
@@ -99,28 +96,12 @@ public class Guanggao {
         this.createdate = createdate;
     }
 
-    public String getAudit() {
-        return audit;
+    public Integer getLcolumn() {
+        return lcolumn;
     }
 
-    public void setAudit(String audit) {
-        this.audit = audit == null ? null : audit.trim();
-    }
-
-    public String getPayment() {
-        return payment;
-    }
-
-    public void setPayment(String payment) {
-        this.payment = payment == null ? null : payment.trim();
-    }
-
-    public Integer getColumn() {
-        return column;
-    }
-
-    public void setColumn(Integer column) {
-        this.column = column;
+    public void setLcolumn(Integer lcolumn) {
+        this.lcolumn = lcolumn;
     }
 
     public Integer getState() {

@@ -192,7 +192,6 @@ public class ZcController {
     public String toTheResume(HttpServletRequest request, Model model){
         Integer ids = (Integer) request.getSession().getAttribute("ids");
         JianLi jianLi = zcService.queryTheResume(ids);
-        //System.out.println(jianLi);
         model.addAttribute("model",jianLi);
         return "updHighcharts";
     }
