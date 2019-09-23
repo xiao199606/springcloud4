@@ -609,6 +609,7 @@
                             <div class="info-primary">
                                 <h3 class="name">
                                     <a  href="javascript:xx()">
+                                        <input type ="hidden" id="gsids" th:value="${jwork.gsid}">
                                         <input type="hidden" id="zwid" th:value="${jwork.id}">
                                         <div class="job-title"><span th:text="${jwork.zhiw}"></span></div>
                                         <span class="red" th:text="${jwork.minsalary}"></span>
@@ -634,6 +635,7 @@
                         </div>
                     </li>
                 </ul>
+            </div>
         <div class="page">
             <a href="#://www.zhipin.com/c101110100/?page=0" ka="page-prev" class="prev"></a>
         
@@ -1383,7 +1385,19 @@
 </script>
 <script>
     function tou(){
-        alert("123");
+        //alert("123");
+        var gsid=$("#gsids").val();
+       // alert(gsid);
+        $.ajax({
+            url:"../zhf/toujl",
+            data:{
+                gsid:gsid
+            },
+            type:"post",
+            success:function(){
+
+            }
+        })
     }
 
     function search2() {

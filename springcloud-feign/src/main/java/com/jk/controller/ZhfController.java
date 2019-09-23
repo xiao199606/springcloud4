@@ -106,6 +106,7 @@ public class ZhfController {
             jwork.setGongsmc((String) hit.getSourceAsMap().get("gongsmc"));
             jwork.setGongsxz((String) hit.getSourceAsMap().get("gongsxz"));
             jwork.setYuangrs((String) hit.getSourceAsMap().get("yuangrs"));
+            jwork.setGsid((Integer) hit.getSourceAsMap().get("gsid"));
             jworks.add(jwork);
         }
         //   map.put("total",totalHits);
@@ -231,6 +232,7 @@ public class ZhfController {
             jwork.setGongsmc((String) hit.getSourceAsMap().get("gongsmc"));
             jwork.setGongsxz((String) hit.getSourceAsMap().get("gongsxz"));
             jwork.setYuangrs((String) hit.getSourceAsMap().get("yuangrs"));
+            jwork.setGsid((Integer) hit.getSourceAsMap().get("gsid"));
             jworks.add(jwork);
         }
 
@@ -250,16 +252,12 @@ public class ZhfController {
         Integer id=11;
         Gryh gryh=zhfService.querygy(id);
         //公司的id  gsid
-        System.err.println(gsid);
+      //  System.err.println(gsid);
         // 获取简历ID
        Integer jlid= gryh.getJianLiId();
-        System.err.println(jlid);
+       // System.err.println("简历id"+jlid);
         zhfService.toujl(gsid,jlid);
-        //Gsyhjianli gsyhjianli = new Gsyhjianli();
-        //gsyhjianli.setJianliid(jlid);
-        //gsyhjianli.setGongsiid(gsid);
-        //zhfService.toujl(gsyhjianli);
-     //   ZhfService.toujl()
+
         return "suc";
     }
 
