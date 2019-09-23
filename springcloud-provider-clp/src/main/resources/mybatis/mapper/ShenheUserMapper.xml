@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.ShenheUserMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.ShenheUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="zhucsj" property="zhucsj" jdbcType="DATE" />
+    <result column="gsyhid" property="gsyhid" jdbcType="INTEGER" />
+    <result column="audit" property="audit" jdbcType="INTEGER" />
+    <result column="doBusiness" property="dobusiness" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, password, tel, zhucsj, gsyhid, audit, doBusiness, status
+  </sql>
+
+
+
+  <select id="queryShenheUser" resultMap="BaseResultMap">
+    select * from user where audit=1 and status=3
+      limit #{sta},#{rows}
+  </select>
+
+
+  <select id="queryCount" resultType="long">
+    select count(*) from user where audit=1 and status=3
+  </select>
+
+
+
+  <update id="updateShenheYes">
+    update user set audit=2 where id=#{id}
+  </update>
+
+
+  <delete id="deleteShenheNo">
+    delete from user where id=#{id}
+  </delete>
+
+
+
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jk.model.ShenheUser" >
+    insert into user (id, username, password, 
+      tel, zhucsj, gsyhid, audit, 
+      doBusiness, status)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{zhucsj,jdbcType=DATE}, #{gsyhid,jdbcType=INTEGER}, #{audit,jdbcType=INTEGER}, 
+      #{dobusiness,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jk.model.ShenheUser" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="zhucsj != null" >
+        zhucsj,
+      </if>
+      <if test="gsyhid != null" >
+        gsyhid,
+      </if>
+      <if test="audit != null" >
+        audit,
+      </if>
+      <if test="dobusiness != null" >
+        doBusiness,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="zhucsj != null" >
+        #{zhucsj,jdbcType=DATE},
+      </if>
+      <if test="gsyhid != null" >
+        #{gsyhid,jdbcType=INTEGER},
+      </if>
+      <if test="audit != null" >
+        #{audit,jdbcType=INTEGER},
+      </if>
+      <if test="dobusiness != null" >
+        #{dobusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jk.model.ShenheUser" >
+    update user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="zhucsj != null" >
+        zhucsj = #{zhucsj,jdbcType=DATE},
+      </if>
+      <if test="gsyhid != null" >
+        gsyhid = #{gsyhid,jdbcType=INTEGER},
+      </if>
+      <if test="audit != null" >
+        audit = #{audit,jdbcType=INTEGER},
+      </if>
+      <if test="dobusiness != null" >
+        doBusiness = #{dobusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jk.model.ShenheUser" >
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      zhucsj = #{zhucsj,jdbcType=DATE},
+      gsyhid = #{gsyhid,jdbcType=INTEGER},
+      audit = #{audit,jdbcType=INTEGER},
+      doBusiness = #{dobusiness,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

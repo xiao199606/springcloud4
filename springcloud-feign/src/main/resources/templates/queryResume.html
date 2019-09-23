@@ -112,6 +112,15 @@
                 {field:'gerjs',title:'个人介绍'},
                 {field:'tel',title:'手机号'},
                 {field:'email',title:'邮箱'},
+                {field:'zc',title:'操作',formatter:function(value,row,index){
+                        var content = "";
+                        if(row.zhiding==1){
+                            content+="<a href='javascript:updateResume1("+row.id+")'>置顶</a>";
+                        }else{
+                            content+="<a href='javascript:updateResume2("+row.id+")'>取消</a>";
+                        }
+                        return content;
+                    }},
             ]
         });
     }
@@ -199,5 +208,27 @@
             }
         })
     }
+
+    //取消置顶
+    updateResume1 = function(id){
+        $.ajax({
+            url:"../Hb/updateResume1",
+            data:{id:id},
+            success:function(data){
+                location.href=location;
+            }
+        })
+    };
+
+    //置顶
+    updateResume2 = function(id){
+        $.ajax({
+            url:"../Hb/updateResume2",
+            data:{id:id},
+            success:function(data){
+                location.href=location;
+            }
+        })
+    };
 </script>
 </html>

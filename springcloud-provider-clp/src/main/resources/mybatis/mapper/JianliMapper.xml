@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.JianliMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.JianLi" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="minz" property="minz" jdbcType="VARCHAR" />
+    <result column="huny" property="huny" jdbcType="VARCHAR" />
+    <result column="zhengzh" property="zhengzh" jdbcType="VARCHAR" />
+    <result column="xuex" property="xuex" jdbcType="VARCHAR" />
+    <result column="zhuany" property="zhuany" jdbcType="VARCHAR" />
+    <result column="xuel" property="xuel" jdbcType="VARCHAR" />
+    <result column="gongzjy" property="gongzjy" jdbcType="VARCHAR" />
+    <result column="xianjd" property="xianjd" jdbcType="VARCHAR" />
+    <result column="jig" property="jig" jdbcType="VARCHAR" />
+    <result column="gangw" property="gangw" jdbcType="VARCHAR" />
+    <result column="gangwlb" property="gangwlb" jdbcType="VARCHAR" />
+    <result column="gongzdq" property="gongzdq" jdbcType="VARCHAR" />
+    <result column="yuexyq" property="yuexyq" jdbcType="INTEGER" />
+    <result column="qiuzhzht" property="qiuzhzht" jdbcType="VARCHAR" />
+    <result column="jishtch" property="jishtch" jdbcType="VARCHAR" />
+    <result column="gongzjl" property="gongzjl" jdbcType="VARCHAR" />
+    <result column="gerjs" property="gerjs" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="zhiding" property="zhiding" jdbcType="INTEGER" />
+    <result column="tian" property="tian" jdbcType="VARCHAR" />
+    <result column="jine" property="jine" jdbcType="VARCHAR" />
+    <result column="gid" property="gid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, sex, birthday, minz, huny, zhengzh, xuex, zhuany, xuel, gongzjy, xianjd,
+    jig, gangw, gangwlb, gongzdq, yuexyq, qiuzhzht, jishtch, gongzjl, gerjs, tel, email,
+    state, zhiding, tian, jine, gid
+  </sql>
+
+
+  <select id="queryJianli" resultMap="BaseResultMap" >
+    select * from jianli where state=1
+      limit #{sta},#{rows}
+  </select>
+
+  <select id="queryCount" resultType="long">
+    select count(*) from jianli where state=1
+  </select>
+
+  <update id="updateYes">
+    update jianli set state=2 where id=#{id}
+  </update>
+
+
+  <delete id="deleteNo">
+    delete from jianli where id=#{id}
+  </delete>
+
+
+  <select id="queryYuangongJianli" resultMap="BaseResultMap" >
+    select * from gsyh a ,gsyh_jianli b ,jianli c where a.id=b.gongsiid and b.jianliid=c.id
+      limit #{sta},#{rows}
+  </select>
+
+
+  <select id="queryYuangongJianliCount" resultType="long">
+    select count(*) from gsyh a ,gsyh_jianli b ,jianli c where a.id=b.gongsiid and b.jianliid=c.id
+  </select>
+
+</mapper>

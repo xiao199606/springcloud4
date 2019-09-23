@@ -3,9 +3,19 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8080/eureka/
+elasticsearch:
+  clusterName: my-application
+  firstPort: 9300
+  ip: 127.0.0.1
+  secondPort: 9301
+  thirdPort: 9302
 server:
   port: 8081
 spring:
+  servlet:
+    multipart:
+      max-file-size: '10MB'
+      max-request-size: 100MB
   thymeleaf:
     cache: false
     prefix: classpath:/templates/

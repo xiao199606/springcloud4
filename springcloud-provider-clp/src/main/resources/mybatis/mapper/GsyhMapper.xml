@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.GsyhMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.Gsyh" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="zhucsj" property="zhucsj" jdbcType="DATE" />
+    <result column="gongsmc" property="gongsmc" jdbcType="VARCHAR" />
+    <result column="yuangrs" property="yuangrs" jdbcType="VARCHAR" />
+    <result column="diq" property="diq" jdbcType="VARCHAR" />
+    <result column="gongsxz" property="gongsxz" jdbcType="VARCHAR" />
+    <result column="chenglrq" property="chenglrq" jdbcType="DATE" />
+    <result column="zhuczj" property="zhuczj" jdbcType="VARCHAR" />
+    <result column="gongsjj" property="gongsjj" jdbcType="VARCHAR" />
+    <result column="lianxr" property="lianxr" jdbcType="VARCHAR" />
+    <result column="lianxtel" property="lianxtel" jdbcType="VARCHAR" />
+    <result column="adress" property="adress" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="web" property="web" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, email, zhucsj, gongsmc, yuangrs, diq, gongsxz, chenglrq, zhuczj, gongsjj, lianxr,
+    lianxtel, adress, qq, web, state
+  </sql>
+
+
+
+  <select id="queryGsyh" resultMap="BaseResultMap">
+    select * from gsyh where state=1
+      limit #{sta},#{rows}
+  </select>
+
+
+  <select id="queryGsCount" resultType="long">
+    select count(*) from gsyh where state=1
+  </select>
+
+
+
+  <update id="updateGsYes">
+    update gsyh set state=2 where id=#{id}
+  </update>
+
+
+  <delete id="deleteGsNo">
+    delete from gsyh where id=#{id}
+  </delete>
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

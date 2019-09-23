@@ -1,5 +1,6 @@
 package com.jk.controller;
 
+import com.jk.model.Highcharts;
 import com.jk.model.Tree;
 import com.jk.model.User;
 import com.jk.service.HbService;
@@ -9,17 +10,12 @@ import com.jk.util.ResultPage;
 import com.jk.util.TreeNoteUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import sun.font.EAttribute;
 
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("Hb")
@@ -30,7 +26,7 @@ public class HbController {
 
     @RequestMapping("test")
     @ResponseBody
-    public Map test(){
+    public Map test() {
 
         return hbService.test();
     }
@@ -39,10 +35,10 @@ public class HbController {
     @ResponseBody
     public String login(User user, HttpServletRequest request) {
         User user1 = hbService.login(user.getUsername());
-            if (user1 == null) {
+        if (user1 == null) {
             return "1";
         }
-        if(!user1.getPassword().equals(user.getPassword())){
+        if (!user1.getPassword().equals(user.getPassword())) {
             return "2";
         }
         request.getSession().setAttribute("user", user1);
@@ -61,7 +57,7 @@ public class HbController {
 
     @RequestMapping("queryResume")
     @ResponseBody
-    public ResultPage queryResumeList(@RequestBody ResultPage result){
+    public ResultPage queryResumeList(@RequestBody ResultPage result) {
         ResultPage resultPage = hbService.queryResumeList(result);
         return resultPage;
     }
@@ -69,11 +65,11 @@ public class HbController {
 
     @RequestMapping("deleteResume")
     @ResponseBody
-    public Boolean deleteResume(String ids){
+    public Boolean deleteResume(String ids) {
         try {
             hbService.deleteResume(ids);
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -81,7 +77,7 @@ public class HbController {
 
     @RequestMapping("queryAccount")
     @ResponseBody
-    public ResultPage queryAccount(@RequestBody ResultPage result){
+    public ResultPage queryAccount(@RequestBody ResultPage result) {
         ResultPage resultPage = hbService.queryAccountList(result);
         return resultPage;
     }
@@ -89,11 +85,11 @@ public class HbController {
 
     @RequestMapping("deleteAccount")
     @ResponseBody
-    public Boolean deleteAccount(String ids){
+    public Boolean deleteAccount(String ids) {
         try {
             hbService.deleteAccount(ids);
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -101,8 +97,85 @@ public class HbController {
 
     @RequestMapping("queryStay")
     @ResponseBody
-    public ResultPage queryStay(@RequestBody ResultPage result){
+    public ResultPage queryStay(@RequestBody ResultPage result) {
         ResultPage resultPage = hbService.queryStayList(result);
         return resultPage;
     }
+
+    @RequestMapping("deleteStay")
+    @ResponseBody
+    public Boolean deleteStay(String ids) {
+        try {
+            hbService.deleteStay(ids);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @RequestMapping("updateResume1")
+    @ResponseBody
+    public void updateResume1(Integer id) {
+        hbService.updateResume1(id);
+    }
+
+    @RequestMapping("updateResume2")
+    @ResponseBody
+    public void updateResume2(Integer id) {
+        hbService.updateResume2(id);
+    }
+
+    @RequestMapping("queryCompany")
+    @ResponseBody
+    public ResultPage queryCompany(@RequestBody ResultPage result) {
+        ResultPage resultPage = hbService.queryCompanyList(result);
+        return resultPage;
+    }
+
+    @RequestMapping("deleteCompany")
+    @ResponseBody
+    public Boolean deleteCompany(String ids) {
+        try {
+            hbService.deleteCompany(ids);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @RequestMapping("queryDayCount")
+    @ResponseBody
+    public List<Highcharts> queryDayCount(){
+        List<Highcharts> list=hbService.queryDayCount();
+        return list;
+    }
+
+    @RequestMapping("queryUser")
+    @ResponseBody
+    public ResultPage queryUser(@RequestBody ResultPage result) {
+        ResultPage resultPage = hbService.queryUserList(result);
+        return resultPage;
+    }
+
+    @RequestMapping("deleteUser")
+    @ResponseBody
+    public Boolean deleteUser(String ids) {
+        try {
+            hbService.deleteUser(ids);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @RequestMapping("queryGuang")
+    @ResponseBody
+    public ResultPage queryGuang(@RequestBody ResultPage result) {
+        ResultPage resultPage = hbService.queryGuangList(result);
+        return resultPage;
+    }
+
 }

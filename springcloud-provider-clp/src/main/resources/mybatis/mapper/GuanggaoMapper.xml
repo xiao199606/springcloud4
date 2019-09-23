@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.GuanggaoMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.Guanggao" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="imgsrc" property="imgsrc" jdbcType="VARCHAR" />
+    <result column="delflag" property="delflag" jdbcType="VARCHAR" />
+    <result column="startime" property="startime" jdbcType="DATE" />
+    <result column="endtime" property="endtime" jdbcType="DATE" />
+    <result column="createuser" property="createuser" jdbcType="VARCHAR" />
+    <result column="createdate" property="createdate" jdbcType="DATE" />
+    <result column="audit" property="audit" jdbcType="VARCHAR" />
+    <result column="payment" property="payment" jdbcType="VARCHAR" />
+    <result column="column" property="column" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, url, imgsrc, delflag, startime, endtime, createuser, createdate, audit, payment,
+    column, state
+  </sql>
+
+
+  <select id="queryGuanggao" resultMap="BaseResultMap">
+    select * from guanggao where state=1
+limit #{sta},#{rows}
+  </select>
+
+
+  <select id="queryCount" resultType="long">
+    select count(*) from guanggao where state=1
+  </select>
+
+
+  <update id="updateGgYes">
+    update guanggao set state=2 where id=#{id}
+  </update>
+
+
+  <delete id="deleteGgNo">
+    delete from guanggao where id=#{id}
+  </delete>
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
