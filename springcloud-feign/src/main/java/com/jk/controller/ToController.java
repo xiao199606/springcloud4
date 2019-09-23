@@ -160,5 +160,19 @@ public class ToController {
         return "gongsi";
     }
 
+    //跳转到招聘职位
+    @RequestMapping("toJobVacancy")
+    public String toJobVacancy(Model model,String ids){
+        model.addAttribute("ids",ids);
+        return "gszhiwei";
+    }
+
+    //跳转到沟通职位页面
+    @RequestMapping("toGouTong")
+    public String toGouTong(String ids,Model model){
+        model.addAttribute("ids",ids);
+        return "chat";
+    }
+
 
 }

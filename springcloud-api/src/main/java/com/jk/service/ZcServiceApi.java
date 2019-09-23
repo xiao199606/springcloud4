@@ -27,7 +27,7 @@ public interface ZcServiceApi {
     List<Zwjl> zcIssue();
 
     @GetMapping(value = "hotCompany")
-    List<Zwjl> hotCompany();
+    List<Gsyh> hotCompany();
 
     @GetMapping(value = "loadParticulars")
     Zwjl loadParticulars(@RequestParam(value = "ids") String ids);
@@ -41,7 +41,7 @@ public interface ZcServiceApi {
     @GetMapping(value = "companiesIn")
     HashMap<String, Object> companiesIn(@RequestBody User user);
 
-    @GetMapping(value = "queryTheResume")
+    @GetMapping(value = "toTheResume")
     JianLi queryTheResume(@RequestParam(value = "ids") Integer ids);
 
     @GetMapping(value = "updHighcharts")
@@ -49,4 +49,10 @@ public interface ZcServiceApi {
 
     @GetMapping(value = "loaTheCompanyDetails")
     Gsyh loaTheCompanyDetails(@RequestParam(value = "ids") Integer ids);
+
+    @GetMapping(value = "zcPostAPosition")
+    List<Zwjl> zcPostAPosition(@RequestParam(value = "ids") String ids);
+
+    @GetMapping(value = "loadHrName")
+    Zwjl loadHrName(@RequestParam(value = "ids") String ids);
 }

@@ -74,7 +74,7 @@ public class ZcServiceImpl implements ZcServiceApi {
 
     //查询热门职位
     @Override
-    public List<Zwjl> hotCompany() {
+    public List<Gsyh> hotCompany() {
         return zcDao.hotCompany();
     }
 
@@ -138,6 +138,18 @@ public class ZcServiceImpl implements ZcServiceApi {
     @Override
     public Gsyh loaTheCompanyDetails(Integer ids) {
         return zcDao.loaTheCompanyDetails(ids);
+    }
+
+    //查询对应公司发布的职位
+    @Override
+    public List<Zwjl> zcPostAPosition(String ids) {
+        return zcDao.zcPostAPosition(ids);
+    }
+
+    //加载面试官姓名
+    @Override
+    public Zwjl loadHrName(String ids) {
+        return zcDao.loadHrName(ids);
     }
 
 

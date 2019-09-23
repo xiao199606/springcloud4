@@ -19,7 +19,7 @@ public interface ZcDao {
     List<Zwjl> zcIssue();
 
     //查询热门公司
-    List<Zwjl> hotCompany();
+    List<Gsyh> hotCompany();
 
 
     Zwjl loadParticulars(String ids);
@@ -31,7 +31,7 @@ public interface ZcDao {
     //个人版注册
     void addPersonalUser(UserModel userModel);
 
-    @Select("select id,gongsmc  from  gsyh")
+    @Select("select id,gongsmc  from  gsyh where state = 2")
     List<Gsyh> loadCompany();
 
     //企业版注册
@@ -41,7 +41,7 @@ public interface ZcDao {
     User companiesIn(User user);
 
     //查询简历
-    @Select("select *  from  jianli where id = #{value}")
+    @Select("select *  from  jianli where gid = #{value}")
     JianLi queryTheResume(Integer ids);
 
     //修改简历
@@ -50,4 +50,11 @@ public interface ZcDao {
     //加载公司详情
     @Select("select *  from gsyh WHERE id = #{value}")
     Gsyh loaTheCompanyDetails(Integer ids);
+
+    //查询对应公司发布的职位
+    List<Zwjl> zcPostAPosition(String ids);
+
+    //查询面试官姓名
+    @Select("select lianxr  from  zwjl where id = #{value}")
+    Zwjl loadHrName(String ids);
 }

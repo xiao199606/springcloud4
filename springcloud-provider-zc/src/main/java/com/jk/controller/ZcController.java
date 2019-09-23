@@ -52,10 +52,11 @@ public class ZcController {
         return zcService.zcIssue();
     }
 
+    //查询展示公司
     @RequestMapping("hotCompany")
-    public List<Zwjl> hotCompany() {
-        List<Zwjl> zwjlList = zcService.hotCompany();
-        return zwjlList;
+    public List<Gsyh> hotCompany() {
+        List<Gsyh> gsyh = zcService.hotCompany();
+        return gsyh;
     }
 
     //加载招聘详情页
@@ -81,7 +82,7 @@ public class ZcController {
     }
 
     //跳转到修改简历
-    @RequestMapping("queryTheResume")
+    @RequestMapping("toTheResume")
     public JianLi modifyResume(@RequestParam(value = "ids") Integer ids){
         JianLi jianLi = zcService.queryTheResume(ids);
         return jianLi;
@@ -98,6 +99,20 @@ public class ZcController {
     @RequestMapping("loaTheCompanyDetails")
     public  Gsyh loaTheCompanyDetails(@RequestParam(value = "ids") Integer ids){
         return zcService.loaTheCompanyDetails(ids);
+    }
+
+    //查询对应公司发布的职位
+    @RequestMapping("zcPostAPosition")
+    public List<Zwjl> zcPostAPosition(@RequestParam(value = "ids") String ids){
+        List<Zwjl> list = zcService.zcPostAPosition(ids);
+        return list;
+    }
+
+    //加载面试官姓名
+    @RequestMapping("loadHrName")
+    public Zwjl loadHrName(@RequestParam(value = "ids") String ids){
+
+        return zcService.loadHrName(ids);
     }
 
 }

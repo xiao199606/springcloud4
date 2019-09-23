@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+</head>
+<body>
+<center>
+    <table border="1" >
+        <tr>
+            <td  style="width: 1000px;height: 500px"><soan id="chat"></soan></td>
+            <td  style="width: 500px;height: 500px"><span id="chat2"></span></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="height: 200px"><textarea  id="import" style="width: 1500px;height:200px" ></textarea></td>
+        </tr>
+
+    </table>
+    <input type="button" value="发送" onclick="transmit()">
+    <input type="hidden" id="aa" th:value="${ids}">
+</center>
+</body>
+<script>
+
+    $(function(){
+        loadHrName();
+        loadTransmit();
+    })
+
+    //加载面试官姓名
+    function loadHrName(){
+        var ids = $("#aa").val();
+        $.ajax({
+            url:"../zcController/loadHrName",
+            type:"post",
+            data:{ids:ids},
+            dataType:"json",
+            success:function(data){
+                $("#chat").html(data.lianxr+":你好");
+            },
+            error:function(){
+                alert("加载面试官姓名");
+            }
+        })
+    }
+
+    //发送
+    function transmit(){
+        //获取输入的值
+        var imp = $("#import").val();
+        //获取以有的值
+        var aa = $("#chat2").html();
+        //获取自己聊天的值
+
+        $("#chat2").html(""+aa+"<br><br>"+imp);
+        //清空聊天框
+        $("#import").val("");
+
+        //新增到redis
+        var re = ""+aa+"<br><br>"+imp;
+        $.ajax({
+            url:"../zcController/addTransmit",
+            type: "post",
+            data:{re:re},
+            dataType:"json",
+            success:function(data){
+                //alert(data.code);
+                //$("#chat2").html(data.code);
+            },
+            error:function(){
+                alert("新增到redis失败");
+            }
+        })
+
+    }
+
+    //加载聊天信息
+    function loadTransmit(){
+        $.ajax({
+            url:"../zcController/loadTransmit",
+            type: "post",
+            dataType:"json",
+            success:function(data){
+                //alert(data.code);
+                $("#chat2").html(data.code);
+            },
+            error:function(){
+                alert("新增到redis失败");
+            }
+        })
+    }
+</script>
+</html>

@@ -12,6 +12,8 @@ import com.jk.utils.CheckSumBuilder;
 import com.jk.utils.HttpClientUtil;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -31,6 +34,10 @@ import java.util.concurrent.TimeUnit;
 public class ZcController {
     @Autowired
     private ZcService zcService;
+    //@Autowired
+    //private RedisTemplate<String,Object> redisTemplate;
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
     //短信验证码接口
     @RequestMapping("httpNote")
@@ -121,12 +128,20 @@ public class ZcController {
         return zwjls;
     }
 
-    //查询热门职位
+    //查询对应公司发布的职位
+    @RequestMapping("zcPostAPosition")
+    @ResponseBody
+    public List<Zwjl> zcPostAPosition(String ids){
+        List<Zwjl> list = zcService.zcPostAPosition(ids);
+        return list;
+    }
+
+    //查询热门公司
     @RequestMapping("hotCompany")
     @ResponseBody
-    public List<Zwjl> hotCompany() {
-        List<Zwjl> zwjlList = zcService.hotCompany();
-        return zwjlList;
+    public List<Gsyh> hotCompany() {
+        List<Gsyh> Gsyh = zcService.hotCompany();
+        return Gsyh;
     }
 
     //加载招聘详情页
@@ -174,16 +189,16 @@ public class ZcController {
 
     //跳转到修改简历
     @RequestMapping("toTheResume")
-    //@ResponseBody
-    public String modifyResume(HttpServletRequest request, Model model){
+    public String toTheResume(HttpServletRequest request, Model model){
         Integer ids = (Integer) request.getSession().getAttribute("ids");
         JianLi jianLi = zcService.queryTheResume(ids);
+        //System.out.println(jianLi);
         model.addAttribute("model",jianLi);
         return "updHighcharts";
     }
 
     //修改简历
-    @RequestMapping("updHighcharts")
+    @RequestMapping("updJianLi")
     @ResponseBody
     public Boolean updHighcharts(JianLi jianLi){
         //System.out.println(jianLi.getId()+"=======================");
@@ -199,6 +214,49 @@ public class ZcController {
     @ResponseBody
     public  Gsyh loaTheCompanyDetails(Integer ids){
         return zcService.loaTheCompanyDetails(ids);
+    }
+
+    //加载面试官姓名
+    @RequestMapping("loadHrName")
+    @ResponseBody
+    public Zwjl loadHrName(String ids){
+
+        return zcService.loadHrName(ids);
+    }
+
+    //新增到聊天记录
+    @RequestMapping("addTransmit")
+    @ResponseBody
+    public HashMap addTransmit(String re,HttpSession session){
+
+        HashMap<String, String> map = new HashMap<>();
+        Integer ids1 = (Integer) session.getAttribute("ids");
+        String transmit = "transmit"+ids1;
+
+        //判断
+        if(redisTemplate.hasKey(transmit)){
+            redisTemplate.opsForValue().set(transmit,re);
+            //再次查询
+            String s1 = redisTemplate.opsForValue().get(transmit);
+            map.put("code",s1);
+            return map;
+        }
+        //如果不存在先新增到数据库在查询
+        redisTemplate.opsForValue().set(transmit,re);
+        String s = redisTemplate.opsForValue().get(transmit);
+        map.put("code",s);
+        return map;
+    }
+
+    //加载聊天信息
+    @RequestMapping("loadTransmit")
+    @ResponseBody
+    public HashMap loadTransmit(HttpSession session){
+        HashMap<String, String> map = new HashMap<>();
+        Integer ids1 = (Integer) session.getAttribute("ids");
+        String s = redisTemplate.opsForValue().get("transmit"+ids1);
+        map.put("code",s);
+        return map;
     }
 
 }

@@ -24,6 +24,12 @@ spring:
     name: service-feign
   main:
     allow-bean-definition-overriding: true
+  redis:
+    host: localhost
+    password: ''
+    port: 6379
+    timeout: 1000
+
 
 
 #hystrix的超时时间
