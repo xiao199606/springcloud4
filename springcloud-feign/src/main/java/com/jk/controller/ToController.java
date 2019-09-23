@@ -15,7 +15,6 @@ public class ToController {
         return "bookList";
     }
 
-    //登录页面
     //跳转到招聘官网首页
     @RequestMapping("toBosShow")
     public String toBosShow(HttpSession session){
