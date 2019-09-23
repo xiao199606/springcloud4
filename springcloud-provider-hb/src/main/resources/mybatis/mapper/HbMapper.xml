@@ -6,10 +6,14 @@
 </select>
 
     <select id="login" resultType="user" parameterType="String">
-    select * from user where username=#{username}
+    select * from user where username=#{username} and status in (1,2)
     </select>
 
     <select id="getTreeAll" resultType="Tree">
+            select e.* from user a,user_role b,role c,role_tree d,tree e where a.status=b.ustatusid and b.rid=c.id and c.id=d.rid and d.tid=e.id and a.id=#{id}
+    </select>
+
+    <select id="getTreeAll2" resultType="Tree">
             select e.* from user a,user_role b,role c,role_tree d,tree e where a.status=b.ustatusid and b.rid=c.id and c.id=d.rid and d.tid=e.id and a.id=#{id}
     </select>
 
@@ -133,7 +137,7 @@
         select * from lanwei
     </select>
 
-    <select id="querygs" resultType="Gsyh" parameterType="Integer">
-        select * from gsyh where state='2' and id=#{gsid}
+    <select id="querygs" resultType="user" parameterType="Integer">
+        select * from user where  id=#{gsid}
     </select>
 </mapper>

@@ -41,7 +41,7 @@ public interface ZcServiceApi {
     @GetMapping(value = "companiesIn")
     HashMap<String, Object> companiesIn(@RequestBody User user);
 
-    @GetMapping(value = "queryTheResume")
+    @GetMapping(value = "toTheResume")
     JianLi queryTheResume(@RequestParam(value = "ids") Integer ids);
 
     @GetMapping(value = "updHighcharts")

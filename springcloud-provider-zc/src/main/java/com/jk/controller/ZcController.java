@@ -81,7 +81,7 @@ public class ZcController {
     }
 
     //跳转到修改简历
-    @RequestMapping("queryTheResume")
+    @RequestMapping("toTheResume")
     public JianLi modifyResume(@RequestParam(value = "ids") Integer ids){
         JianLi jianLi = zcService.queryTheResume(ids);
         return jianLi;
@@ -89,7 +89,7 @@ public class ZcController {
 
 
     //修改简历
-    @RequestMapping("updHighcharts")
+    @RequestMapping("updJianLi")
     public void updHighcharts(@RequestBody JianLi jianLi){
             zcService.updHighcharts(jianLi);
     }

@@ -210,13 +210,14 @@ public class HbServiceImpl implements HbServiceApi {
     @Override
     public String addGuang(Guanggao guanggao) {
         Integer count = hbDao.queryaddGuang();
-        if (count>3){
+        if (count>=3){
             return "1";
         }
-        Gsyh gs=hbDao.querygs(guanggao.getGsid());
+        User user=hbDao.querygs(guanggao.getGsid());
+        System.out.println(user.getGsyhid());
         String url="jump/toTheCompanyDetails?ids=gs.getId()";
         guanggao.setUrl(url);
-        guanggao.setGsid(gs.getId());
+        guanggao.setGsid(user.getGsyhid());
         hbDao.addGuang(guanggao);
         return "2";
     }
@@ -224,5 +225,10 @@ public class HbServiceImpl implements HbServiceApi {
     @Override
     public List<LanWei> querylanwei() {
         return hbDao.querylanwei();
+    }
+
+    @Override
+    public List<Tree> getTreeAll2(Integer ids) {
+        return hbDao.getTreeAll2(ids);
     }
 }

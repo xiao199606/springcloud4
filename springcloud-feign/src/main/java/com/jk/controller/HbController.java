@@ -43,9 +43,20 @@ public class HbController {
     @RequestMapping("getAllTree")
     @ResponseBody
     public List<Tree> getTreeAll(HttpServletRequest request) {
+
         User user = (User) request.getSession().getAttribute("user");
         List<Tree> list = new ArrayList();
         list = hbService.getTreeAll(user.getId());
+        list = TreeNoteUtil.getFatherNode(list);
+        return list;
+    }
+
+    @RequestMapping("getAllTree2")
+    @ResponseBody
+    public List<Tree> getTreeAll2(HttpServletRequest request) {
+        Integer ids = (Integer) request.getSession().getAttribute("ids2");
+        List<Tree> list = new ArrayList();
+        list = hbService.getTreeAll2(ids);
         list = TreeNoteUtil.getFatherNode(list);
         return list;
     }

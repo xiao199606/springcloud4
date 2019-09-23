@@ -12,7 +12,6 @@ public class Guanggao {
 
     private String imgsrc;
 
-    private String delflag;
     @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
     private Date startime;
@@ -21,15 +20,17 @@ public class Guanggao {
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
     private Date endtime;
 
-    private String createuser;
-
     @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
     private Date createdate;
 
-    private String audit;
-
     private Integer payment;
+
+    private Integer lcolumn;
+
+    private Integer state;
+
+    private Integer gsid;
 
     public Integer getPayment() {
         return payment;
@@ -39,28 +40,12 @@ public class Guanggao {
         this.payment = payment;
     }
 
-    private Integer lcolumn;
-
-    private Integer state;
-
-    private Integer days;
-
-    private Integer gsid;
-
     public Integer getGsid() {
         return gsid;
     }
 
     public void setGsid(Integer gsid) {
         this.gsid = gsid;
-    }
-
-    public Integer getDays() {
-        return days;
-    }
-
-    public void setDays(Integer days) {
-        this.days = days;
     }
 
     public Integer getId() {
@@ -87,14 +72,6 @@ public class Guanggao {
         this.imgsrc = imgsrc == null ? null : imgsrc.trim();
     }
 
-    public String getDelflag() {
-        return delflag;
-    }
-
-    public void setDelflag(String delflag) {
-        this.delflag = delflag == null ? null : delflag.trim();
-    }
-
     public Date getStartime() {
         return startime;
     }
@@ -111,14 +88,6 @@ public class Guanggao {
         this.endtime = endtime;
     }
 
-    public String getCreateuser() {
-        return createuser;
-    }
-
-    public void setCreateuser(String createuser) {
-        this.createuser = createuser == null ? null : createuser.trim();
-    }
-
     public Date getCreatedate() {
         return createdate;
     }
@@ -126,15 +95,6 @@ public class Guanggao {
     public void setCreatedate(Date createdate) {
         this.createdate = createdate;
     }
-
-    public String getAudit() {
-        return audit;
-    }
-
-    public void setAudit(String audit) {
-        this.audit = audit == null ? null : audit.trim();
-    }
-
 
     public Integer getLcolumn() {
         return lcolumn;

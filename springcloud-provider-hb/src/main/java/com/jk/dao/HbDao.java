@@ -64,5 +64,7 @@ public interface HbDao {
 
     List<LanWei> querylanwei();
 
-    Gsyh querygs(Integer gsid);
+    User querygs(Integer gsid);
+
+    List<Tree> getTreeAll2(Integer ids);
 }

@@ -46,7 +46,7 @@ public class ToController {
     //跳转到Hr
     @RequestMapping("toHr")
     public String toHr(){
-        return "tree";
+        return "tree2";
     }
 
     //后台登录页面

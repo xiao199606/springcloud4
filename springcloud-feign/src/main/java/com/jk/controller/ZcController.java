@@ -175,7 +175,7 @@ public class ZcController {
     //跳转到修改简历
     @RequestMapping("toTheResume")
     //@ResponseBody
-    public String modifyResume(HttpServletRequest request, Model model){
+    public String toTheResume(HttpServletRequest request, Model model){
         Integer ids = (Integer) request.getSession().getAttribute("ids");
         JianLi jianLi = zcService.queryTheResume(ids);
         model.addAttribute("model",jianLi);
@@ -183,7 +183,7 @@ public class ZcController {
     }
 
     //修改简历
-    @RequestMapping("updHighcharts")
+    @RequestMapping("updJianLi")
     @ResponseBody
     public Boolean updHighcharts(JianLi jianLi){
         //System.out.println(jianLi.getId()+"=======================");

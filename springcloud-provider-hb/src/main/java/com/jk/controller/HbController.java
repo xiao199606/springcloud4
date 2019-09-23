@@ -5,10 +5,7 @@ import com.jk.service.HbServiceApi;
 import com.jk.service.XxfServiceApi;
 import com.jk.util.ResultPage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -33,6 +30,12 @@ public class HbController {
     @RequestMapping("getAllTree")
     public List<Tree> getTreeAll(Integer id){
        return  hbServiceApi.getTreeAll(id);
+    }
+
+
+    @RequestMapping("getAllTree2")
+    public List<Tree> getTreeAll2(@RequestParam("ids")Integer ids){
+        return  hbServiceApi.getTreeAll(ids);
     }
 
     @RequestMapping("queryResume")
