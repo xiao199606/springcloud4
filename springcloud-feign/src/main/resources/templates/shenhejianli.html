@@ -163,11 +163,11 @@
                 {field: 'gid', title: 'gid', width: 300},
 
                 {field:'cc',title:'审核',width:100,formatter:function(value,row,index){
-                    if(row.state==1){
-                        a= "<a href='javascript:updateYes("+row.id+")'>同意</a>"
-                        a+="   <a href='javascript:deleteNo("+row.id+")'>拒绝</a> "
-                        return a;
-                    }
+                        if(row.state==1){
+                            a= "<a href='javascript:updateYes("+row.id+")'>同意</a>"
+                            a+="   <a href='javascript:deleteNo("+row.id+")'>拒绝</a> "
+                            return a;
+                        }
 
                     }}
 

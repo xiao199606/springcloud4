@@ -4,38 +4,137 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <!-- 引入jquery -->
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <!-- 引入bootstrap的css -->
-    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
-    <!-- 引入bootstrap-treeview的css -->
-    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
-    <!-- 引入bootstrap-addTabs的css -->
-    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
-    <!-- 引入bootstrap-table的css -->
-    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
-    <!-- 引入fileinput的css -->
-    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
-
-    <!-- 引入my97 -->
-    <script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
-    <!-- 引入bootstrap的js-->
-    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
-    <!-- 引入bootstrap的js-->
-    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
-    <!-- 引入bootstrap的js-->
-    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
-    <!-- 引入bootstrap-table的js-->
-    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
-    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
-    <!-- 引入bootbox.js -->
-    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
-    <!-- 引入fileinput的js -->
-    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
-    <!--  引入fileinput的js -->
-    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
-    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+    <script type="text/javascript" src="/js3/jquery-1.9.1.min.js"></script>
+    <!-- 引入bootstrap的css、js -->
+    <link rel="stylesheet" href="/js3/bootstrap3/css/bootstrap.css">
+    <script type="text/javascript" src="/js3/bootstrap3/js/bootstrap.js"></script>
+    <!-- 引入tree的js、css -->
+    <link rel="stylesheet" href="/js3/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script type="text/javascript" src="/js3/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入选项卡的js、css -->
+    <link rel="stylesheet" href="/js3/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script type="text/javascript" src="/js3/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+    <!-- 引入table的css、js -->
+    <link rel="stylesheet" href="/js3/bootstrap-table/bootstrap-table.css">
+    <script type="text/javascript" src="/js3/bootstrap-table/bootstrap-table.js"></script>
+    <script type="text/javascript" src="/js3/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <!-- 引入删除提示框 -->
+    <script type="text/javascript" src="/js3/bootbox/bootbox.min.js"></script>
+    <!-- 引入时间的css、js -->
+    <link rel="stylesheet" href="/js3/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
+    <script  src="/js3/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script  src="/js3/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <!-- 引入文件上传的css、js -->
+    <link rel="stylesheet" href="/js3/bootstrap-fileinput/css/fileinput.css">
+    <script type="text/javascript" src="/js3/bootstrap-fileinput/js/fileinput.js"></script>
+    <script type="text/javascript" src="/js3/bootstrap-fileinput/js/locales/zh.js"></script>
 </head>
 <body>
-   <input type="text" th:value="${phone1}">
+    <center>
+        <form id="addForm">
+            <input type="hidden" name="tel" th:value="${phone1}">
+            <table>
+                <tr>
+                    <td>姓名</td>
+                    <td><input type="text" name="username"></td>
+                </tr>
+                <br>
+                <br>
+                <tr>
+                    <td>营业执照</td>
+                    <td>
+                        <input type="hidden" id="testimg" name="doBusiness" />
+                        <input type="file" style="width: 10px;"  name="img" id="headImg">
+                    </td>
+                </tr>
+                <tr>
+                    <td>绑定公司</td>
+                    <td>
+                        <select name="gsyhid" id="se">
+
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <input type="button" onclick="register()" value="提交">
+        </form>
+    </center>
 </body>
+<script>
+    $(function(){
+        uploadImg();
+        loadCompany();
+    })
+    //上传图片
+    function uploadImg(){
+        $('#headImg').fileinput({
+            language: 'zh', //设置语言
+            uploadUrl: '../zcController/updaloadImg', //上传的地址
+            allowedFileExtensions: ['jpg', 'gif', 'png'],//接收的文件后缀
+            showUpload: true, //是否显示上传按钮
+            showCaption: false,//是否显示标题
+            browseClass: "btn btn-primary", //按钮样式
+            dropZoneEnabled: false,//是否显示拖拽区域
+            //minImageWidth: 50, //图片的最小宽度
+            //minImageHeight: 50,//图片的最小高度
+            //maxImageWidth: 1000,//图片的最大宽度
+            //maxImageHeight: 1000,//图片的最大高度
+            //maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
+            //minFileCount: 0,
+            maxFileCount: 2, //表示允许同时上传的最大文件个数
+            enctype: 'multipart/form-data',
+            validateInitialCount:true,
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+
+        }).on('fileuploaded', function(event, data, previewId, index) {
+
+            var imgval = $('#testimg').val();
+            if(imgval == null || imgval == "" || imgval == undefined){
+                imgval = data.response.responseText;
+            }/*else{
+			imgval += ","+"http://<%= request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/"+data.response;
+		}*/
+            $('#testimg').val(imgval);
+        });
+    }
+
+    //企业版注册
+    function register() {
+        $.ajax({
+            url:"../zcController/businessRegistration",
+            type:"post",
+            data:$("#addForm").serialize(),
+            dataType:"json",
+            success:function(data){
+                alert("您的密码为"+data+"请妥善保管");
+            },
+            error:function(){
+                alert("注册失败");
+            }
+        })
+
+    }
+
+    //加载所有公司
+    function loadCompany() {
+        $.ajax({
+            url:"../zcController/loadCompany",
+            type:"post",
+            dataType:"json",
+            success:function(data){
+                var html = "<option value=''>请选择要绑定的公司</option>";
+                for(var i=0;i<data.length;i++){
+
+                    html += "<option value='"+data[i].id+"'>"+data[i].gongsmc+"</option>";
+                }
+                //alert(html);
+                $("#se").html(html);
+            },
+            error:function(){
+                alert("加载公司失败");
+            }
+        })
+    }
+</script>
 </html>

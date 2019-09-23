@@ -51,6 +51,7 @@
                 <li class=""><a ka="header-app" href="#://app.zhipin.com/">APP</a></li>
                 <li class=""><a ka="header-article" href="#://news.zhipin.com/">资讯</a></li>
                 <li class=""><a ka="header-article" href="#://news.zhipin.com/">资讯</a></li>
+                <li class=""><a ka="header-article" href="">应聘人简历</a></li>
             </ul>
         </div>
         <div class="user-nav">
@@ -59,8 +60,7 @@
                     <a href="#://www.zhipin.com/geek/attresume/parser.html" ka="nlp_resume_upload" class="link-sign-resume" title="上传简历，解析内容，完善注册">上传简历</a>
                     <a href="#://www.zhipin.com/geek/attresume/parser.html" ka="header-geek" class="link-sign-resume" title="上传简历，解析内容，完善注册">我要找工作<span class="new" style="display: inline;">hot</span></a>
                     <a href="javascript:toHrRegister()" class="link-scan" ka="header-boss" title="我要招聘">我要招聘</a>
-                    <a href="javascript:toRegister()" ka="header-register" class="btn btn-outline">注册</a>
-                    <a href="javascript:toRegister()" ka="header-login" class="btn btn-outline">登录</a>
+                    <a href="javascript:modifyResume()" ka="header-register" class="btn btn-outline">修改简历</a>
                 </div>
         </div>
     </div>
@@ -153,8 +153,15 @@
                             <ul></ul>
                         </div>
 
-
-
+                        <div class="position-box">
+                            <div class="dropdown-menu">
+                                <script>
+                                    var jobData = positionList;
+                                </script>
+                                <div class="select-tree" data-level="3"><ul class="tree-1"><li data-id="0" class="">不限</li><li data-id="310000">高级管理</li><li data-id="100000">技术</li><li data-id="110000">产品</li><li data-id="120000">设计</li><li data-id="130000">运营</li><li data-id="140000">市场</li><li data-id="150000">人事/财务/行政</li><li data-id="160000">销售</li><li data-id="170000">传媒</li><li data-id="180000">金融</li><li data-id="230000">汽车</li><li data-id="190000">教育培训</li><li data-id="210000">医疗健康</li><li data-id="250000">采购/贸易</li><li data-id="240000">供应链/物流</li><li data-id="220000">房地产/建筑</li><li data-id="260000">咨询/翻译/法律</li><li data-id="270000">管培生</li><li data-id="280000">旅游</li><li data-id="290000">服务业</li><li data-id="300000">生产制造</li><li data-id="200000">其他</li></ul><ul class="tree-2"><li class="blank">选择职类</li></ul><ul class="tree-3"></ul></div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="search-hot">
                     <b>热门职位:</b>
@@ -1818,7 +1825,29 @@
                                                                 <a href="#://www.zhipin.com/c101110100-p300207/">安全员</a>
                                                     </div>
                                                 </li>
-
+                                                <li>
+                                                    <h4>机械设计/制造</h4>
+                                                    <div class="text">
+                                                                <a href="#://www.zhipin.com/c101110100-p300399/">机械设计/制造</a>
+                                                                <a href="#://www.zhipin.com/c101110100-p300301/">机械工程师</a>
+                                                                <a href="#://www.zhipin.com/c101110100-p300302/">机械设计师</a>
+                                                                <a href="#://www.zhipin.com/c101110100-p300303/">机械设备工程师</a>
+                                                                <a href="#://www.zhipin.com/c101110100-p300304/">机械维修/保养</a>
+                                                                <a href="#://www.zhipin.com/c101110100-p300305/">机械制图</a>
+                                                                <a href="#://www.zhipin.com/c101110100-p300306/">机械结构工程师</a>
+                                                                <a href="#://www.zhipin.com/c101110100-p300307/">工业工程师</a>
+                                                                <a href="#://www.zhipin.com/c101110100-p300308/">工艺/制程工程师</a>
+                                                                <a href="#://www.zhipin.com/c101110100-p300309/">材料工程师</a>
+                                                                <a href="#://www.zhipin.com/c101110100-p300310/">机电工程师</a>
+                                                                <a href="#://www.zhipin.com/c101110100-p300311/">CNC/数控</a>
+                                                                <a href="#://www.zhipin.com/c101110100-p300312/">冲压工程师</a>
+                                                                <a href="#://www.zhipin.com/c101110100-p300313/">夹具工程师</a>
+                                                                <a href="#://www.zhipin.com/c101110100-p300314/">模具工程师</a>
+                                                                <a href="#://www.zhipin.com/c101110100-p300315/">焊接工程师</a>
+                                                                <a href="#://www.zhipin.com/c101110100-p300316/">注塑工程师</a>
+                                                                <a href="#://www.zhipin.com/c101110100-p300317/">铸造/锻造工程师</a>
+                                                    </div>
+                                                </li>
                                                 <li>
                                                     <h4>化工</h4>
                                                     <div class="text">
@@ -4002,7 +4031,7 @@
     function toHrRegister() {
         location.href="../jump/toHrRegister";
     }
-    
+
     //发布职位展示
     function issue() {
         $.ajax({
@@ -4043,7 +4072,7 @@
                  var html = "";
                  for(var i=0;i<data.length;i++){
                      html += "<li>\n" +
-                         "                                        <div class=\"sub-li\">\n" +
+                         "                                        <div onclick='toTheCompanyDetails("+data[i].id+")' class=\"sub-li\">\n" +
                          "                                            <a href=\"#://www.zhipin.com/gongsi/234cbd8324ef61b61nV-3NS_.html\" target=\"_blank\" ka=\"index_rcmd_companylogo_1_custompage\" class=\"company-info\">\n" +
                          "                                                <img src=\"../BOSS_files/5ad5a43fed7dfd30f36aef0b1beb31d6be1bd4a3bd2a63f070bdbdada9aad826.jpg\" data-src=\"#://img.bosszhipin.com/beijin/mcs/bar/20190103/5ad5a43fed7dfd30f36aef0b1beb31d6be1bd4a3bd2a63f070bdbdada9aad826.jpg?x-oss-process=image/resize,w_100,limit_0\" alt=\"\">\n" +
                          "                                                <div class=\"conpany-text\">\n" +
@@ -4066,8 +4095,14 @@
         })
     }
 
+    //跳转到公司详情页面
+    function toTheCompanyDetails(ids) {
+        location.href = "../jump/toTheCompanyDetails?ids="+ids;
+    }
+
     //跳转到zhiwei.html
     function toZhiwei(id){
+        alert(id);
          location.href = "../jump/toZhiwei?ids="+id;
     }
     // search1
@@ -4075,6 +4110,11 @@
         var wk= $("#wk").val();
         // alert(wk);
         location.href="../zhf/search1?wk="+wk;
+    }
+
+    //跳转到修改简历
+    function modifyResume(){
+        location.href = "../zcController/toTheResume";
     }
 </script>
 </body>

@@ -1,21 +1,28 @@
 package com.jk.controller;
 
+import com.jk.model.Gsyh;
 import com.jk.model.JianLi;
+import com.jk.model.User;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
 import com.jk.service.XxfService;
 import com.jk.service.ZcService;
+import com.jk.util.OSSClientUtil;
 import com.jk.utils.CheckSumBuilder;
 import com.jk.utils.HttpClientUtil;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -47,16 +54,16 @@ public class ZcController {
         HashMap<String, Object> params = new HashMap<String, Object>();
         //手机号
         params.put("mobile", phone);
-        params.put("templateid", 14841054);
+        params.put("templateid", 14842059);
 
         try {//parseObject
-            String str=HttpClientUtil.post(url, params, headers);
+            String str = HttpClientUtil.post(url, params, headers);
             //JSONObject jsonObject = JSONObject.parseObject(str);
             JSONObject jsonObject = new JSONObject(str);
-            String code=jsonObject.getString("code");
-            String obj=jsonObject.getString("obj");
+            String code = jsonObject.getString("code");
+            String obj = jsonObject.getString("obj");
             //把验证码返回到前台
-            if("200".equals(code)){
+            if ("200".equals(code)) {
                 System.out.println(jsonObject);
                 return obj;
             }
@@ -78,32 +85,38 @@ public class ZcController {
         return random;
     }
 
-    //登录
+    //个人版登录
     @RequestMapping("grDenLu")
     @ResponseBody
-    public HashMap<String,Object> grDenLu(UserModel user, HttpServletRequest request) {
+    public HashMap<String, Object> grDenLu(UserModel user,HttpSession session) {
         HashMap<String, Object> map = zcService.grDenLu(user);
         Integer ids = (Integer) map.get("ids");
-        request.getSession().setAttribute("id", ids);
+        session.setAttribute("ids",ids);
+        Integer ids1 = (Integer) session.getAttribute("ids");
+        System.out.println(ids1+"用户Id");
         return map;
     }
 
-    //企业版注册
-    @RequestMapping("zcHrRegister")
+    //企业版版登录
+    @RequestMapping("companiesIn")
     @ResponseBody
-    public String zcHrRegister(String phone,UserModel userModel){
-        userModel.setTel(phone);
-        //随机生成密码
-        String random=(int)((Math.random()*9+1)*100000)+"";
-        userModel.setPwd(random);
-        zcService.zcHrRegister(userModel);
-        return random;
+    public HashMap<String, Object> companiesIn(User user,HttpSession session) {
+        HashMap<String, Object> map = zcService.companiesIn(user);
+        //获取map存入定的Id
+        Integer ids = (Integer) map.get("ids");
+
+        session.setAttribute("ids2",ids);
+        Integer ids1 = (Integer) session.getAttribute("ids2");
+
+        System.out.println(ids1+"用户Id");
+        return map;
     }
+
 
     //查询已发布职位
     @RequestMapping("zcIssue")
     @ResponseBody
-    public List<Zwjl> zcIssue(){
+    public List<Zwjl> zcIssue() {
         List<Zwjl> zwjls = zcService.zcIssue();
         return zwjls;
     }
@@ -111,7 +124,7 @@ public class ZcController {
     //查询热门职位
     @RequestMapping("hotCompany")
     @ResponseBody
-    public List<Zwjl> hotCompany(){
+    public List<Zwjl> hotCompany() {
         List<Zwjl> zwjlList = zcService.hotCompany();
         return zwjlList;
     }
@@ -119,7 +132,73 @@ public class ZcController {
     //加载招聘详情页
     @RequestMapping("loadParticulars")
     @ResponseBody
-    public Zwjl loadParticulars(String ids){
+    public Zwjl loadParticulars(String ids) {
         return zcService.loadParticulars(ids);
     }
+
+    //阿里云上传图片
+    @RequestMapping("updaloadImg")
+    @ResponseBody
+    public String uploadImg(MultipartFile img)throws IOException {
+        System.out.println(img+"=============");
+        if (img == null || img.getSize() <= 0) {
+            throw new IOException("file不能为空");
+        }
+        OSSClientUtil ossClient=new OSSClientUtil();
+        String name = ossClient.uploadImg2Oss(img);
+        String imgUrl = ossClient.getImgUrl(name);
+        String[] split = imgUrl.split("\\?");
+        //System.out.println(split[0]);
+        return split[0];
+    }
+
+    //企业版注册
+    @RequestMapping("businessRegistration")
+    @ResponseBody
+    public String businessRegistration(User user){
+        System.out.println(user);
+        //随机生成密码
+        String random = (int) ((Math.random() * 9 + 1) * 100000) + "";
+        user.setPassword(random);
+        zcService.businessRegistrations(user);
+        return random;
+    }
+
+    //加载公司
+    @RequestMapping("loadCompany")
+    @ResponseBody
+    public List<Gsyh> loadCompany(){
+        List<Gsyh> userList = zcService.loadCompany();
+        return userList;
+    }
+
+    //跳转到修改简历
+    @RequestMapping("toTheResume")
+    //@ResponseBody
+    public String modifyResume(HttpServletRequest request, Model model){
+        Integer ids = (Integer) request.getSession().getAttribute("ids");
+        JianLi jianLi = zcService.queryTheResume(ids);
+        model.addAttribute("model",jianLi);
+        return "updHighcharts";
+    }
+
+    //修改简历
+    @RequestMapping("updHighcharts")
+    @ResponseBody
+    public Boolean updHighcharts(JianLi jianLi){
+        //System.out.println(jianLi.getId()+"=======================");
+        if(jianLi.getId()!=null){
+            zcService.updHighcharts(jianLi);
+            return true;
+        }
+        return false;
+    }
+
+    //加载公司详情
+    @RequestMapping("loaTheCompanyDetails")
+    @ResponseBody
+    public  Gsyh loaTheCompanyDetails(Integer ids){
+        return zcService.loaTheCompanyDetails(ids);
+    }
+
 }

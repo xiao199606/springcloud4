@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("jump")
 public class ToController {
@@ -15,7 +17,11 @@ public class ToController {
 
     //跳转到招聘官网首页
     @RequestMapping("toBosShow")
-    public String toBosShow(){
+    public String toBosShow(HttpSession session){
+        Integer ids = (Integer) session.getAttribute("ids");
+        if(ids==null){
+            return "notLogIn";
+        }
         return "BOSS";
     }
 
@@ -74,7 +80,7 @@ public class ToController {
         return "queryAccount";
     }
 
-    //职位查询页面
+    //个人账号查询页面
     @RequestMapping("queryStay")
     public String queryStay(){
         return "queryStay";
@@ -94,9 +100,6 @@ public class ToController {
         return "zhiwei";
     }
 
-
-
-
     //跳转公司职位管理
     @RequestMapping("toZwjl")
     public String toZwjl(){
@@ -104,6 +107,13 @@ public class ToController {
     }
 
 
+
+    //跳转到企业认证页面
+    @RequestMapping("toAuthentication")
+    public String toAuthentication(Model model,String phone1){
+           model.addAttribute("phone1",phone1);
+        return "authentication";
+    }
 
     //跳转公司用户查询
     @RequestMapping("queryCompany")
@@ -118,19 +128,37 @@ public class ToController {
     }
 
 
-    //跳转到企业认证页面
-    @RequestMapping("toAuthentication")
-    public String toAuthentication(Model model,String phone1){
-           model.addAttribute("phone1",phone1);
-        return "authentication";
 
+    //公司员工查询
+    @RequestMapping("queryUser")
+    public String queryuser(){
+        return "queryUser";
     }
 
+    //广告查询
+    @RequestMapping("queryGuang")
+    public String queryGuang(){
+        return "queryGuang";
+    }
 
+    //广告新增
+    @RequestMapping("addGuang")
+    public String addGuang(){
+        return "addGuang";
+    }
 
-    //跳转公司面试管理
+    //员工 简历管理
     @RequestMapping("toMianShi")
     public String toMianShi(){
-        return "mianshi";
+        return "showMianShi";
     }
+
+    //跳转到公司详情页面
+    @RequestMapping("toTheCompanyDetails")
+    public String toTheCompanyDetails(String ids,Model model){
+        model.addAttribute("ids",ids);
+        return "gongsi";
+    }
+
+
 }

@@ -131,4 +131,26 @@ public class HbController {
     public void updateHighcharts(Integer id) {
         hbServiceApi.updateHighcharts(id);
     }
+
+    @RequestMapping("queryUser")
+    public ResultPage queryUserList(@RequestBody ResultPage result) {
+
+        return hbServiceApi.queryUserList(result);
+    }
+
+    @RequestMapping("deleteUser")
+    public Boolean deleteUser(String ids){
+        try {
+            hbServiceApi.deleteUser(ids);
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @RequestMapping("queryGuang")
+    public ResultPage queryGuangList(@RequestBody ResultPage result) {
+        return hbServiceApi.queryGuangList(result);
+    }
 }

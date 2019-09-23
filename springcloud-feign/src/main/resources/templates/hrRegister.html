@@ -12,6 +12,8 @@
         
         
             <title>【BOSS直聘网页版登录】短信/密码/扫码登录-BOSS直聘</title>
+
+
             <meta name="keywords" content="BOSS直聘，BOSS直聘短信登录">
             <meta name="description" content="BOSS直聘网页版登录页，是BOSS直聘给boss和牛人共有的电脑登录页面，用户可使用账号密码登录、短信快捷登录、扫描二维码登录三种方式，BOSS直聘-互联网招聘神器！">
         
@@ -361,7 +363,7 @@
           <div class="tip-error"></div>
         </div>
         <div class="form-btn">
-          <a class="btn" href="javascript:register()">注册</a>
+          <a class="btn" href="javascript:toAuthentication()">注册</a>
         </div>
         <div class="text-tip">
           <div class="tip-error"></div>
@@ -530,30 +532,7 @@
 
     }
 
-    //企业版注册
-    function register() {
-        var phone = $("#phone1").val();
-        var obj = $("#obj").val();
-        var phoneCode1 = $("#phoneCode1").val();
-        if(obj==phoneCode1){
-          $.ajax({
-            url:"../zcController/zcHrRegister",
-            type:"post",
-            data:{phone:phone},
-            dataType:"json",
-            success:function(data){
-              alert("您的密码为"+data+"请妥善保管");
-              location.href="toBosShow";
-            },
-            error:function(){
-              alert("注册失败");
-            }
-          })
-        }else {
-          alert("验证码不一致")
-        }
 
-    }
     
     //企业登录
   function grDenLu() {
@@ -561,12 +540,11 @@
       var tel = $("#account2").val();
       var pwd = $("#password").val();
       $.ajax({
-        url:"../zcController/grDenLu",
+        url:"../zcController/companiesIn",
         type:"post",
         data:{
           tel:tel,
-          pwd:pwd,
-          state:state
+          password:pwd
         },
         dataType:"json",
         success:function(data){
@@ -576,19 +554,41 @@
           if(data.code==1){
             alert("密码错误");
           }
-          //登录个人版
-          if(data.code==2 && data.state==1){
-            location.href="../jump/toBosShow";
-          }
           //登录企业版
-          if(data.code==2 && data.state==2){
+          if(data.code==2){
             location.href="../jump/toHr";
           }
         },
         error:function () {
-          alert("个人登录失败");
+          alert("登录失败");
         }
       })
+  }
+
+  //跳转到企业认证页面
+  function toAuthentication(){
+      //获取后台验证码
+      var obj = $("#obj").val();
+      //获取用户手机号
+      var phone1 = $("#phone1").val();
+      //判断手机号是否为空
+      if(phone1==""){
+        alert("请输入手机号");
+        return 0;
+      }
+
+      //获取输入验证码
+      var phoneCode1 = $("#phoneCode1").val();
+      if(obj!=phoneCode1){
+        alert("验证码不一致");
+        return 0;
+      }else{
+        //获取手机号
+        //var phone1 = $("#phone1").val();
+        location.href = "../jump/toAuthentication?phone1="+phone1;
+      }
+
+
   }
 </script>
 <!--存放验证码-->

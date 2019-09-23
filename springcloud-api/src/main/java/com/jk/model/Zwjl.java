@@ -9,22 +9,17 @@
  * 作者姓名           修改时间           版本号              描述
  */
 package com.jk.model;
-
-
 import lombok.Data;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import org.springframework.format.annotation.DateTimeFormat;
-
-
 import java.util.Date;
 
 /**
- * 〈一句话功能简述〉<br>
+ * 〈一句话功能简述〉<br> 
  * 〈〉
  *
  * @author 斌
@@ -54,6 +49,7 @@ public class Zwjl {
     private String lianxr;
     private String lianxtel;
     private String email;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd") // 处理从	前端到后端的时间
     @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
     private Date fdate;

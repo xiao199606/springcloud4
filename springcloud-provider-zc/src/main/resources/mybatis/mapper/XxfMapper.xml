@@ -1,36 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jk.dao.ZcDao" >
-<select id="test" resultType="book">
-    select * from t_book
-</select>
+<mapper namespace="com.jk.dao.ZcDao">
 
-    <!--个人注册-->
-    <insert id="zcRegister">
-        INSERT INTO gryh(username,pwd,tel,zhucsj,state)
+
+    <!--新增简历-->
+    <insert id="zcRegister" parameterType="com.jk.model.JianLi">
+        INSERT INTO jianli (
+            name,
+            sex,
+            birthday,
+            minz,
+            huny,
+            zhengzh,
+            xuex,
+            zhuany,
+            xuel,
+            gongzjy,
+            xianjd,
+            jig,
+            gangw,
+            gangwlb,
+            gongzdq,
+            yuexyq,
+            qiuzhzht,
+            jishtch,
+            gongzjl,
+            gerjs,
+            tel,
+            email,
+            state
+        )
         VALUES(
-           #{username},
-           #{pwd},
+           #{name},
+           #{sex},
+           #{birthday},
+           #{minz},
+           #{huny},
+           #{zhengzh},
+           #{xuex},
+           #{zhuany},
+           #{xuel},
+           #{gongzjy},
+           #{xianjd},
+           #{jig},
+           #{gangw},
+           #{gangwlb},
+           #{gongzdq},
+           #{yuexyq},
+           #{qiuzhzht},
+           #{jishtch},
+           #{gongzjl},
+           #{gerjs},
            #{tel},
-           SYSDATE(),
+           #{email},
            1
         )
     </insert>
 
-    <!--企业版注册-->
-    <insert id="zcHrRegister">
-        INSERT INTO gryh(username,pwd,tel,zhucsj,state)
-        VALUES(
-           #{username},
-           #{pwd},
-           #{tel},
-           SYSDATE(),
-           2
-        )
+    <!--个人版注册-->
+    <insert id="addPersonalUser" parameterType="com.jk.model.zcModel.UserModel">
+         INSERT INTO  gryh (pwd,tel,email,zhucsj,jianLiId) VALUES(#{pwd},#{tel},#{email},SYSDATE(),#{jianLiId})
     </insert>
 
+
+    <!--查询用户-->
     <select id="queryTel" resultType="com.jk.model.zcModel.UserModel">
-        select *  from  user WHERE tel = #{tel} and state = #{state}
+        select *  from  gryh WHERE tel = #{tel}
     </select>
 
     <!--查询已发布职位-->
@@ -51,4 +86,53 @@
     <select id="loadParticulars" resultType="com.jk.model.Zwjl">
         select  *  from  zwjl WHERE id = #{value}
     </select>
+
+    <!--企业版注册-->
+    <select id="businessRegistrations" parameterType="com.jk.model.User">
+        INSERT INTO user (username,password,tel,zhucsj,gsyhid,audit,doBusiness,status)
+        VALUES(
+             #{username},
+             #{password},
+             #{tel},
+             SYSDATE(),
+             #{gsyhid},
+             1,
+             #{doBusiness},
+             3
+
+        )
+    </select>
+
+    <!--查询企业用户-->
+    <select id="companiesIn" parameterType="com.jk.model.User" resultType="com.jk.model.User">
+        select *  from  user WHERE tel = #{tel}
+    </select>
+
+    <!--修改简历-->
+    <update id="updHighcharts" parameterType="com.jk.model.JianLi">
+        UPDATE  jianli set
+        name  = #{name},
+        sex = #{sex},
+        birthday = #{birthday},
+        minz = #{minz},
+        huny = #{huny},
+        zhengzh = #{zhengzh},
+        xuex = #{xuex},
+        zhuany = #{zhuany},
+        xuel = #{xuel},
+        gongzjy = #{gongzjy},
+        xianjd = #{xianjd},
+        jig = #{jig},
+        gangw = #{gangw},
+        gangwlb = #{gangwlb},
+        gongzdq = #{gongzdq},
+        yuexyq = #{yuexyq},
+        qiuzhzht = #{qiuzhzht},
+        jishtch = #{jishtch},
+        gongzjl = #{gongzjl},
+        gerjs = #{gerjs},
+        tel = #{tel},
+        email = #{email}
+        WHERE id = #{id}
+    </update>
 </mapper>
