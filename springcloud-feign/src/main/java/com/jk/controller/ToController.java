@@ -85,4 +85,10 @@ public class ToController {
     public String toHrRegister(){
         return "hrRegister";
     }
+
+    //跳转到企业版登录注册
+    @RequestMapping("toaaa")
+    public String toaaa(){
+        return "aaaaa";
+    }
 }
