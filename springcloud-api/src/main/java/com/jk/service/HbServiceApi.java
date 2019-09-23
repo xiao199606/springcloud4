@@ -74,6 +74,7 @@ public interface HbServiceApi {
 
     @RequestMapping("addGuang")
     String addGuang(@RequestBody Guanggao guanggao);
+
     @RequestMapping("querylanwei")
     List<LanWei> querylanwei();
 }

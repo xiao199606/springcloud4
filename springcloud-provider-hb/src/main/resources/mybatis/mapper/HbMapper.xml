@@ -128,10 +128,12 @@
     <select id="queryaddGuang" resultType="int">
         select count(*) from guanggao where state = '2'
     </select>
+    
     <select id="querylanwei" resultType="lanwei">
         select * from lanwei
     </select>
-    <select id="guanggao" resultType="gsyh">
-        select * from gsyh where id=#{gsid}
+
+    <select id="querygs" resultType="Gsyh" parameterType="Integer">
+        select * from gsyh where state='2' and id=#{gsid}
     </select>
 </mapper>

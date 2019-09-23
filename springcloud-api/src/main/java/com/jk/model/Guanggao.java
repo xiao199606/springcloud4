@@ -31,6 +31,14 @@ public class Guanggao {
 
     private Integer payment;
 
+    public Integer getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Integer payment) {
+        this.payment = payment;
+    }
+
     private Integer lcolumn;
 
     private Integer state;
@@ -127,13 +135,6 @@ public class Guanggao {
         this.audit = audit == null ? null : audit.trim();
     }
 
-    public Integer getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Integer payment) {
-        this.payment = payment;
-    }
 
     public Integer getLcolumn() {
         return lcolumn;

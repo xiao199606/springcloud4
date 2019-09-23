@@ -158,7 +158,6 @@ public class HbController {
     }
 
     @RequestMapping("querylanwei")
-
     public List<LanWei> querylanwei(){
         return hbServiceApi.querylanwei();
     }

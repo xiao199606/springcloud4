@@ -56,7 +56,7 @@
             <tr>
                 <td>总价</td>
                 <td>
-                    <input type="type" id="payment" name="payment" value="0" disabled/>
+                    <input type="text" id="payment" name="payment" value="0" readonly>
                 </td>
             </tr>
             <tr>
@@ -144,11 +144,12 @@
 
     //新增广告
     function addGuang() {
-              var guanggao = $("#addForm").serialize();
+        alert($("#addForm").serialize());
+        alert($("#payment").val());
         $.ajax({
             url:"../Hb/addGuang",
             type:"post",
-            data:{guanggao:guanggao},
+            data:$("#addForm").serialize(),
             success:function(data){
                 if(data==1){
                     alert("广告位已满")
