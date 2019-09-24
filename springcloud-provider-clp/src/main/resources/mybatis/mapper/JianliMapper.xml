@@ -58,13 +58,18 @@
 
 
   <select id="queryYuangongJianli" resultMap="BaseResultMap" >
-    select * from gsyh a ,gsyh_jianli b ,jianli c where a.id=b.gongsiid and b.jianliid=c.id
-      limit #{sta},#{rows}
+    select c.* from gsyh a ,gsyh_jianli b ,jianli c ,user d where a.id=b.gongsiid and b.jianliid=c.id and a.id=d.gsyhid and d.id=8
+    limit #{sta},#{rows}
   </select>
 
 
   <select id="queryYuangongJianliCount" resultType="long">
-    select count(*) from gsyh a ,gsyh_jianli b ,jianli c where a.id=b.gongsiid and b.jianliid=c.id
+    select count(*) from gsyh a ,gsyh_jianli b ,jianli c ,user d where a.id=b.gongsiid and b.jianliid=c.id and a.id=d.gsyhid and d.id=8
   </select>
+
+
+  <delete id="deletegsyhjianli">
+    delete from gsyh_jianli where jianliid=#{id}
+  </delete>
 
 </mapper>

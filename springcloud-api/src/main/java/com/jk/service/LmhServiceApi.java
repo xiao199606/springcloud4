@@ -3,15 +3,16 @@ package com.jk.service;
 import com.jk.model.JianLi;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 public interface LmhServiceApi {
 
     @PostMapping("sendMails")
-    Boolean sendMails();
+    Boolean sendMails(@RequestParam("email") String email);
     @PostMapping("failureMails")
-    Boolean failureMails();
+    Boolean failureMails(@RequestParam("email") String email);
     @PostMapping
     void updateJianLi();
 

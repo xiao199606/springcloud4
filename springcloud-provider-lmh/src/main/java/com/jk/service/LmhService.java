@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface LmhService {
-    Boolean sendMails(HttpServletRequest request);
+    Boolean sendMails(HttpServletRequest request,String email);
 
-    Boolean failureMails(HttpServletRequest request);
+    Boolean failureMails(HttpServletRequest request,String email);
 
     void updateJianLi();
 

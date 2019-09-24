@@ -30,4 +30,7 @@ public interface JianliMapper {
     List queryYuangongJianli(@Param("sta")int sta,@Param("rows") Integer rows);
 
     long queryYuangongJianliCount();
+
+
+    void deletegsyhjianli(@Param("id")Integer id);
 }
