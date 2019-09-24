@@ -4,6 +4,7 @@ import com.jk.model.*;
 import com.jk.model.zcModel.UserModel;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface ZcDao {
@@ -57,4 +58,10 @@ public interface ZcDao {
     //查询面试官姓名
     @Select("select lianxr  from  zwjl where id = #{value}")
     Zwjl loadHrName(String ids);
+
+    //查询简历总条数
+    Integer queryZcJianLiCount(HashMap<String, Object> hashMap);
+
+    //查询简历所有数据
+    List<JianLi> queryZcJianLi(HashMap<String, Object> hashMap);
 }

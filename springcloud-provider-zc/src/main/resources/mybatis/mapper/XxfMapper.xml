@@ -142,4 +142,14 @@
         left join gsyh gs on gs.id = zw.gsid
 		WHERE zw.gsid = #{value}
     </select>
+
+    <!--查询简历总条数-->
+    <select id="queryZcJianLiCount" parameterType="hashMap" resultType="int">
+        SELECT count(*)  from jianli WHERE state=2 ORDER BY zhiding desc,tian DESC,zhiddate,birthday
+    </select>
+
+    <!--查询简历所有数据-->
+    <select id="queryZcJianLi" parameterType="hashMap" resultType="com.jk.model.JianLi">
+        SELECT *  from jianli WHERE state=2 ORDER BY zhiding desc,tian DESC,zhiddate,birthday LIMIT #{startIndex},#{endIndex}
+    </select>
 </mapper>

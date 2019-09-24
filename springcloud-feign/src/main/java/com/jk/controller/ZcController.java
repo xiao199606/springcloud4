@@ -8,6 +8,7 @@ import com.jk.model.zcModel.UserModel;
 import com.jk.service.XxfService;
 import com.jk.service.ZcService;
 import com.jk.util.OSSClientUtil;
+import com.jk.util.ResultPage;
 import com.jk.utils.CheckSumBuilder;
 import com.jk.utils.HttpClientUtil;
 import org.json.JSONObject;
@@ -257,6 +258,13 @@ public class ZcController {
         String s = redisTemplate.opsForValue().get("transmit"+ids1);
         map.put("code",s);
         return map;
+    }
+
+    //查询简历
+    @RequestMapping("queryZcJianLi")
+    @ResponseBody
+    public ResultPage queryZcJianLi(ResultPage resultPage){
+        return zcService.queryZcJianLi(resultPage);
     }
 
 }

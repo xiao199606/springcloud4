@@ -5,6 +5,7 @@ import com.jk.model.JianLi;
 import com.jk.model.User;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
+import com.jk.util.ResultPage;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,4 +56,7 @@ public interface ZcServiceApi {
 
     @GetMapping(value = "loadHrName")
     Zwjl loadHrName(@RequestParam(value = "ids") String ids);
+
+    @GetMapping(value = "queryZcJianLi")
+    ResultPage queryZcJianLi(@RequestBody ResultPage resultPage);
 }

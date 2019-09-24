@@ -96,7 +96,7 @@ public class ToController {
     //跳转到招聘详情信息页面
     @RequestMapping("toZhiwei")
     public String toZhiwei(Model model,Integer ids){
-        System.out.println(ids+"===========");
+        //发布职位表Id
         model.addAttribute("ids",ids);
         return "zhiwei";
     }

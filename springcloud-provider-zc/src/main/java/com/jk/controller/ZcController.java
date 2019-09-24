@@ -7,6 +7,7 @@ import com.jk.model.User;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
 import com.jk.service.ZcServiceApi;
+import com.jk.util.ResultPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -113,6 +114,12 @@ public class ZcController {
     public Zwjl loadHrName(@RequestParam(value = "ids") String ids){
 
         return zcService.loadHrName(ids);
+    }
+
+    //查询简历
+    @RequestMapping("queryZcJianLi")
+    public ResultPage queryZcJianLi(@RequestBody ResultPage resultPage){
+        return zcService.queryZcJianLi(resultPage);
     }
 
 }

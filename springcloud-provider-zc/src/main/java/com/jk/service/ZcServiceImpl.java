@@ -5,6 +5,7 @@ import com.jk.model.Book;
 import com.jk.model.JianLi;
 import com.jk.model.Zwjl;
 import com.jk.model.zcModel.UserModel;
+import com.jk.util.ResultPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -151,6 +152,24 @@ public class ZcServiceImpl implements ZcServiceApi {
     @Override
     public Zwjl loadHrName(String ids) {
         return zcDao.loadHrName(ids);
+    }
+
+    //查询简历
+    @Override
+    public ResultPage queryZcJianLi(ResultPage resultPage) {
+        ResultPage result = new ResultPage();
+        HashMap<String, Object> hashMap = new HashMap<>();
+        //hashMap.put("user", user);
+        //查询总条数
+        Integer count = zcDao.queryZcJianLiCount(hashMap);
+        resultPage.setTotal(count);
+
+        hashMap.put("startIndex", (resultPage.getPageNumber()-1)*resultPage.getPageSize());
+        hashMap.put("endIndex", resultPage.getPageSize());
+        //查询list
+        List<JianLi> list = zcDao.queryZcJianLi(hashMap);
+        resultPage.setRows(list);
+        return resultPage;
     }
 
 

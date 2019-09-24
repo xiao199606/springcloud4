@@ -130,14 +130,8 @@
 														<!-- 未登录 -->
 
 
-																								<input class="btn btn-startchat" onclick="toGotTong()"  type="button" value="沟通">
+																								<input class="btn btn-startchat" onclick="toGotTong()"  type="button" value="沟通1">
 												</div>
-                        <div class="op-container">
-                            <!-- 在线简历 -->
-                                <a href="https://www.zhipin.com/geek/attresume/parser.html" class="fl icon-resume" ka="job_online_resume_0"><i class="icon"></i>填写在线简历</a>
-                            <!-- 附件简历 -->
-                                <a href="https://www.zhipin.com/geek/attresume/parser.html" class="fr icon-upload" ka="job_attach_resume_0"><i class="icon"></i>上传附件简历</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1580,7 +1574,7 @@
                  $("#xuel").html(data.xuel);
                  $("#lianxr").html(data.lianxr);
                  $("#jiesh").html(data.jiesh);
-                 $("#gsid").val(data.gsid)
+                 $("#gsid").val(data.gsid);
              },
              error:function(){
                  alert("加载招聘详情页失败");
@@ -1604,6 +1598,7 @@
         })
     }
 </script>
+<!--发布职位表Id-->
 <input type="text" id="aa" th:value="${ids}">
 </body>
 </html>
