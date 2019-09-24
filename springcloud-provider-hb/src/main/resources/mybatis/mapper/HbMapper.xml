@@ -6,10 +6,14 @@
 </select>
 
     <select id="login" resultType="user" parameterType="String">
-    select * from user where username=#{username}
+    select * from user where username=#{username} and status in (1,2)
     </select>
 
     <select id="getTreeAll" resultType="Tree">
+            select e.* from user a,user_role b,role c,role_tree d,tree e where a.status=b.ustatusid and b.rid=c.id and c.id=d.rid and d.tid=e.id and a.id=#{id}
+    </select>
+
+    <select id="getTreeAll2" resultType="Tree">
             select e.* from user a,user_role b,role c,role_tree d,tree e where a.status=b.ustatusid and b.rid=c.id and c.id=d.rid and d.tid=e.id and a.id=#{id}
     </select>
 
@@ -118,5 +122,22 @@
 
     <select id="HashMap6" resultType="Guanggao" parameterType="HashMap">
     select * from guanggao where state='2' ORDER BY createdate desc limit #{start},#{end}
+    </select>
+
+    <insert id="addGuang" parameterType="Guanggao">
+        insert into guanggao (url,imgsrc,startime,endtime,createdate,payment,lcolumn,state,gsid) values
+        (#{url},#{imgsrc},#{startime},#{endtime},now(),#{payment},#{lcolumn},1,#{gsid})
+    </insert>
+
+    <select id="queryaddGuang" resultType="int">
+        select count(*) from guanggao where state = '2'
+    </select>
+    
+    <select id="querylanwei" resultType="lanwei">
+        select * from lanwei
+    </select>
+
+    <select id="querygs" resultType="user" parameterType="Integer">
+        select * from user where  id=#{gsid}
     </select>
 </mapper>

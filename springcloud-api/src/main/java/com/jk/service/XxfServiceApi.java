@@ -1,5 +1,6 @@
 package com.jk.service;
 
+import com.jk.model.Gsyh;
 import com.jk.model.Leib;
 import com.jk.model.Tree;
 import com.jk.model.Zwjl;
@@ -17,12 +18,15 @@ public interface XxfServiceApi {
     ResultPage queryZwjl(@RequestBody ResultPage resultPage);
     @GetMapping("queryleib")
     List<Leib> queryleib();
-    @PostMapping("addgsZwjl")
-    void addgsZwjl(@RequestBody Zwjl zwjl);
+    @GetMapping("addgsZwjl")
+    Integer addgsZwjl(@RequestBody Zwjl zwjl);
     @PostMapping("deleteResume")
     void deleteResume(@RequestParam("ids")String ids);
     @GetMapping("findZwjlById")
     Zwjl findZwjlById(@RequestParam("id") Integer id);
     @PostMapping("updateZwjl")
     void updateZwjl(Zwjl zwjl);
+
+    @GetMapping("querygsbyid")
+    Gsyh querygsbyid(@RequestParam("gsid")Integer gsid);
 }

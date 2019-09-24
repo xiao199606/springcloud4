@@ -1,30 +1,35 @@
 package com.jk.controller;
 
 import com.jk.dao.JworkRepository;
+import com.jk.model.Gryh;
+import com.jk.model.User;
 import com.jk.model.Zwjl;
+import com.jk.model.Gsyhjianli;
+import com.jk.service.ZhfService;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
-import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @RequestMapping("zhf")
 @Controller
 public class ZhfController {
+
+    @Autowired
+    private ZhfService zhfService;
 
     @RequestMapping("showwork")
     public String showwork(){
@@ -104,6 +109,7 @@ public class ZhfController {
             jwork.setGongsmc((String) hit.getSourceAsMap().get("gongsmc"));
             jwork.setGongsxz((String) hit.getSourceAsMap().get("gongsxz"));
             jwork.setYuangrs((String) hit.getSourceAsMap().get("yuangrs"));
+            jwork.setGsid((Integer) hit.getSourceAsMap().get("gsid"));
             jworks.add(jwork);
         }
         //   map.put("total",totalHits);
@@ -229,6 +235,7 @@ public class ZhfController {
             jwork.setGongsmc((String) hit.getSourceAsMap().get("gongsmc"));
             jwork.setGongsxz((String) hit.getSourceAsMap().get("gongsxz"));
             jwork.setYuangrs((String) hit.getSourceAsMap().get("yuangrs"));
+            jwork.setGsid((Integer) hit.getSourceAsMap().get("gsid"));
             jworks.add(jwork);
         }
 
@@ -239,4 +246,23 @@ public class ZhfController {
         model.addAttribute("jy",jy);
         return "boss2";
     }
+
+    //投递简历
+    @PostMapping("toujl")
+    @ResponseBody
+    public String toujl(Integer gsid, HttpServletRequest request){
+        //首先要获取 登录人的id   简单做下 一个人只有一份简历
+        Integer   id=(Integer) request.getSession().getAttribute("ids");
+
+
+        Gryh gryh=zhfService.querygy(id);
+        //公司的id  gsid
+      //  System.err.println(gsid);
+        // 获取简历ID
+       Integer jlid= gryh.getJianLiId();
+        zhfService.toujl(gsid,jlid);
+
+        return "suc";
+    }
+
 }

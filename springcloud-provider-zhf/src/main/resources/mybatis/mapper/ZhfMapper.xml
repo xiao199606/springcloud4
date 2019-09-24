@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.ZhfDao" >
+<select id="test" resultType="book">
+    select * from book
+</select>
+
+
+
+    <select id="querygy" resultType="Gryh">
+        select * from gryh where id=#{id}
+    </select>
+    <insert id="toujl">
+        insert into gsyh_jianli (gongsiid,jianliid)
+        values (#{gsid},#{jlid})
+    </insert>
+</mapper>

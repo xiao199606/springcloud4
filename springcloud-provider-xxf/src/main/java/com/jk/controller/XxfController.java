@@ -1,5 +1,6 @@
 package com.jk.controller;
 
+import com.jk.model.Gsyh;
 import com.jk.model.Leib;
 import com.jk.model.Tree;
 import com.jk.model.Zwjl;
@@ -38,8 +39,9 @@ public class XxfController {
     }
 
     @RequestMapping("addgsZwjl")
-    public void addgsZwjl(@RequestBody Zwjl zwjl){
-        XxfService.addgsZwjl(zwjl);
+    public Integer addgsZwjl(@RequestBody Zwjl zwjl){
+      Integer zid= XxfService.addgsZwjl(zwjl);
+        return zid;
     }
 
     @RequestMapping("updateZwjl")
@@ -61,5 +63,11 @@ public class XxfController {
     @RequestMapping("findZwjlById")
     public Zwjl findZwjlById(@RequestParam Integer id){
         return XxfService.findZwjlById(id);
+    }
+
+    @RequestMapping("querygsbyid")
+    public Gsyh querygsbyid(Integer gsid){
+
+        return XxfService.querygsbyid(gsid);
     }
 }

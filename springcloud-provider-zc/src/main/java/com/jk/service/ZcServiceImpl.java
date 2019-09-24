@@ -20,6 +20,7 @@ public class ZcServiceImpl implements ZcServiceApi {
 
 
 
+
     //个人版注册
     @Override
     public void zcRegister(JianLi jianLi) {
@@ -88,6 +89,56 @@ public class ZcServiceImpl implements ZcServiceApi {
     @Override
     public List<Gsyh> loadCompany() {
         return zcDao.loadCompany();
+    }
+
+    //企业版注册
+    @Override
+    public void businessRegistrations(User user) {
+
+        zcDao.businessRegistrations(user);
+    }
+
+    //企业版登录
+    @Override
+    public HashMap<String, Object> companiesIn(User user) {
+        HashMap<String, Object> map = new HashMap<>();
+        User userModel = zcDao.companiesIn(user);
+        //判断用户是否存在
+        if(userModel==null){
+            map.put("code",0);
+            map.put("msg","账号错误");
+            return map;
+        }
+        //判断密码是否一致
+        String pwd = user.getPassword();
+        if(!pwd.equals(userModel.getPassword())){
+            map.put("code",1);
+            map.put("msg","密码错误");
+            return map;
+        }
+        map.put("code",2);
+        //获取用户Id
+        Integer ids = userModel.getId();
+        map.put("ids", ids);
+        return map;
+    }
+
+    //查询简历
+    @Override
+    public JianLi queryTheResume(Integer ids) {
+        return zcDao.queryTheResume(ids);
+    }
+
+    //修改简历
+    @Override
+    public void updHighcharts(JianLi jianLi) {
+        zcDao.updHighcharts(jianLi);
+    }
+
+    //加载公司详情
+    @Override
+    public Gsyh loaTheCompanyDetails(Integer ids) {
+        return zcDao.loaTheCompanyDetails(ids);
     }
 
 

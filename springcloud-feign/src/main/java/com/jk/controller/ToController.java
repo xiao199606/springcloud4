@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("jump")
 public class ToController {
@@ -15,7 +17,11 @@ public class ToController {
 
     //跳转到招聘官网首页
     @RequestMapping("toBosShow")
-    public String toBosShow(){
+    public String toBosShow(HttpSession session){
+        Integer ids = (Integer) session.getAttribute("ids");
+        if(ids==null){
+            return "notLogIn";
+        }
         return "BOSS";
     }
 
@@ -40,7 +46,7 @@ public class ToController {
     //跳转到Hr
     @RequestMapping("toHr")
     public String toHr(){
-        return "tree";
+        return "tree2";
     }
 
     //后台登录页面
@@ -87,7 +93,7 @@ public class ToController {
     }
 
     //跳转到招聘详情信息页面
-    @RequestMapping("loadParticulars")
+    @RequestMapping("toZhiwei")
     public String toZhiwei(Model model,Integer ids){
         System.out.println(ids+"===========");
         model.addAttribute("ids",ids);
@@ -121,6 +127,8 @@ public class ToController {
         return "highcharts";
     }
 
+
+
     //公司员工查询
     @RequestMapping("queryUser")
     public String queryuser(){
@@ -145,6 +153,17 @@ public class ToController {
         return "showMianShi";
     }
 
+    //跳转到公司详情页面
+    @RequestMapping("toTheCompanyDetails")
+    public String toTheCompanyDetails(String ids,Model model){
+        model.addAttribute("ids",ids);
+        return "gongsi";
+    }
 
+    //置顶天数
+    @RequestMapping("top")
+    public String top(){
+        return "top";
+    }
 
 }

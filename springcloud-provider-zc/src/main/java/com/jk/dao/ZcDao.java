@@ -33,4 +33,21 @@ public interface ZcDao {
 
     @Select("select id,gongsmc  from  gsyh")
     List<Gsyh> loadCompany();
+
+    //企业版注册
+    void businessRegistrations(User user);
+
+    //查询企业版用户
+    User companiesIn(User user);
+
+    //查询简历
+    @Select("select *  from  jianli where gid = #{value}")
+    JianLi queryTheResume(Integer ids);
+
+    //修改简历
+    void updHighcharts(JianLi jianLi);
+
+    //加载公司详情
+    @Select("select *  from gsyh WHERE id = #{value}")
+    Gsyh loaTheCompanyDetails(Integer ids);
 }

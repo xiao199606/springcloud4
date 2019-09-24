@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+    <!-- 引入my97 -->
+    <script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+</head>
+<body>
+<center>
+<form   id="addForm" border="1">
+    <table>
+        <tr>
+            <td>姓名</td>
+            <td>
+                <input type="text" class="form-control"  name="name" th:value="${model.name}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>性别</td>
+            <td><input type="radio" name="sex" value="1" th:field="*{model.sex}">
+                <input type="radio" name="sex" value="2" th:field="*{model.sex}">
+            </td>
+        </tr>
+        <tr>
+            <td>出生日期</td>
+            <td>
+                <input type="date" name="birthday" th:value="${#dates.format(model.birthday, 'yyyy-MM-dd')}" class="layui-input" id="creationdate">
+            </td>
+        </tr>
+        <tr>
+            <td>民族</td>
+            <td><input type="text" name="minz" id="minz" th:value="${model.minz}"></td>
+        </tr>
+        <tr>
+            <td>婚姻状况</td>
+            <td><input type="text" name="huny" id="huny" th:value="${model.huny}"></td>
+        </tr>
+        <tr>
+            <td>政治面貌</td>
+            <td><input type="text" name="zhengzh" id="zhengzh" th:value="${model.zhengzh}"></td>
+        </tr>
+        <tr>
+            <td>毕业学校</td>
+            <td><input type="text" name="xuex" id="xuex" th:value="${model.xuex}"></td>
+        </tr>
+        <tr>
+            <td>所学专业</td>
+            <td><input type="text" name="zhuany" id="zhuany" th:value="${model.zhuany}"></td>
+        </tr>
+        <tr>
+            <td>最高学历</td>
+            <td><input type="text" name="xuel" id="xuel" th:value="${model.xuel}"></td>
+        </tr>
+        <tr>
+            <td>工作经验</td>
+            <td>
+                <textarea name="gongzjy" rows="" cols="" th:text="${model.gongzjy}"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>现居地</td>
+            <td><input type="text" name="xianjd" id="xianjd" th:value="${model.xianjd}"></td>
+        </tr>
+        <tr>
+            <td>籍贯</td>
+            <td><input type="text" name="jig" id="jig" th:value="${model.jig}"></td>
+        </tr>
+        <tr>
+            <td>求职岗位</td>
+            <td><input type="text" name="gangw" id="gangw" th:value="${model.gangw}"></td>
+        </tr>
+        <tr>
+            <td>岗位类别</td>
+            <td><input type="text" name="gangwlb" id="gangwlb" th:value="${model.gangwlb}"></td>
+        </tr>
+        <tr>
+            <td>工作地区</td>
+            <td><input type="text" name="gongzdq" id="gongzdq" th:value="${model.gongzdq}" ></td>
+        </tr>
+        <tr>
+            <td>月薪要求</td>
+            <td><input type="text" name="yuexyq" th:value="${model.yuexyq}" id="yuexyq"></td>
+        </tr>
+        <tr>
+            <td>求职状态</td>
+            <td>
+                <textarea name="qiuzhzht" th:text="${model.gongzjl}" rows="" cols=""></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>技术特长</td>
+            <td>
+                <textarea name="jishtch" rows="" cols="" th:text="${model.gongzjl}"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>工作经历</td>
+            <td>
+                <textarea name="gongzjl" rows="" cols="" th:text="${model.gongzjl}"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>个人介绍</td>
+            <td>
+                <textarea name="gerjs" rows="" th:text="${model.gerjs}" cols=""></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>手机号</td>
+            <td><input type="text" name="tel" th:value="${model.tel}"></td>
+        </tr>
+        <tr>
+            <td>邮箱</td>
+            <td><input type="text" name="email" th:value="${model.email}" ></td>
+        </tr>
+    </table>
+    <input type="hidden" name="id" th:value="${model.id}" id="sid">
+    <input type="button" value="提交" onclick="updHighcharts()">
+    <input type="button" value="置顶" onclick="updateResume1()">
+</form>
+</center>
+</body>
+<script>
+    function updHighcharts(){
+        $.ajax({
+            url:"../zcController/updJianLi",
+            type:"post",
+            data:$("#addForm").serialize(),
+            dataType:"json",
+            success:function (data) {
+                alert("修改完成");
+                location.href = "../jump/toBosShow";
+            },
+            error:function(){
+                alert("修改失败");
+            }
+        })
+    }
+
+    var res;
+    function createAddContent(url) {
+        $.ajax({
+            url: url,
+            async: false,
+            success: function (data) {
+                res = data;
+            }
+        });
+        return res;
+    }
+
+    //置顶
+    function updateResume1(){
+        //打开置顶弹框
+        bootbox.dialog({
+            title: '置顶天数',
+            message: createAddContent("../jump/top"),
+            closeButton: true,//是否显示关闭按钮
+            buttons: {
+                "success": {
+                    "label": "<i class='icon-ok'></i>支付",
+                    "className": "btn-sm btn-success",
+                    "callback": function () {
+                        var pri = $("#price").html();
+                        alert(pri);
+                       location.href="../goAlipay?price="+pri;
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-info'></i> 取消",
+                    "className": "btn-sm btn-danger",
+                    "callback": function () {
+
+                    }
+                }
+            }
+        });
+    }
+</script>
+</html>
