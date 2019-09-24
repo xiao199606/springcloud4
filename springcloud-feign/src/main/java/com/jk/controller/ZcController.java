@@ -115,7 +115,7 @@ public class ZcController {
         session.setAttribute("ids2",ids);
         Integer ids1 = (Integer) session.getAttribute("ids2");
 
-        System.out.println(ids1+"用户Id");
+        System.out.println(ids1+"企业用户Id");
         return map;
     }
 
@@ -226,11 +226,12 @@ public class ZcController {
     //新增到聊天记录
     @RequestMapping("addTransmit")
     @ResponseBody
-    public HashMap addTransmit(String re,HttpSession session){
+    public HashMap addTransmit(String hrName,String re,HttpSession session){
 
         HashMap<String, String> map = new HashMap<>();
         Integer ids1 = (Integer) session.getAttribute("ids");
-        String transmit = "transmit"+ids1;
+        //个人用户Id加面试官姓名 生成唯一的key
+        String transmit = "transmit"+ids1+hrName;
 
         //判断
         if(redisTemplate.hasKey(transmit)){

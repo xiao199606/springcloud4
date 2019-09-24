@@ -19,7 +19,10 @@
 
     </table>
     <input type="button" value="发送" onclick="transmit()">
+    <!--发布招聘信息表Id-->
     <input type="hidden" id="aa" th:value="${ids}">
+    <!--个人登录Id-->
+    <input type="hidden" id="bb" th:value="${ids2}">
 </center>
 </body>
 <script>
@@ -29,6 +32,7 @@
         loadTransmit();
     })
 
+    var hrName = "";
     //加载面试官姓名
     function loadHrName(){
         var ids = $("#aa").val();
@@ -39,6 +43,7 @@
             dataType:"json",
             success:function(data){
                 $("#chat").html(data.lianxr+":你好");
+                hrName = data.lianxr;
             },
             error:function(){
                 alert("加载面试官姓名");
@@ -63,7 +68,10 @@
         $.ajax({
             url:"../zcController/addTransmit",
             type: "post",
-            data:{re:re},
+            data:{
+                re:re,
+                hrName:hrName
+            },
             dataType:"json",
             success:function(data){
                 //alert(data.code);

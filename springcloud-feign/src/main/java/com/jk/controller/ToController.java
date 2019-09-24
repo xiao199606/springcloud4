@@ -1,5 +1,6 @@
 package com.jk.controller;
 
+import com.netflix.ribbon.proxy.annotation.Http;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -174,9 +175,19 @@ public class ToController {
 
     //跳转到沟通职位页面
     @RequestMapping("toGouTong")
-    public String toGouTong(String ids,Model model){
+    public String toGouTong(String ids, Model model, HttpSession session){
+        //发布招聘信息表Id
         model.addAttribute("ids",ids);
+        //个人版登录Id
+        Integer ids2 = (Integer) session.getAttribute("ids");
+        model.addAttribute("ids2",ids2);
         return "chat";
+    }
+
+    //跳转到企业聊天记录
+    @RequestMapping("toHrchat")
+    public String toJump(){
+        return "hrChat";
     }
 
 
