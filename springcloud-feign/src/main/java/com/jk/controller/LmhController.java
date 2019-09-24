@@ -16,10 +16,10 @@ public class LmhController {
     @Autowired
     private  LmhServiceApi lmhServiceApi;
     @PostMapping("/sendMails")
-    public Boolean sendMails() {
+    public Boolean sendMails(String email) {
 
         try {
-            lmhServiceApi.sendMails();
+            lmhServiceApi.sendMails(email);
             return true;
         }catch (Exception e){
             e.printStackTrace();
@@ -29,10 +29,9 @@ public class LmhController {
     }
 
     @PostMapping("failureMails")
-    public Boolean failureMails() {
-
+    public Boolean failureMails(String email) {
         try {
-            lmhServiceApi.failureMails();
+            lmhServiceApi.failureMails(email);
             return true;
         }catch (Exception e){
             e.printStackTrace();

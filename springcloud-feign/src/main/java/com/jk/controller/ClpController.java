@@ -1,6 +1,7 @@
 package com.jk.controller;
 
 
+import com.jk.model.User;
 import com.jk.service.ClpService;
 import com.jk.util.PageRowsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @RequestMapping("shenhe")
@@ -167,7 +169,15 @@ public class ClpController {
     @RequestMapping("queryYuangongJianli")
     @ResponseBody
     public Map queryYuangongJianli(PageRowsUtil pageRowsUtil){
+
         return clpService.queryYuangongJianli(pageRowsUtil);
+    }
+
+
+    @RequestMapping("deleteJianli")
+    @ResponseBody
+    public void deleteJianli(Integer id){
+        clpService.deleteJianli(id);
     }
 
 
