@@ -232,4 +232,19 @@ public class HbServiceImpl implements HbServiceApi {
     public List<Tree> getTreeAll2(Integer ids) {
         return hbDao.getTreeAll2(ids);
     }
+
+    @Override
+    public String queryimg1() {
+        return hbDao.queryimg1();
+    }
+
+    @Override
+    public String queryimg2() {
+        return hbDao.queryimg2();
+    }
+
+    @Override
+    public String queryimg3() {
+        return hbDao.queryimg3();
+    }
 }

@@ -164,4 +164,19 @@ public class HbController {
     public List<LanWei> querylanwei(){
         return hbServiceApi.querylanwei();
     }
+
+    @RequestMapping("queryimg1")
+    public String queryimg1(){
+        return hbServiceApi.queryimg1();
+    }
+
+    @RequestMapping("queryimg2")
+    public String queryimg2(){
+        return hbServiceApi.queryimg2();
+    }
+
+    @RequestMapping("queryimg3")
+    public String queryimg3(){
+        return hbServiceApi.queryimg3();
+    }
 }

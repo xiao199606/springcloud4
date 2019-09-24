@@ -63,7 +63,7 @@
     </delete>
 
     <update id="updateResume1" parameterType="Integer">
-        update jianli set zhiding=2 where id=#{jianli}
+        update jianli set zhiding=2,zhiddate=now() where id=#{jianli}
     </update>
 
     <update id="updateResume2" parameterType="Integer">
@@ -143,5 +143,17 @@
 
     <select id="queryjianli" resultType="Gryh" parameterType="Integer">
     select * from gryh where id=#{id}
+    </select>
+
+    <select id="queryimg1" resultType="String">
+        select imgsrc from guanggao where lcolumn = 1
+    </select>
+
+    <select id="queryimg2" resultType="String">
+        select imgsrc from guanggao where lcolumn = 2
+    </select>
+
+    <select id="queryimg3" resultType="String">
+        select imgsrc from guanggao where lcolumn = 3
     </select>
 </mapper>

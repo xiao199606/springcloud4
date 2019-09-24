@@ -70,4 +70,10 @@ public interface HbDao {
     Gryh queryjianli(Integer id);
 
     void updateResume1(Integer jianLiId);
+
+    String queryimg1();
+
+    String queryimg2();
+
+    String queryimg3();
 }

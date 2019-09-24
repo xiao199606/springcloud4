@@ -215,4 +215,22 @@ public class HbController {
     public List<LanWei> querylanwei() {
         return hbService.querylanwei();
     }
+
+    @RequestMapping("queryimg1")
+    @ResponseBody
+    public String queryimg1(){
+       return hbService.queryimg1();
+    }
+
+    @RequestMapping("queryimg2")
+    @ResponseBody
+    public String queryimg2(){
+        return hbService.queryimg2();
+    }
+
+    @RequestMapping("queryimg3")
+    @ResponseBody
+    public String queryimg3(){
+        return hbService.queryimg3();
+    }
 }
