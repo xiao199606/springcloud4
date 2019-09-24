@@ -50,9 +50,9 @@ public class LmhController {
     }
 
     @PostMapping
-    public Boolean updateJianLi() {
+    public Boolean updateJianLi(Integer id) {
         try {
-            lmhServiceApi.updateJianLi();
+            lmhServiceApi.updateJianLi(id);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

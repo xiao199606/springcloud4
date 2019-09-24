@@ -29,8 +29,7 @@ public interface HbDao {
     List<Zwjl> HashMap3(HashMap<String, Object> hashMap);
 
     void deleteStay(String[] arrIds);
-
-    void updateResume1(Integer id);
+    
 
     void updateResume2(Integer id);
 
@@ -67,4 +66,8 @@ public interface HbDao {
     User querygs(Integer gsid);
 
     List<Tree> getTreeAll2(Integer ids);
+
+    Gryh queryjianli(Integer id);
+
+    void updateResume1(Integer jianLiId);
 }

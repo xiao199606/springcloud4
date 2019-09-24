@@ -110,7 +110,8 @@ public class HbServiceImpl implements HbServiceApi {
 
     @Override
     public void updateResume1(Integer id) {
-        hbDao.updateResume1(id);
+        Gryh gryg =hbDao.queryjianli(id);
+        hbDao.updateResume1(gryg.getJianLiId());
     }
 
     @Override

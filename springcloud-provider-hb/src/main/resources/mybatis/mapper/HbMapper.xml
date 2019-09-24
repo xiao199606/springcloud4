@@ -63,7 +63,7 @@
     </delete>
 
     <update id="updateResume1" parameterType="Integer">
-        update jianli set zhiding=2 where id=#{id}
+        update jianli set zhiding=2 where id=#{jianli}
     </update>
 
     <update id="updateResume2" parameterType="Integer">
@@ -139,5 +139,9 @@
 
     <select id="querygs" resultType="user" parameterType="Integer">
         select * from user where  id=#{gsid}
+    </select>
+
+    <select id="queryjianli" resultType="Gryh" parameterType="Integer">
+    select * from gryh where id=#{id}
     </select>
 </mapper>

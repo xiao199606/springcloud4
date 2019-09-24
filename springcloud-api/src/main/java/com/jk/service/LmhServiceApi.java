@@ -13,7 +13,7 @@ public interface LmhServiceApi {
     @PostMapping("failureMails")
     Boolean failureMails();
     @PostMapping
-    void updateJianLi();
+    void updateJianLi(@RequestParam(value = "id",required = true) Integer id);
 
     @PostMapping("queryJianL")
     List<JianLi> queryJianL(@RequestParam(value = "ids1",required = true) Integer ids1);

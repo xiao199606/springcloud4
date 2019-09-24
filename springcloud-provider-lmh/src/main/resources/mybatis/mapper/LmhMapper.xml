@@ -3,7 +3,7 @@
 <mapper namespace="com.jk.dao.LmhDao" >
 
     <update id="updateJianLi">
-        update jianli set zhiding=0 where id=1;
+        update jianli set zhiding=1 where id=#{id};
     </update>
 
     <select id="queryJianL" parameterType="int" resultType="com.jk.model.JianLi">
@@ -15,5 +15,9 @@
         a.gongzjl,a.gerjs,a.tel,a.email
 
           from jianli a where gid=#{value}
+    </select>
+
+    <select id="queryjian" parameterType="Integer" resultType="Gryh">
+        select * from gryh where id=#{id}
     </select>
 </mapper>
