@@ -5,6 +5,9 @@ import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.jk.controller.LmhController;
+import com.jk.service.HbService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +22,13 @@ import java.util.UUID;
 
 @Controller
 public class AlipayDemoController {
+
+    @Autowired
+    private HbService hbService;
+
+    @Autowired
+    private LmhController lmhController;
+
 
     @RequestMapping(value = "/goAlipay", produces = "text/html; charset=UTF-8")
     @ResponseBody
@@ -61,7 +71,7 @@ public class AlipayDemoController {
     }
 
     @RequestMapping("/returnUrl")
-    public String returnUrl(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, AlipayApiException {
+    public String returnUrl(HttpServletRequest request, HttpServletResponse response ) throws UnsupportedEncodingException, AlipayApiException {
         response.setContentType("text/html;charset=utf-8");
 
         boolean verifyResult = rsaCheckV1(request);
@@ -72,15 +82,18 @@ public class AlipayDemoController {
             String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
             //支付宝交易号
             String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
-            String ids = (String) request.getSession().getAttribute("ids");
+           /* String ids = (String) request.getSession().getAttribute("ids");
             if(!StringUtils.isEmpty(ids)){
                 String[] split = ids.split(",");
                 for (String s : split) {
 
                 }
-            }
-            return "redirect:view";
-
+            }*/
+            System.err.println("支付成功");
+            Integer id = (Integer) request.getSession().getAttribute("ids");
+            hbService.updateResume1(id);
+            lmhController.timer1(id);
+            return "redirect:jump/toBosShow";
         }else{
             return "redirect:error";
 

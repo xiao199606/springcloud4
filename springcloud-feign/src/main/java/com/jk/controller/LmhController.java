@@ -49,20 +49,21 @@ public class LmhController {
 
 
     @PostMapping("aaa")
-    public void timer1(){
+    public void timer1(Integer id){
+        System.out.println(id);
         Timer nTimer = new Timer();
         nTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                updateJianLi();
+                updateJianLi(id);
             }
-        },5000);
+        },20000);
     }
 
     @PostMapping
-    public  Boolean updateJianLi(){
+    public  Boolean updateJianLi(Integer id){
         try {
-            lmhServiceApi.updateJianLi();
+            lmhServiceApi.updateJianLi(id);
             return true;
         }catch (Exception e){
             e.printStackTrace();

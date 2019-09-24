@@ -10,7 +10,7 @@ public interface LmhService {
 
     Boolean failureMails(HttpServletRequest request,String email);
 
-    void updateJianLi();
+    void updateJianLi(Integer id);
 
     List<JianLi> queryJianL(Integer ids1);
 }

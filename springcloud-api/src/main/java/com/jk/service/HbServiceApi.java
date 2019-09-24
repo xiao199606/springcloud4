@@ -77,6 +77,16 @@ public interface HbServiceApi {
 
     @RequestMapping("querylanwei")
     List<LanWei> querylanwei();
+
     @RequestMapping("getAllTree2")
     List<Tree> getTreeAll2(@RequestParam("ids")Integer ids);
+
+    @RequestMapping("queryimg1")
+    String queryimg1();
+
+    @RequestMapping("queryimg2")
+    String queryimg2();
+
+    @RequestMapping("queryimg3")
+    String queryimg3();
 }

@@ -110,7 +110,8 @@ public class HbServiceImpl implements HbServiceApi {
 
     @Override
     public void updateResume1(Integer id) {
-        hbDao.updateResume1(id);
+        Gryh gryg =hbDao.queryjianli(id);
+        hbDao.updateResume1(gryg.getJianLiId());
     }
 
     @Override
@@ -230,5 +231,20 @@ public class HbServiceImpl implements HbServiceApi {
     @Override
     public List<Tree> getTreeAll2(Integer ids) {
         return hbDao.getTreeAll2(ids);
+    }
+
+    @Override
+    public String queryimg1() {
+        return hbDao.queryimg1();
+    }
+
+    @Override
+    public String queryimg2() {
+        return hbDao.queryimg2();
+    }
+
+    @Override
+    public String queryimg3() {
+        return hbDao.queryimg3();
     }
 }

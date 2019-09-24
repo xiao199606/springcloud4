@@ -1,10 +1,7 @@
 package com.jk.service;
 
 import com.jk.dao.LmhDao;
-import com.jk.model.CmsMailConfig;
-import com.jk.model.JianLi;
-import com.jk.model.MailVo;
-import com.jk.model.User;
+import com.jk.model.*;
 import com.jk.utils.MailUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -91,9 +88,11 @@ public class LmhServiceImpl implements LmhService {
     }
 
     @Override
-    public void updateJianLi() {
-
-        lmhDao.updateJianLi();
+    public void updateJianLi(Integer id) {
+        Gryh gryh = lmhDao.queryjian(id);
+        System.out.println(id);
+       System.out.println(gryh.getJianLiId());
+        lmhDao.updateJianLi(gryh.getJianLiId());
     }
 
     @Override

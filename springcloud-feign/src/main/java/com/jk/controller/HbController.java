@@ -26,10 +26,6 @@ public class HbController {
     @Autowired
     private HbService hbService;
 
-    @Autowired
-    private LmhController lmhController;
-
-
     @RequestMapping("login")
     @ResponseBody
     public String login(User user, HttpServletRequest request) {
@@ -128,7 +124,6 @@ public class HbController {
     @ResponseBody
     public void updateResume1(Integer id) {
         hbService.updateResume1(id);
-        lmhController.timer1();
     }
 
     @RequestMapping("updateResume2")
@@ -219,5 +214,23 @@ public class HbController {
     @ResponseBody
     public List<LanWei> querylanwei() {
         return hbService.querylanwei();
+    }
+
+    @RequestMapping("queryimg1")
+    @ResponseBody
+    public String queryimg1(){
+       return hbService.queryimg1();
+    }
+
+    @RequestMapping("queryimg2")
+    @ResponseBody
+    public String queryimg2(){
+        return hbService.queryimg2();
+    }
+
+    @RequestMapping("queryimg3")
+    @ResponseBody
+    public String queryimg3(){
+        return hbService.queryimg3();
     }
 }
