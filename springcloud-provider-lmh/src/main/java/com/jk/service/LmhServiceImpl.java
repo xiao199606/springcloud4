@@ -20,16 +20,17 @@ public class LmhServiceImpl implements LmhService {
     @Autowired
     private LmhDao lmhDao;
     @Override
-    public Boolean sendMails(HttpServletRequest request) {
+    public Boolean sendMails(HttpServletRequest request,String email) {
         User user = (User) request.getSession().getAttribute("User");
         if(user!=null){
             Integer id = user.getId();
             //根据用户id找到用户对应的信息
+
         }
         MailVo mailVo = new MailVo();
         mailVo.setMailTiTle("面试邀请");
         mailVo.setMailContent("您已接收到XXX公司的面试邀请，请您在2019-12-1下午3点到我们公司面试。地点XXX");
-        mailVo.setRecipients("543379207@qq.com");
+        mailVo.setRecipients(email);
         // 获取当前正在使用的发件人配置
         CmsMailConfig cmsMailConfig = new CmsMailConfig();
         cmsMailConfig.setMailLicense("lmh521123");
@@ -52,7 +53,7 @@ public class LmhServiceImpl implements LmhService {
 
 
     @Override
-    public Boolean failureMails(HttpServletRequest request) {
+    public Boolean failureMails(HttpServletRequest request,String email) {
         User user = (User) request.getSession().getAttribute("User");
         if(user!=null){
             Integer id = user.getId();
@@ -61,7 +62,11 @@ public class LmhServiceImpl implements LmhService {
         MailVo mailVo = new MailVo();
         mailVo.setMailTiTle("简历违规提醒");
         mailVo.setMailContent("您的简历存在违规字符，请您修改后重新投放。"+"<a herf=''>投放地址</a>");
-        mailVo.setRecipients("646187818@qq.com");
+        if(email==null){
+            mailVo.setRecipients("646187818@qq.com");
+        }else{
+            mailVo.setRecipients(email);
+        }
         // 获取当前正在使用的发件人配置
         CmsMailConfig cmsMailConfig = new CmsMailConfig();
         cmsMailConfig.setMailLicense("lmh521123");

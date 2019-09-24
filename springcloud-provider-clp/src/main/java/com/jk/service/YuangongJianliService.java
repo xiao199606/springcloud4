@@ -24,4 +24,7 @@ import java.util.Map;
  */
 public interface YuangongJianliService {
     Map queryYuangongJianli(PageRowsUtil pageRowsUtil);
+
+
+    void deletegsyhjianli(Integer id);
 }

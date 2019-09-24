@@ -107,7 +107,7 @@
             },
             columns: [
                 {field: 'checkbox', checkbox: true},  //开启复选框
-                {field: 'id', title: 'id', width: 300},      //  列    field   代表是 后台  传过来的值
+                {field: 'id', title: 'id', width: 300},
                 {field: 'name', title: '名字', width: 300},
                 {field: 'sex', title: '性别', width: 300,
 
@@ -125,8 +125,8 @@
                 {field: 'minz', title: '民族', width: 300},
                 {field: 'huny', title: '婚姻状况', width: 300},
                 {field: 'zhengzh', title: '政治面貌', width: 300},
-                {field: 'xuex', title: '所学专业', width: 300},
-                {field: 'zhuany', title: '毕业学校', width: 300},
+                {field: 'xuex', title: '毕业学校', width: 300},
+                {field: 'zhuany', title: '所学专业', width: 300},
                 {field: 'xuel', title: '最高学历', width: 300},
                 {field: 'gongzjy', title: '工作经验', width: 300},
                 {field: 'xianjd', title: '现居地', width: 300},
@@ -141,33 +141,15 @@
                 {field: 'gerjs', title: '个人介绍', width: 300},
                 {field: 'tel', title: '手机号', width: 300},
                 {field: 'email', title: '邮箱', width: 300},
-                {field: 'state', title: '审核状态', width: 300,
-
-                    formatter:function(value,row,index){
-                        if(value==1){
-                            return "待审核";
-                        }
-                        if(value==2){
-                            return "审核通过";
-                        }
-                    }
-
-                },
-                {field: 'zhiding', title: '置顶', width: 300},
-
-                {field: 'tian', title: 'tian', width: 300},
 
 
-                {field: 'jine', title: 'jine', width: 300},
-
-                {field: 'gid', title: 'gid', width: 300},
 
                 {field:'cc',title:'审核',width:100,formatter:function(value,row,index){
-                        if(row.state==1){
-                            a= "<a href='javascript:updateYes("+row.id+")'>同意</a>"
-                            a+="   <a href='javascript:deleteNo("+row.id+")'>拒绝</a> "
+
+                            a= "<a href='javascript:updateYes("+row.id+",&quot;"+row.email+"&quot;)'>邀请面试</a>"
+                            a+="   <a href='javascript:deleteNo("+row.id+",&quot;"+row.email+"&quot;)'>拒绝</a> "
                             return a;
-                        }
+
 
                     }}
 
@@ -176,28 +158,45 @@
     }
 
 
-    function updateYes(id){
+    function updateYes(id,email){
+
+
 
         $.ajax({
-            url: "../shenhe/updateZhiweiYes",
-            data: {id: id},
+            url: "../lmh/sendMails?email="+email,
             type: "post",
             success: function () {
-                alert("审核通过！");
+
                 $("#dataGrid").bootstrapTable("refresh");
 
             }, error: function () {
-                alert("审核失败");
             }
         })
+
+
 
     }
 
 
-    function updateNo(id){
+    function deleteNo(id,email){
+
+/*
+        $.ajax({
+            url: "../lmh/failureMails?email="+email,
+            type: "post",
+            success: function () {
+
+                $("#dataGrid").bootstrapTable("refresh");
+
+            }, error: function () {
+            }
+        })*/
+
+
+
 
         $.ajax({
-            url: "../shenhe/updateZhiweiNo",
+            url: "../shenhe/deleteJianli",
             data: {id: id},
             type: "post",
             success: function () {
@@ -210,186 +209,11 @@
         })
 
 
-        $.ajax({
-            url: "../lmh/failureMails",
-            type: "post",
-            success: function () {
 
-                $("#dataGrid").bootstrapTable("refresh");
 
-            }, error: function () {
-            }
-        })
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    function deleteNo(id){
-        $.ajax({
-            url: "../shenhe/deleteZhiweiNo?id="+id,
-            type: "post",
-            success: function () {
-                $("#dataGrid").bootstrapTable("refresh");
-
-            }, error: function () {
-            }
-        })
-
-
-        $.ajax({
-            url: "../lmh/failureMails",
-            type: "post",
-            success: function () {
-
-                $("#dataGrid").bootstrapTable("refresh");
-
-            }, error: function () {
-            }
-        })
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    var res;
-    function createAddContent(url) {
-        $.ajax({
-            url: url,
-            async: false,
-            success: function (data) {
-                res = data;
-            }
-        });
-        return res;
-    }
-
-    //新增
-    function addBook(){
-        //打开新增弹框
-        bootbox.dialog({
-            title: '新增书籍',
-            message: createAddContent("../toAddBook"),
-            closeButton: true,//是否显示关闭按钮
-            buttons: {
-                "success": {
-                    "label": "<i class='icon-ok'></i> 保存",
-                    "className": "btn-sm btn-success",
-                    "callback": function () {
-                        $.ajax({
-                            url: '../addBook',
-                            type: 'post',
-                            data: $("#formId").serialize(),
-                            success: function () {
-                                alert("新增成功");
-                                $('#dataGrid').bootstrapTable("refresh");
-                                //刷新表格
-                            }, error: function () {
-                                alert("新增失败");
-                            }
-                        });
-                    }
-                },
-                "cancel": {
-                    "label": "<i class='icon-info'></i> 取消",
-                    "className": "btn-sm btn-danger",
-                    "callback": function () {
-
-                    }
-                }
-            }
-        });
-    }
-
-
-    //批量删除
-    function deleteBook() {
-        var arr = $('#dataGrid').bootstrapTable("getSelections");//获取选中的行
-        console.log(arr);
-        if (arr.length <= 0) {
-            alert("请你选中要删除的数据！！！");
-        } else {
-            var ids = "";
-            for (var i = 0; i < arr.length; i++) {
-                ids += arr[i].id + ",";
-            }
-            ids = ids.substring(0, ids.length - 1);
-            $.ajax({
-                url: "../deleteBook",
-                data: {ids: ids},
-                type: "post",
-                success: function () {
-                    alert("删除成功！");
-                    $("#dataGrid").bootstrapTable("refresh");
-
-                }, error: function () {
-                    alert("失败");
-                }
-
-
-            })
-        }
-
-
-    }
-    //修改
-    function update(id){
-        bootbox.dialog({
-            title: '修改用户',
-            message: createAddContent("../findBookById?id="+id),
-            closeButton: true,//是否显示关闭按钮
-            buttons: {
-                "success": {
-                    "label": "<i class='icon-ok'></i> 保存",
-                    "className": "btn-sm btn-success",
-                    "callback": function () {
-                        $.ajax({
-                            url: '../updateBook',
-                            type: 'post',
-                            data: $("#formId").serialize(),
-                            success: function () {
-                                alert("修改成功");
-                                $('#dataGrid').bootstrapTable("refresh");
-                                //刷新表格
-                            }, error: function () {
-                                alert("修改失败");
-                            }
-                        });
-                    }
-                },
-                "cancel": {
-                    "label": "<i class='icon-info'></i> 取消",
-                    "className": "btn-sm btn-danger",
-                    "callback": function () {
-                    }
-                }
-            }
-        });
-    }
 
 
 

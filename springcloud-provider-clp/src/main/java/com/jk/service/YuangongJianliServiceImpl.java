@@ -46,4 +46,10 @@ public class YuangongJianliServiceImpl implements YuangongJianliService {
         map.put("total",count);
         return map;
     }
+
+
+    @Override
+    public void deletegsyhjianli(Integer id) {
+        jianliMapper.deletegsyhjianli(id);
+    }
 }

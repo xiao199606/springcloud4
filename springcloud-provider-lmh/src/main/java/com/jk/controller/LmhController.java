@@ -23,10 +23,10 @@ public class LmhController {
     private LmhService lmhServiceApi;
 
     @PostMapping("/sendMails")
-    public Boolean sendMails(HttpServletRequest request) {
+    public Boolean sendMails(HttpServletRequest request,String email) {
 
         try {
-            lmhServiceApi.sendMails(request);
+            lmhServiceApi.sendMails(request,email);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -37,10 +37,10 @@ public class LmhController {
 
     //
     @PostMapping("failureMails")
-    public Boolean failureMails(HttpServletRequest request) {
+    public Boolean failureMails(HttpServletRequest request,String email) {
 
         try {
-            lmhServiceApi.failureMails(request);
+            lmhServiceApi.failureMails(request,email);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
